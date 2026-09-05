@@ -59,7 +59,17 @@ export function setupExportImportListeners(onRenderAll, showToast, applyTheme, a
           if (data.settings) state.settings = data.settings;
           if (data.activity) state.activity = data.activity;
           if (data.dailyGoal) state.dailyGoal = data.dailyGoal;
-          if (!state.settings.ui) state.settings.ui = { analyticsOpen: true, filtersOpen: true };
+          if (!state.settings.ui) {
+            state.settings.ui = {
+              insightsOpen: true, streakGoalOpen: true, analyticsOpen: true,
+              filtersOpen: true, questionsOpen: true, revOpen: true, dataMgmtOpen: true
+            };
+          } else {
+            // Ensure all keys exist (handles imports from older app versions)
+            const defaults = { insightsOpen: true, streakGoalOpen: true, analyticsOpen: true,
+              filtersOpen: true, questionsOpen: true, revOpen: true, dataMgmtOpen: true };
+            state.settings.ui = { ...defaults, ...state.settings.ui };
+          }
           state.rawQuestions.forEach(q => {
             if (!state.progress[q.id]) state.progress[q.id] = defaultProgressFor(q.id);
           });

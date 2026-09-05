@@ -11,7 +11,7 @@ export function starStr(n) {
 export function defaultProgressFor(id) {
   const preset = PRESET_PROGRESS[id];
   if (preset) return { ...preset };
-  return { status: "Unsolved", revision: false, confidence: 0, attempts: 0, timeTaken: 0, lastSolved: "", favorite: false, notes: "" };
+  return { status: "Not Started", revision: false, confidence: 0, attempts: 0, timeTaken: 0, lastSolved: "", favorite: false, notes: "" };
 }
 
 export async function loadQuestionsData() {
@@ -25,7 +25,7 @@ export async function loadQuestionsData() {
 
   saveJSON(K.questions, data.map(q => ({ id: q.id, title: q.title })));
 
-  const DATASET_VERSION = "v3_clean_unsolved_reset";
+  const DATASET_VERSION = "v4_not_started_default";
   const storedVersion = localStorage.getItem("dsaDatasetVersion");
   if (storedVersion !== DATASET_VERSION) {
     state.progress = {};

@@ -1,12 +1,12 @@
-import { state, initState } from './state.js?v=10';
-import { persistAll } from './storage.js?v=10';
-import { loadQuestionsData, getQuestions } from './data.js?v=10';
-import { populateFilterDropdowns, setupFilterListeners } from './filters.js?v=10';
-import { renderCharts } from './charts.js?v=10';
-import { setupGoalListeners } from './streak.js?v=10';
-import { setupModalListeners } from './modal.js?v=10';
-import { setupExportImportListeners } from './export-import.js?v=10';
-import { renderAll } from './rendering.js?v=10';
+import { state, initState } from './state.js?v=11';
+import { persistAll } from './storage.js?v=11';
+import { loadQuestionsData, getQuestions } from './data.js?v=11';
+import { populateFilterDropdowns, setupFilterListeners } from './filters.js?v=11';
+import { renderCharts } from './charts.js?v=11';
+import { setupGoalListeners } from './streak.js?v=11';
+import { setupModalListeners } from './modal.js?v=11';
+import { setupExportImportListeners } from './export-import.js?v=11';
+import { renderAll } from './rendering.js?v=11';
 
 let toastTimer;
 export function toast(msg) {

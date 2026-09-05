@@ -42,7 +42,7 @@ export function renderKPIs(all) {
 
   const cards = [
     { label: "Total Questions", value: total, sub: "in dataset", cls: "" },
-    { label: "Unsolved", value: unsolved, sub: "remaining to solve", cls: "" },
+    { label: "Not Started", value: unsolved, sub: "remaining to solve", cls: "" },
     { label: "Solved", value: solved, sub: `of ${total}`, cls: "solved" },
     { label: "Mastered", value: mastered, sub: "fully confident", cls: "mastered" },
     { label: "Revision", value: revision, sub: "needs review", cls: "revision" },
@@ -107,8 +107,6 @@ export function renderCards(all, showToast) {
   grid.innerHTML = shown.map(q => {
     const isSolved = q.status === "Solved" || q.status === "Mastered";
     const isRev = isRevisionFlagged(q) || q.status === "Needs Revision";
-    const solvedCount = q.solvedCount !== undefined ? q.solvedCount : (isSolved ? 1 : 0);
-    const revisionCount = q.revisionCount !== undefined ? q.revisionCount : (isRev ? 1 : 0);
 
     return `
     <div class="q-card" data-id="${q.id}">
@@ -125,9 +123,9 @@ export function renderCards(all, showToast) {
         <span class="diff-badge diff-${q.stars}">${starStr(q.stars)}</span>
       </div>
       <div class="q-status-row-counts">
-        <div class="status-badge status-${slug(q.status)}">${STATUS_EMOJI[q.status]} ${q.status}</div>
-        <span class="status-count-tag solved">✓ Solved: ${solvedCount}</span>
-        <span class="status-count-tag revision">🔁 Revision: ${revisionCount}</span>
+        <div class="status-badge status-${slug(q.status)}">${STATUS_EMOJI[q.status] || '🔴'} ${q.status}</div>
+        ${isSolved ? `<span class="status-count-tag solved">✓ ${q.lastSolved ? 'Solved: ' + q.lastSolved : 'Solved'}</span>` : ''}
+        ${isRev ? `<span class="status-count-tag revision">🔁 Revision</span>` : ''}
       </div>
       <div>
         <div class="q-stats-row"><span>Confidence: ${q.confidence}%</span><span>Attempts: ${q.attempts}</span></div>

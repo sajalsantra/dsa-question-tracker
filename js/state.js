@@ -1,6 +1,6 @@
 import { K, loadJSON, todayStr } from './storage.js';
 
-export const STATUSES = ["Unsolved", "In Progress", "Solved", "Needs Revision", "Mastered"];
+export const STATUSES = ["Not Started", "In Progress", "Solved", "Needs Revision", "Mastered"];
 
 export const STATUS_EMOJI = {
   "Unsolved": "🔴",
