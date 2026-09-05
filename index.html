@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSA Question Tracker — Master Data Structures & Algorithms</title>
+  <meta name="description" content="A comprehensive DSA Question Tracker to monitor, solve, revise, and track progress across data structures and algorithm topics.">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-top">
+      <div class="brand-mark">
+        <div class="brand-icon">&lt;/&gt;</div>
+        <div>
+          <h1>DSA Question Tracker</h1>
+          <div class="subtitle">Master Data Structures &amp; Algorithms — Track → Solve → Revise → Repeat</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn" id="expandAllBtn" title="Expand all sections">📂 Expand All</button>
+        <button class="btn" id="closeAllBtn" title="Close all sections except Questions">📁 Close All</button>
+        <button class="icon-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">🌙</button>
+        <button class="btn danger" id="resetProgressBtn">Reset Progress</button>
+      </div>
+    </div>
+    <div class="header-stats">
+      <div class="hstat"><div class="hstat-label">Progress</div><div class="hstat-value accent" id="hsProgress">0%</div></div>
+      <div class="hstat"><div class="hstat-label">Total</div><div class="hstat-value" id="hsTotal">0</div></div>
+      <div class="hstat"><div class="hstat-label">Solved</div><div class="hstat-value green" id="hsSolved">0</div></div>
+      <div class="hstat"><div class="hstat-label">Unsolved</div><div class="hstat-value" id="hsPending">0</div></div>
+      <div class="hstat"><div class="hstat-label">Revision</div><div class="hstat-value" id="hsRevision">0</div></div>
+      <div class="hstat"><div class="hstat-label">Accuracy</div><div class="hstat-value" id="hsAccuracy">0%</div></div>
+      <div class="hstat"><div class="hstat-label">Streak</div><div class="hstat-value orange" id="hsStreak">0 🔥</div></div>
+    </div>
+    <div class="meta-line" id="lastUpdated">Last updated: —</div>
+  </header>
+
+  <!-- KPI CARDS -->
+  <div class="kpi-grid" id="kpiGrid"></div>
+
+  <!-- INSIGHTS: readiness / weak topics / recommendations -->
+  <div class="section" id="insightsSection">
+    <div class="section-head">
+      <div class="section-title">💡 Performance &amp; Interview Insights</div>
+      <button class="collapse-btn open" id="toggleInsightsBtn" aria-label="Toggle insights section"><span class="chev">▾</span></button>
+    </div>
+    <div class="collapsible-body" id="insightsBody">
+      <div class="collapsible-body-inner">
+        <div class="insight-grid">
+          <div class="section" style="margin-bottom:0;">
+            <div class="section-title">🎯 Interview Readiness</div>
+            <div class="readiness-ring">
+              <div class="ring-wrap">
+                <svg viewBox="0 0 150 150">
+                  <circle class="ring-bg" cx="75" cy="75" r="60"></circle>
+                  <circle class="ring-fg" id="readinessRing" cx="75" cy="75" r="60"></circle>
+                </svg>
+                <div class="ring-center">
+                  <div class="ring-num" id="readinessNum">0%</div>
+                  <div class="ring-label">Ready</div>
+                </div>
+              </div>
+              <div class="readiness-tag" id="readinessTag">Beginner</div>
+            </div>
+          </div>
+
+          <div class="section" style="margin-bottom:0;">
+            <div class="section-title">⚠️ Weak Topics</div>
+            <div id="weakTopicsList"></div>
+            <div class="recommend-box" id="recommendationText">💡 Keep solving to unlock recommendations.</div>
+          </div>
+
+          <div class="section" style="margin-bottom:0;">
+            <div class="section-title">🧭 Recommended Next</div>
+            <div id="recommendList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STREAK + GOAL -->
+  <div class="section" id="streakGoalSection">
+    <div class="section-head">
+      <div class="section-title">🔥 Activity &amp; Daily Goals</div>
+      <button class="collapse-btn open" id="toggleStreakGoalBtn" aria-label="Toggle streak and goal section"><span class="chev">▾</span></button>
+    </div>
+    <div class="collapsible-body" id="streakGoalBody">
+      <div class="collapsible-body-inner">
+        <div class="streak-goal-grid">
+          <div class="section" style="margin-bottom:0;">
+            <div class="section-title">🔥 Study Streak</div>
+            <div class="streak-numbers">
+              <div class="streak-num"><div class="val" id="curStreak">0</div><div class="lbl">Current streak (days)</div></div>
+              <div class="streak-num"><div class="val" id="longStreak">0</div><div class="lbl">🏆 Longest streak</div></div>
+            </div>
+            <div class="heatmap" id="heatmap"></div>
+          </div>
+          <div class="section" style="margin-bottom:0;">
+            <div class="section-title">✅ Today's Goal</div>
+            <div class="goal-select" id="goalSelect">
+              <button class="goal-chip" data-goal="3">3 / day</button>
+              <button class="goal-chip" data-goal="5">5 / day</button>
+              <button class="goal-chip" data-goal="10">10 / day</button>
+            </div>
+            <div class="goal-progress-wrap">
+              <div class="goal-progress-text"><span id="goalCountText">0 / 5 Questions</span><span id="goalPct">0%</span></div>
+              <div class="goal-bar"><div class="goal-bar-fill" id="goalBarFill" style="width:0%"></div></div>
+              <div class="goal-note" id="goalNote">5 questions remaining</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANALYTICS -->
+  <div class="section" id="analyticsSection">
+    <div class="section-head">
+      <div>
+        <div class="section-title">📊 Dashboard Analytics</div>
+        <div class="section-desc">Updates automatically as you change question statuses</div>
+      </div>
+      <button class="collapse-btn open" id="toggleAnalyticsBtn" aria-label="Toggle analytics section"><span class="chev">▾</span></button>
+    </div>
+    <div class="collapsible-body" id="analyticsBody">
+      <div class="collapsible-body-inner">
+        <div class="charts-grid">
+          <div class="chart-card"><h3>Solved by Difficulty (★)</h3><canvas id="chartDifficulty"></canvas></div>
+          <div class="chart-card"><h3>Solved / Pending / Revision</h3><canvas id="chartStatus"></canvas></div>
+          <div class="chart-card"><h3>Progress Over Time</h3><canvas id="chartTime"></canvas></div>
+          <div class="chart-card wide"><h3>Questions by Topic</h3><canvas id="chartTopic"></canvas></div>
+          <div class="chart-card wide"><h3>Topic Completion</h3><canvas id="chartCompletion"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="section" id="filtersSection">
+    <div class="section-head">
+      <div class="section-title">🔍 Search &amp; Filters</div>
+      <button class="collapse-btn open" id="toggleFiltersBtn" aria-label="Toggle filters section"><span class="chev">▾</span></button>
+    </div>
+    <div class="collapsible-body" id="filtersBody">
+      <div class="collapsible-body-inner">
+        <div class="filters" id="filtersPanel">
+          <div class="field" style="grid-column:span 2;">
+            <label>Search</label>
+            <input type="text" id="fSearch" placeholder="Search by name, topic, pattern, platform…">
+          </div>
+          <div class="field"><label>Topic</label><select id="fTopic"><option value="All">All Topics</option></select></div>
+          <div class="field"><label>Difficulty</label>
+            <select id="fDifficulty"><option value="All">All</option><option value="1">★☆☆☆☆</option><option value="2">★★☆☆☆</option><option value="3">★★★☆☆</option><option value="4">★★★★☆</option><option value="5">★★★★★</option></select>
+          </div>
+          <div class="field"><label>Status</label>
+            <select id="fStatus"><option value="All">All</option><option>Unsolved</option><option>In Progress</option><option>Solved</option><option>Needs Revision</option><option>Mastered</option></select>
+          </div>
+          <div class="field"><label>Pattern / Subtopic</label><select id="fPattern"><option value="All">All Patterns</option></select></div>
+          <div class="field"><label>Platform</label><select id="fPlatform"><option value="All">All Platforms</option></select></div>
+          <div class="field"><label>Confidence</label>
+            <select id="fConfidence"><option value="All">Any</option><option value="0-30">0–30%</option><option value="31-60">31–60%</option><option value="61-80">61–80%</option><option value="81-100">81–100%</option></select>
+          </div>
+          <div class="field"><label>Sort By</label>
+            <select id="fSort"><option value="difficulty">Difficulty</option><option value="recent">Recently Solved</option><option value="confidence">Confidence</option><option value="attempts">Attempts</option><option value="topic">Topic</option><option value="alpha">Alphabetical</option></select>
+          </div>
+          <div class="field"><label>Show</label>
+            <select id="fFavorite"><option value="All">All Questions</option><option value="Favorites">⭐ Favorites Only</option></select>
+          </div>
+        </div>
+        <div class="filters-footer">
+          <span class="result-count" id="resultCount">0 questions</span>
+          <button class="btn small" id="clearFiltersBtn">Clear Filters</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUESTION GRID -->
+  <div class="section" id="questionsSection">
+    <div class="section-head">
+      <div class="section-title">📚 Questions</div>
+      <button class="collapse-btn open" id="toggleQuestionsBtn" aria-label="Toggle questions section" title="Questions section stays open"><span class="chev">▾</span></button>
+    </div>
+    <div class="collapsible-body" id="questionsBody">
+      <div class="collapsible-body-inner">
+        <div class="q-grid" id="qGrid"></div>
+        <div class="pagination-wrap" id="paginationWrap"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVISION QUEUE -->
+  <div class="section" id="revSection">
+    <div class="section-head">
+      <div>
+        <div class="section-title">🔁 Revision Queue</div>
+        <div class="section-desc">Auto-populated from low confidence, needs-revision, and repeated attempts</div>
+      </div>
+      <button class="collapse-btn open" id="toggleRevBtn" aria-label="Toggle revision queue section"><span class="chev">▾</span></button>
+    </div>
+    <div class="collapsible-body" id="revBody">
+      <div class="collapsible-body-inner">
+        <div class="rev-grid" id="revGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA MANAGEMENT -->
+  <div class="section" id="dataMgmtSection">
+    <div class="section-head">
+      <div class="section-title">💾 Data Management</div>
+      <button class="collapse-btn open" id="toggleDataMgmtBtn" aria-label="Toggle data management section"><span class="chev">▾</span></button>
+    </div>
+    <div class="collapsible-body" id="dataMgmtBody">
+      <div class="collapsible-body-inner">
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn" id="exportJsonBtn">⬇ Export Progress (JSON)</button>
+          <button class="btn" id="exportCsvBtn">⬇ Export CSV</button>
+          <button class="btn" id="importBtn">⬆ Import Progress</button>
+          <input type="file" id="importFile" accept=".json" class="visually-hidden">
+          <button class="btn danger" id="resetAllBtn">🗑 Reset All Progress</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title" id="mTitle">Question</div>
+        <div class="modal-sub" id="mSub">Platform · Topic · Pattern</div>
+      </div>
+      <button class="modal-close" id="modalCloseBtn">✕</button>
+    </div>
+
+    <div class="modal-grid">
+      <div class="modal-field"><div class="k">Platform</div><div class="v" id="mPlatform">—</div></div>
+      <div class="modal-field"><div class="k">Difficulty</div><div class="v" id="mDifficulty">—</div></div>
+      <div class="modal-field"><div class="k">Topic</div><div class="v" id="mTopic">—</div></div>
+      <div class="modal-field"><div class="k">Pattern</div><div class="v" id="mPattern">—</div></div>
+      <div class="modal-field"><div class="k">Problem Link</div><div class="v" id="mLinkWrap"><a id="mLink" href="#" target="_blank" rel="noopener">Open Problem →</a></div></div>
+      <div class="modal-field"><div class="k">Last Solved</div><div class="v" id="mLastSolved">—</div></div>
+    </div>
+
+    <div class="modal-status-row" id="mStatusRow"></div>
+
+    <div class="modal-slider-row">
+      <label><span>Confidence</span><span id="mConfVal">0%</span></label>
+      <input type="range" id="mConfidence" min="0" max="100" step="5">
+    </div>
+
+    <div class="modal-grid">
+      <div class="modal-field-full"><label>Attempts</label><input type="number" min="0" id="mAttempts"></div>
+      <div class="modal-field-full"><label>Time Taken (min)</label><input type="number" min="0" id="mTime"></div>
+    </div>
+
+    <div class="modal-field-full">
+      <label>Personal Notes</label>
+      <textarea id="mNotes" placeholder="Write your approach, mistakes, edge cases, or important observations…"></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn primary" id="mMarkSolved">✓ Mark Solved</button>
+      <button class="btn" id="mMarkRevision">🔁 Needs Revision</button>
+      <button class="btn" id="mMarkMastered">⭐ Mark Mastered</button>
+      <button class="btn" id="mFavoriteBtn">☆ Add to Favorites</button>
+      <button class="btn danger" id="mResetStatus">↺ Reset Status</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module" src="js/app.js?v=10"></script>
+</body>
+</html>
