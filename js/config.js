@@ -8,10 +8,10 @@
 
 const DEFAULT_CONFIG = {
   // Public URL of your Supabase project (e.g. https://xyzcompany.supabase.co)
-  url: "https://your-supabase-project.supabase.co",
+  url: "https://opsuzfwlgvrsvofolsxt.supabase.co",
   
   // Public Anon Key of your Supabase project (safe for frontend code)
-  anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.your-anon-key-here"
+  anonKey: "sb_publishable_OCQq0CCwcJj8eXLUs65row_v3b0htkA"
 };
 
 export function getSupabaseConfig() {
