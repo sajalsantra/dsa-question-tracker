@@ -622,17 +622,35 @@ textarea:focus, input[type=number]:focus{ outline:none; border-color:var(--accen
 
 /* DASHBOARD & INSIGHTS GROUP CONTAINER */
 .dashboard-insights-group {
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--surface-1);
-  margin-bottom: 24px;
+  border-radius: 18px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
 }
 
 .dashboard-group-inner {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 12px;
+  padding-top: 6px;
+}
+
+.dashboard-group-inner > .section {
+  background: var(--surface-2);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 0;
+}
+
+.dashboard-group-inner .insight-grid > .section,
+.dashboard-group-inner .streak-goal-grid > .section {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 0;
 }
 
 /* Staggered sequential reveal animation when parent expands */
@@ -662,5 +680,4 @@ textarea:focus, input[type=number]:focus{ outline:none; border-color:var(--accen
     transform: translateY(0);
   }
 }
-
 
