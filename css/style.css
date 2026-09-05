@@ -645,7 +645,8 @@ textarea:focus, input[type=number]:focus{ outline:none; border-color:var(--accen
 }
 
 .dashboard-group-inner .insight-grid > .section,
-.dashboard-group-inner .streak-goal-grid > .section {
+.dashboard-group-inner .streak-goal-grid > .section,
+.dashboard-group-inner .chart-card {
   background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-sm);
