@@ -90,6 +90,8 @@ export function setupAuthUI(onReloadData) {
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = mode === "login" ? "Sign In" : "Sign Up";
+        const passEl = document.getElementById("authPassword");
+        if (passEl) passEl.value = "";
       }
     });
   }
@@ -152,6 +154,8 @@ export function closeAuthModal() {
   if (overlay) overlay.classList.remove("open");
   const errorEl = document.getElementById("authErrorMsg");
   if (errorEl) errorEl.textContent = "";
+  const passEl = document.getElementById("authPassword");
+  if (passEl) passEl.value = "";
 }
 
 function setAuthModalMode(mode) {
