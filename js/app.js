@@ -37,6 +37,21 @@ const sectionConfig = [
   { bodyId: "dataMgmtBody", btnId: "toggleDataMgmtBtn", key: "dataMgmtOpen" }
 ];
 
+export function updateToggleAllBtn() {
+  const toggleBtn = document.getElementById("toggleAllSectionsBtn");
+  if (!toggleBtn) return;
+
+  const allExpanded = sectionConfig.every(cfg => state.settings.ui[cfg.key] !== false);
+
+  if (allExpanded) {
+    toggleBtn.textContent = "📁 Close All";
+    toggleBtn.title = "Close all sections except Questions";
+  } else {
+    toggleBtn.textContent = "📂 Expand All";
+    toggleBtn.title = "Expand all sections";
+  }
+}
+
 export function applyCollapsible() {
   sectionConfig.forEach(({ bodyId, btnId, key }) => {
     const body = document.getElementById(bodyId);
@@ -50,6 +65,8 @@ export function applyCollapsible() {
       btn.classList.toggle("open", isOpen);
     }
   });
+
+  updateToggleAllBtn();
 }
 
 function bindSectionToggle({ btnId, key, onOpen }) {
@@ -105,34 +122,33 @@ async function init() {
     });
   });
 
-  // Expand All
-  const expandAllBtn = document.getElementById("expandAllBtn");
-  if (expandAllBtn) {
-    expandAllBtn.addEventListener("click", () => {
-      sectionConfig.forEach(cfg => {
-        state.settings.ui[cfg.key] = true;
-      });
+  // Toggle All Sections (Smart Toggle: Expand All <-> Close All)
+  const toggleAllBtn = document.getElementById("toggleAllSectionsBtn");
+  if (toggleAllBtn) {
+    toggleAllBtn.addEventListener("click", () => {
+      const allExpanded = sectionConfig.every(cfg => state.settings.ui[cfg.key] !== false);
+
+      if (allExpanded) {
+        // Currently all expanded -> Close All (except Questions)
+        sectionConfig.forEach(cfg => {
+          if (cfg.key === "questionsOpen") {
+            state.settings.ui.questionsOpen = true; // Always remain open
+          } else {
+            state.settings.ui[cfg.key] = false;
+          }
+        });
+        toast("Closed all sections except Questions 📁");
+      } else {
+        // At least one collapsed -> Expand All
+        sectionConfig.forEach(cfg => {
+          state.settings.ui[cfg.key] = true;
+        });
+        toast("Expanded all sections 📂");
+      }
+
       persistAll(state);
       applyCollapsible();
       if (state.settings.ui.analyticsOpen) renderCharts(getQuestions());
-      toast("Expanded all sections 📂");
-    });
-  }
-
-  // Close All (Questions section MUST remain open!)
-  const closeAllBtn = document.getElementById("closeAllBtn");
-  if (closeAllBtn) {
-    closeAllBtn.addEventListener("click", () => {
-      sectionConfig.forEach(cfg => {
-        if (cfg.key === "questionsOpen") {
-          state.settings.ui.questionsOpen = true; // Always remain open
-        } else {
-          state.settings.ui[cfg.key] = false;
-        }
-      });
-      persistAll(state);
-      applyCollapsible();
-      toast("Closed all sections except Questions 📁");
     });
   }
 
@@ -145,3 +161,4 @@ async function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
