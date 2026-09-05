@@ -1,7 +1,7 @@
-import { state, STATUSES, STATUS_EMOJI } from './state.js';
-import { getQuestions, starStr, defaultProgressFor } from './data.js';
-import { persistAll, todayStr } from './storage.js';
-import { recordActivity, refreshDailyGoalDate } from './streak.js';
+import { state, STATUSES, STATUS_EMOJI } from './state.js?v=12';
+import { getQuestions, starStr, defaultProgressFor } from './data.js?v=12';
+import { persistAll, todayStr, saveProgressDB, saveNoteDB, isAuthenticated } from './storage.js?v=12';
+import { recordActivity, refreshDailyGoalDate } from './streak.js?v=12';
 
 function slug(s) {
   return s.replace(/\s+/g, '-');
@@ -24,6 +24,9 @@ export function setStatus(id, status, onUpdate) {
     }
   }
   persistAll(state);
+  if (isAuthenticated()) {
+    saveProgressDB(id, p);
+  }
   state.settings.lastUpdated = new Date().toISOString();
   if (onUpdate) onUpdate();
 }
@@ -103,6 +106,9 @@ export function setupModalListeners(onRenderAll, showToast) {
         if (!state.progress[state.activeQuestionId]) state.progress[state.activeQuestionId] = defaultProgressFor(state.activeQuestionId);
         state.progress[state.activeQuestionId].confidence = Number(e.target.value);
         persistAll(state);
+        if (isAuthenticated()) {
+          saveProgressDB(state.activeQuestionId, state.progress[state.activeQuestionId]);
+        }
       }
     });
   }
@@ -114,6 +120,9 @@ export function setupModalListeners(onRenderAll, showToast) {
         if (!state.progress[state.activeQuestionId]) state.progress[state.activeQuestionId] = defaultProgressFor(state.activeQuestionId);
         state.progress[state.activeQuestionId].attempts = Math.max(0, Number(e.target.value) || 0);
         persistAll(state);
+        if (isAuthenticated()) {
+          saveProgressDB(state.activeQuestionId, state.progress[state.activeQuestionId]);
+        }
         if (onRenderAll) onRenderAll();
       }
     });
@@ -126,6 +135,9 @@ export function setupModalListeners(onRenderAll, showToast) {
         if (!state.progress[state.activeQuestionId]) state.progress[state.activeQuestionId] = defaultProgressFor(state.activeQuestionId);
         state.progress[state.activeQuestionId].timeTaken = Math.max(0, Number(e.target.value) || 0);
         persistAll(state);
+        if (isAuthenticated()) {
+          saveProgressDB(state.activeQuestionId, state.progress[state.activeQuestionId]);
+        }
       }
     });
   }
@@ -136,6 +148,9 @@ export function setupModalListeners(onRenderAll, showToast) {
       if (state.activeQuestionId != null) {
         state.notesStore[state.activeQuestionId] = e.target.value;
         persistAll(state);
+        if (isAuthenticated()) {
+          saveNoteDB(state.activeQuestionId, e.target.value);
+        }
       }
     });
   }
@@ -177,6 +192,9 @@ export function setupModalListeners(onRenderAll, showToast) {
       if (!state.progress[state.activeQuestionId]) state.progress[state.activeQuestionId] = defaultProgressFor(state.activeQuestionId);
       state.progress[state.activeQuestionId].favorite = !state.progress[state.activeQuestionId].favorite;
       persistAll(state);
+      if (isAuthenticated()) {
+        saveProgressDB(state.activeQuestionId, state.progress[state.activeQuestionId]);
+      }
       openModal(state.activeQuestionId, onRenderAll, showToast);
       if (onRenderAll) onRenderAll();
     });
@@ -189,6 +207,10 @@ export function setupModalListeners(onRenderAll, showToast) {
       state.progress[state.activeQuestionId] = defaultProgressFor(state.activeQuestionId);
       state.notesStore[state.activeQuestionId] = "";
       persistAll(state);
+      if (isAuthenticated()) {
+        saveProgressDB(state.activeQuestionId, state.progress[state.activeQuestionId]);
+        saveNoteDB(state.activeQuestionId, "");
+      }
       openModal(state.activeQuestionId, onRenderAll, showToast);
       if (onRenderAll) onRenderAll();
       if (showToast) showToast("Status reset");

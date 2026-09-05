@@ -1,12 +1,13 @@
-import { state, initState } from './state.js?v=11';
-import { persistAll } from './storage.js?v=11';
-import { loadQuestionsData, getQuestions } from './data.js?v=11';
-import { populateFilterDropdowns, setupFilterListeners } from './filters.js?v=11';
-import { renderCharts } from './charts.js?v=11';
-import { setupGoalListeners } from './streak.js?v=11';
-import { setupModalListeners } from './modal.js?v=11';
-import { setupExportImportListeners } from './export-import.js?v=11';
-import { renderAll } from './rendering.js?v=11';
+import { state, initState } from './state.js?v=12';
+import { persistAll, loadUserDataFromDB } from './storage.js?v=12';
+import { loadQuestionsData, getQuestions } from './data.js?v=12';
+import { populateFilterDropdowns, setupFilterListeners } from './filters.js?v=12';
+import { renderCharts } from './charts.js?v=12';
+import { setupGoalListeners } from './streak.js?v=12';
+import { setupModalListeners } from './modal.js?v=12';
+import { setupExportImportListeners } from './export-import.js?v=12';
+import { renderAll } from './rendering.js?v=12';
+import { setupAuthUI } from './auth-ui.js?v=12';
 
 let toastTimer;
 export function toast(msg) {
@@ -65,8 +66,23 @@ function bindSectionToggle({ btnId, key, onOpen }) {
 
 async function init() {
   initState();
-  await loadQuestionsData();
 
+  // Primary data load callback (triggered initially and whenever user logs in/out)
+  const reloadDataAndRender = async () => {
+    const dbUserData = await loadUserDataFromDB();
+    await loadQuestionsData(dbUserData);
+
+    applyTheme();
+    applyCollapsible();
+    populateFilterDropdowns();
+    renderAll(toast);
+  };
+
+  // Setup Auth UI and listener
+  setupAuthUI(reloadDataAndRender);
+
+  // Initial questions data load
+  await loadQuestionsData(null);
   applyTheme();
   applyCollapsible();
   populateFilterDropdowns();

@@ -7,6 +7,8 @@
   <meta name="description" content="A comprehensive DSA Question Tracker to monitor, solve, revise, and track progress across data structures and algorithm topics.">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Supabase JS Client SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -23,6 +25,8 @@
         </div>
       </div>
       <div class="header-actions">
+        <div class="save-indicator saved" id="saveIndicator" title="Data synchronization status">🟢 Saved</div>
+        <button class="btn accent-btn" id="authUserBtn">🔑 Sign In / Sign Up</button>
         <button class="btn" id="expandAllBtn" title="Expand all sections">📂 Expand All</button>
         <button class="btn" id="closeAllBtn" title="Close all sections except Questions">📁 Close All</button>
         <button class="icon-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">🌙</button>
@@ -38,7 +42,7 @@
       <div class="hstat"><div class="hstat-label">Accuracy</div><div class="hstat-value" id="hsAccuracy">0%</div></div>
       <div class="hstat"><div class="hstat-label">Streak</div><div class="hstat-value orange" id="hsStreak">0 🔥</div></div>
     </div>
-    <div class="meta-line" id="lastUpdated">Last updated: —</div>
+    <div class="meta-line" id="lastUpdated"><span id="authStatusText">Local Storage (Guest)</span> · Last updated: —</div>
   </header>
 
   <!-- KPI CARDS -->
@@ -233,7 +237,7 @@
 
 </div>
 
-<!-- MODAL -->
+<!-- QUESTION MODAL -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <div class="modal-head">
@@ -280,8 +284,39 @@
   </div>
 </div>
 
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModalOverlay">
+  <div class="modal auth-modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title" id="authTitle">Sign In to DSA Tracker</div>
+        <div class="modal-sub">Save &amp; Sync your progress securely across all devices</div>
+      </div>
+      <button class="modal-close" id="authCloseBtn">✕</button>
+    </div>
+
+    <form id="authForm" class="auth-form">
+      <div class="modal-field-full">
+        <label for="authEmail">Email Address</label>
+        <input type="email" id="authEmail" required placeholder="you@example.com" class="input-text">
+      </div>
+      <div class="modal-field-full">
+        <label for="authPassword">Password</label>
+        <input type="password" id="authPassword" required minlength="6" placeholder="••••••••" class="input-text">
+      </div>
+      <div class="auth-error-msg" id="authErrorMsg"></div>
+      <div class="modal-actions" style="margin-top:16px;">
+        <button type="submit" class="btn primary full-width" id="authSubmitBtn" data-mode="login">Sign In</button>
+      </div>
+      <div class="auth-toggle-row">
+        <button type="button" class="btn-link" id="authToggleModeBtn" data-mode="login">Need an account? Sign Up</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
-<script type="module" src="js/app.js?v=11"></script>
+<script type="module" src="js/app.js?v=12"></script>
 </body>
 </html>

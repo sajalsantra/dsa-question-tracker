@@ -1,5 +1,5 @@
-import { K, saveJSON } from './storage.js';
-import { state } from './state.js';
+import { K, saveJSON } from './storage.js?v=12';
+import { state } from './state.js?v=12';
 
 export const PRESET_PROGRESS = {};
 
@@ -14,7 +14,7 @@ export function defaultProgressFor(id) {
   return { status: "Not Started", revision: false, confidence: 0, attempts: 0, timeTaken: 0, lastSolved: "", favorite: false, notes: "" };
 }
 
-export async function loadQuestionsData() {
+export async function loadQuestionsData(dbUserData = null) {
   const response = await fetch('./data/questions.json');
   const data = await response.json();
   state.rawQuestions = data;
@@ -25,15 +25,21 @@ export async function loadQuestionsData() {
 
   saveJSON(K.questions, data.map(q => ({ id: q.id, title: q.title })));
 
-  const DATASET_VERSION = "v4_not_started_default";
-  const storedVersion = localStorage.getItem("dsaDatasetVersion");
-  if (storedVersion !== DATASET_VERSION) {
-    state.progress = {};
-    state.notesStore = {};
-    state.activity = {};
-    localStorage.setItem("dsaDatasetVersion", DATASET_VERSION);
+  // Apply DB loaded data if available
+  if (dbUserData) {
+    if (dbUserData.progress) state.progress = dbUserData.progress;
+    if (dbUserData.notesStore) state.notesStore = dbUserData.notesStore;
+    if (dbUserData.activity) state.activity = dbUserData.activity;
+    if (dbUserData.settings) {
+      state.settings = { ...state.settings, ...dbUserData.settings };
+    }
+    if (dbUserData.dailyGoal) {
+      state.dailyGoal = { ...state.dailyGoal, ...dbUserData.dailyGoal };
+    }
   }
 
+  // Non-destructive merging:
+  // Existing questions keep their progress; missing questions get default progress.
   data.forEach(q => {
     if (!state.progress[q.id]) {
       state.progress[q.id] = defaultProgressFor(q.id);

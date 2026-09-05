@@ -1,6 +1,6 @@
-import { K, persistAll, todayStr } from './storage.js';
-import { state } from './state.js';
-import { getQuestions, defaultProgressFor } from './data.js';
+import { K, persistAll, loadJSON, isAuthenticated, saveProgressDB, saveNoteDB, saveActivityDB } from './storage.js?v=12';
+import { state } from './state.js?v=12';
+import { getQuestions, defaultProgressFor } from './data.js?v=12';
 
 export function downloadFile(name, content, type) {
   const blob = new Blob([content], { type });
@@ -51,7 +51,7 @@ export function setupExportImportListeners(onRenderAll, showToast, applyTheme, a
       const file = e.target.files[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = () => {
+      reader.onload = async () => {
         try {
           const data = JSON.parse(reader.result);
           if (data.progress) state.progress = data.progress;
@@ -59,13 +59,13 @@ export function setupExportImportListeners(onRenderAll, showToast, applyTheme, a
           if (data.settings) state.settings = data.settings;
           if (data.activity) state.activity = data.activity;
           if (data.dailyGoal) state.dailyGoal = data.dailyGoal;
+
           if (!state.settings.ui) {
             state.settings.ui = {
               insightsOpen: true, streakGoalOpen: true, analyticsOpen: true,
               filtersOpen: true, questionsOpen: true, revOpen: true, dataMgmtOpen: true
             };
           } else {
-            // Ensure all keys exist (handles imports from older app versions)
             const defaults = { insightsOpen: true, streakGoalOpen: true, analyticsOpen: true,
               filtersOpen: true, questionsOpen: true, revOpen: true, dataMgmtOpen: true };
             state.settings.ui = { ...defaults, ...state.settings.ui };
@@ -73,7 +73,22 @@ export function setupExportImportListeners(onRenderAll, showToast, applyTheme, a
           state.rawQuestions.forEach(q => {
             if (!state.progress[q.id]) state.progress[q.id] = defaultProgressFor(q.id);
           });
+          
           persistAll(state);
+
+          // If logged in, sync imported progress to database
+          if (isAuthenticated()) {
+            Object.keys(state.progress).forEach(id => {
+              saveProgressDB(id, state.progress[id]);
+            });
+            Object.keys(state.notesStore).forEach(id => {
+              if (state.notesStore[id]) saveNoteDB(id, state.notesStore[id]);
+            });
+            Object.keys(state.activity).forEach(date => {
+              if (state.activity[date]) saveActivityDB(date, state.activity[date]);
+            });
+          }
+
           if (applyTheme) applyTheme();
           if (applyCollapsible) applyCollapsible();
           if (onRenderAll) onRenderAll();
@@ -88,7 +103,7 @@ export function setupExportImportListeners(onRenderAll, showToast, applyTheme, a
   }
 
   const handleReset = () => {
-    if (confirm("This will permanently erase all saved progress, notes, favorites, streaks and goals (including the imported sheet progress). Continue?")) {
+    if (confirm("This will erase saved progress, notes, favorites, streaks and goals. Continue?")) {
       localStorage.removeItem(K.progress);
       localStorage.removeItem(K.notes);
       localStorage.removeItem(K.activity);
@@ -96,7 +111,7 @@ export function setupExportImportListeners(onRenderAll, showToast, applyTheme, a
       state.progress = {};
       state.notesStore = {};
       state.activity = {};
-      state.dailyGoal = { target: 5, date: todayStr(), count: 0 };
+      state.dailyGoal = { target: 5, date: new Date().toISOString().slice(0, 10), count: 0 };
       state.rawQuestions.forEach(q => {
         state.progress[q.id] = defaultProgressFor(q.id);
       });

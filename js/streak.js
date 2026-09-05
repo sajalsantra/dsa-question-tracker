@@ -1,9 +1,12 @@
-import { state } from './state.js';
-import { todayStr, persistAll } from './storage.js';
+import { state } from './state.js?v=12';
+import { todayStr, persistAll, saveActivityDB, isAuthenticated } from './storage.js?v=12';
 
 export function recordActivity() {
   const t = todayStr();
   state.activity[t] = (state.activity[t] || 0) + 1;
+  if (isAuthenticated()) {
+    saveActivityDB(t, state.activity[t]);
+  }
 }
 
 export function computeStreaks() {
