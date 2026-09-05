@@ -111,6 +111,7 @@ async function init() {
       state.settings.theme = state.settings.theme === "light" ? "dark" : "light";
       applyTheme();
       persistAll(state);
+      renderCharts(getQuestions());
     });
   }
 

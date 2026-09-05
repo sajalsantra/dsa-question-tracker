@@ -6,9 +6,11 @@ import { todayStr } from './storage.js';
 let charts = {};
 
 function chartColors() {
+  const isLight = document.body.classList.contains('light');
   return {
-    grid: getComputedStyle(document.body).getPropertyValue('--border-soft').trim() || '#1C2438',
-    text: getComputedStyle(document.body).getPropertyValue('--text-dim').trim() || '#9AA5BE'
+    grid: isLight ? 'rgba(30, 41, 71, 0.08)' : (getComputedStyle(document.body).getPropertyValue('--border-soft').trim() || '#1C2438'),
+    text: isLight ? '#5E6883' : (getComputedStyle(document.body).getPropertyValue('--text-dim').trim() || '#9AA5BE'),
+    pendingBg: isLight ? '#98A0B8' : '#5D6785'
   };
 }
 
@@ -61,7 +63,7 @@ export function renderCharts(all) {
     type: "doughnut",
     data: {
       labels: ["Solved", "Pending", "Revision"],
-      datasets: [{ data: [solvedCount, pendingCount, revisionCount], backgroundColor: ["#2FD180", "#5D6785", "#38BDF8"], borderWidth: 0 }]
+      datasets: [{ data: [solvedCount, pendingCount, revisionCount], backgroundColor: ["#2FD180", cc.pendingBg, "#38BDF8"], borderWidth: 0 }]
     },
     options: {
       plugins: { legend: { position: "bottom", labels: { color: cc.text, boxWidth: 10, font: { size: 11 } } } },

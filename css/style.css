@@ -682,3 +682,16 @@ textarea:focus, input[type=number]:focus{ outline:none; border-color:var(--accen
   }
 }
 
+/* Light Mode specific card elevation and subtle shadow polish */
+body.light .section,
+body.light .dashboard-insights-group {
+  box-shadow: var(--shadow);
+}
+
+body.light .chart-card,
+body.light .insight-grid > .section,
+body.light .streak-goal-grid > .section {
+  box-shadow: 0 2px 8px rgba(30, 41, 71, 0.04);
+}
+
+
