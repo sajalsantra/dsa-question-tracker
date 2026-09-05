@@ -62,11 +62,11 @@ export function setupExportImportListeners(onRenderAll, showToast, applyTheme, a
 
           if (!state.settings.ui) {
             state.settings.ui = {
-              insightsOpen: true, streakGoalOpen: true, analyticsOpen: true,
+              dashboardGroupOpen: true, insightsOpen: true, streakGoalOpen: true, analyticsOpen: true,
               filtersOpen: true, questionsOpen: true, revOpen: true, dataMgmtOpen: true
             };
           } else {
-            const defaults = { insightsOpen: true, streakGoalOpen: true, analyticsOpen: true,
+            const defaults = { dashboardGroupOpen: true, insightsOpen: true, streakGoalOpen: true, analyticsOpen: true,
               filtersOpen: true, questionsOpen: true, revOpen: true, dataMgmtOpen: true };
             state.settings.ui = { ...defaults, ...state.settings.ui };
           }

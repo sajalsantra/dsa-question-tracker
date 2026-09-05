@@ -34,6 +34,7 @@ export const state = {
     filters: {},
     lastUpdated: null,
     ui: {
+      dashboardGroupOpen: true,
       insightsOpen: true,
       streakGoalOpen: true,
       analyticsOpen: true,
@@ -72,6 +73,7 @@ export function initState() {
     filters: {},
     lastUpdated: null,
     ui: {
+      dashboardGroupOpen: true,
       insightsOpen: true,
       streakGoalOpen: true,
       analyticsOpen: true,
@@ -83,6 +85,7 @@ export function initState() {
   });
   if (!state.settings.ui) {
     state.settings.ui = {
+      dashboardGroupOpen: true,
       insightsOpen: true,
       streakGoalOpen: true,
       analyticsOpen: true,
@@ -93,6 +96,7 @@ export function initState() {
     };
   } else {
     state.settings.ui = {
+      dashboardGroupOpen: true,
       insightsOpen: true,
       streakGoalOpen: true,
       analyticsOpen: true,

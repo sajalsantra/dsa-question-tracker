@@ -47,100 +47,116 @@
   <!-- KPI CARDS -->
   <div class="kpi-grid" id="kpiGrid"></div>
 
-  <!-- INSIGHTS: readiness / weak topics / recommendations -->
-  <div class="section" id="insightsSection">
-    <div class="section-head">
-      <div class="section-title">💡 Performance &amp; Interview Insights</div>
-      <button class="collapse-btn open" id="toggleInsightsBtn" aria-label="Toggle insights section"><span class="chev">▾</span></button>
-    </div>
-    <div class="collapsible-body" id="insightsBody">
-      <div class="collapsible-body-inner">
-        <div class="insight-grid">
-          <div class="section" style="margin-bottom:0;">
-            <div class="section-title">🎯 Interview Readiness</div>
-            <div class="readiness-ring">
-              <div class="ring-wrap">
-                <svg viewBox="0 0 150 150">
-                  <circle class="ring-bg" cx="75" cy="75" r="60"></circle>
-                  <circle class="ring-fg" id="readinessRing" cx="75" cy="75" r="60"></circle>
-                </svg>
-                <div class="ring-center">
-                  <div class="ring-num" id="readinessNum">0%</div>
-                  <div class="ring-label">Ready</div>
-                </div>
-              </div>
-              <div class="readiness-tag" id="readinessTag">Beginner</div>
-            </div>
-          </div>
-
-          <div class="section" style="margin-bottom:0;">
-            <div class="section-title">⚠️ Weak Topics</div>
-            <div id="weakTopicsList"></div>
-            <div class="recommend-box" id="recommendationText">💡 Keep solving to unlock recommendations.</div>
-          </div>
-
-          <div class="section" style="margin-bottom:0;">
-            <div class="section-title">🧭 Recommended Next</div>
-            <div id="recommendList"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- STREAK + GOAL -->
-  <div class="section" id="streakGoalSection">
-    <div class="section-head">
-      <div class="section-title">🔥 Activity &amp; Daily Goals</div>
-      <button class="collapse-btn open" id="toggleStreakGoalBtn" aria-label="Toggle streak and goal section"><span class="chev">▾</span></button>
-    </div>
-    <div class="collapsible-body" id="streakGoalBody">
-      <div class="collapsible-body-inner">
-        <div class="streak-goal-grid">
-          <div class="section" style="margin-bottom:0;">
-            <div class="section-title">🔥 Study Streak</div>
-            <div class="streak-numbers">
-              <div class="streak-num"><div class="val" id="curStreak">0</div><div class="lbl">Current streak (days)</div></div>
-              <div class="streak-num"><div class="val" id="longStreak">0</div><div class="lbl">🏆 Longest streak</div></div>
-            </div>
-            <div class="heatmap" id="heatmap"></div>
-          </div>
-          <div class="section" style="margin-bottom:0;">
-            <div class="section-title">✅ Today's Goal</div>
-            <div class="goal-select" id="goalSelect">
-              <button class="goal-chip" data-goal="3">3 / day</button>
-              <button class="goal-chip" data-goal="5">5 / day</button>
-              <button class="goal-chip" data-goal="10">10 / day</button>
-            </div>
-            <div class="goal-progress-wrap">
-              <div class="goal-progress-text"><span id="goalCountText">0 / 5 Questions</span><span id="goalPct">0%</span></div>
-              <div class="goal-bar"><div class="goal-bar-fill" id="goalBarFill" style="width:0%"></div></div>
-              <div class="goal-note" id="goalNote">5 questions remaining</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ANALYTICS -->
-  <div class="section" id="analyticsSection">
+  <!-- DASHBOARD & INSIGHTS GROUP -->
+  <div class="section dashboard-insights-group" id="dashboardGroupSection">
     <div class="section-head">
       <div>
-        <div class="section-title">📊 Dashboard Analytics</div>
-        <div class="section-desc">Updates automatically as you change question statuses</div>
+        <div class="section-title">📊 Dashboard Analytics &amp; Insights</div>
+        <div class="section-desc">Performance insights, activity streak, daily goals, and progress analytics</div>
       </div>
-      <button class="collapse-btn open" id="toggleAnalyticsBtn" aria-label="Toggle analytics section"><span class="chev">▾</span></button>
+      <button class="collapse-btn open" id="toggleDashboardGroupBtn" aria-label="Toggle dashboard group section"><span class="chev">▾</span></button>
     </div>
-    <div class="collapsible-body" id="analyticsBody">
-      <div class="collapsible-body-inner">
-        <div class="charts-grid">
-          <div class="chart-card"><h3>Solved by Difficulty (★)</h3><canvas id="chartDifficulty"></canvas></div>
-          <div class="chart-card"><h3>Solved / Pending / Revision</h3><canvas id="chartStatus"></canvas></div>
-          <div class="chart-card"><h3>Progress Over Time</h3><canvas id="chartTime"></canvas></div>
-          <div class="chart-card wide"><h3>Questions by Topic</h3><canvas id="chartTopic"></canvas></div>
-          <div class="chart-card wide"><h3>Topic Completion</h3><canvas id="chartCompletion"></canvas></div>
+    <div class="collapsible-body" id="dashboardGroupBody">
+      <div class="collapsible-body-inner dashboard-group-inner">
+
+        <!-- INSIGHTS: readiness / weak topics / recommendations -->
+        <div class="section" id="insightsSection" style="margin-bottom:0;">
+          <div class="section-head">
+            <div class="section-title">💡 Performance &amp; Interview Insights</div>
+            <button class="collapse-btn open" id="toggleInsightsBtn" aria-label="Toggle insights section"><span class="chev">▾</span></button>
+          </div>
+          <div class="collapsible-body" id="insightsBody">
+            <div class="collapsible-body-inner">
+              <div class="insight-grid">
+                <div class="section" style="margin-bottom:0;">
+                  <div class="section-title">🎯 Interview Readiness</div>
+                  <div class="readiness-ring">
+                    <div class="ring-wrap">
+                      <svg viewBox="0 0 150 150">
+                        <circle class="ring-bg" cx="75" cy="75" r="60"></circle>
+                        <circle class="ring-fg" id="readinessRing" cx="75" cy="75" r="60"></circle>
+                      </svg>
+                      <div class="ring-center">
+                        <div class="ring-num" id="readinessNum">0%</div>
+                        <div class="ring-label">Ready</div>
+                      </div>
+                    </div>
+                    <div class="readiness-tag" id="readinessTag">Beginner</div>
+                  </div>
+                </div>
+
+                <div class="section" style="margin-bottom:0;">
+                  <div class="section-title">⚠️ Weak Topics</div>
+                  <div id="weakTopicsList"></div>
+                  <div class="recommend-box" id="recommendationText">💡 Keep solving to unlock recommendations.</div>
+                </div>
+
+                <div class="section" style="margin-bottom:0;">
+                  <div class="section-title">🧭 Recommended Next</div>
+                  <div id="recommendList"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- STREAK + GOAL -->
+        <div class="section" id="streakGoalSection" style="margin-bottom:0;">
+          <div class="section-head">
+            <div class="section-title">🔥 Activity &amp; Daily Goals</div>
+            <button class="collapse-btn open" id="toggleStreakGoalBtn" aria-label="Toggle streak and goal section"><span class="chev">▾</span></button>
+          </div>
+          <div class="collapsible-body" id="streakGoalBody">
+            <div class="collapsible-body-inner">
+              <div class="streak-goal-grid">
+                <div class="section" style="margin-bottom:0;">
+                  <div class="section-title">🔥 Study Streak</div>
+                  <div class="streak-numbers">
+                    <div class="streak-num"><div class="val" id="curStreak">0</div><div class="lbl">Current streak (days)</div></div>
+                    <div class="streak-num"><div class="val" id="longStreak">0</div><div class="lbl">🏆 Longest streak</div></div>
+                  </div>
+                  <div class="heatmap" id="heatmap"></div>
+                </div>
+                <div class="section" style="margin-bottom:0;">
+                  <div class="section-title">✅ Today's Goal</div>
+                  <div class="goal-select" id="goalSelect">
+                    <button class="goal-chip" data-goal="3">3 / day</button>
+                    <button class="goal-chip" data-goal="5">5 / day</button>
+                    <button class="goal-chip" data-goal="10">10 / day</button>
+                  </div>
+                  <div class="goal-progress-wrap">
+                    <div class="goal-progress-text"><span id="goalCountText">0 / 5 Questions</span><span id="goalPct">0%</span></div>
+                    <div class="goal-bar"><div class="goal-bar-fill" id="goalBarFill" style="width:0%"></div></div>
+                    <div class="goal-note" id="goalNote">5 questions remaining</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ANALYTICS -->
+        <div class="section" id="analyticsSection" style="margin-bottom:0;">
+          <div class="section-head">
+            <div>
+              <div class="section-title">📊 Dashboard Analytics</div>
+              <div class="section-desc">Updates automatically as you change question statuses</div>
+            </div>
+            <button class="collapse-btn open" id="toggleAnalyticsBtn" aria-label="Toggle analytics section"><span class="chev">▾</span></button>
+          </div>
+          <div class="collapsible-body" id="analyticsBody">
+            <div class="collapsible-body-inner">
+              <div class="charts-grid">
+                <div class="chart-card"><h3>Solved by Difficulty (★)</h3><canvas id="chartDifficulty"></canvas></div>
+                <div class="chart-card"><h3>Solved / Pending / Revision</h3><canvas id="chartStatus"></canvas></div>
+                <div class="chart-card"><h3>Progress Over Time</h3><canvas id="chartTime"></canvas></div>
+                <div class="chart-card wide"><h3>Questions by Topic</h3><canvas id="chartTopic"></canvas></div>
+                <div class="chart-card wide"><h3>Topic Completion</h3><canvas id="chartCompletion"></canvas></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

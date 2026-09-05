@@ -28,6 +28,7 @@ export function applyTheme() {
 }
 
 const sectionConfig = [
+  { bodyId: "dashboardGroupBody", btnId: "toggleDashboardGroupBtn", key: "dashboardGroupOpen" },
   { bodyId: "insightsBody", btnId: "toggleInsightsBtn", key: "insightsOpen" },
   { bodyId: "streakGoalBody", btnId: "toggleStreakGoalBtn", key: "streakGoalOpen" },
   { bodyId: "analyticsBody", btnId: "toggleAnalyticsBtn", key: "analyticsOpen" },
@@ -118,7 +119,7 @@ async function init() {
     bindSectionToggle({
       btnId: cfg.btnId,
       key: cfg.key,
-      onOpen: cfg.key === "analyticsOpen" ? () => renderCharts(getQuestions()) : null
+      onOpen: (cfg.key === "analyticsOpen" || cfg.key === "dashboardGroupOpen") ? () => renderCharts(getQuestions()) : null
     });
   });
 
