@@ -86,7 +86,13 @@ export function setupAuthUI(onReloadData) {
         closeAuthModal();
         if (onAuthChangedCallback) await onAuthChangedCallback();
       } catch (err) {
-        if (errorEl) errorEl.textContent = err.message || "Authentication failed.";
+        if (errorEl) {
+          if (err.code === "over_email_send_rate_limit" || (err.message && err.message.toLowerCase().includes("rate limit"))) {
+            errorEl.textContent = "Email rate limit exceeded. Please wait a few minutes before trying again.";
+          } else {
+            errorEl.textContent = err.message || "Authentication failed.";
+          }
+        }
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = mode === "login" ? "Sign In" : "Sign Up";

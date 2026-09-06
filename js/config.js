@@ -1,22 +1,11 @@
 /**
- * Supabase Client Configuration
- * 
- * Safe for public browser environment (only public anon key is exposed).
- * Replace placeholder values with your actual Supabase project credentials.
- * Or set window.SUPABASE_CONFIG = { url: "...", anonKey: "..." } in index.html.
+ * Firebase Client Configuration Gateway
+ * Firebase JavaScript SDK Version: 12.18.0 (CDN Modular SDK)
+ * Project: dsa-tracker-app-ef41d
  */
 
-const DEFAULT_CONFIG = {
-  // Public URL of your Supabase project (e.g. https://xyzcompany.supabase.co)
-  url: "https://opsuzfwlgvrsvofolsxt.supabase.co",
-  
-  // Public Anon Key of your Supabase project (safe for frontend code)
-  anonKey: "sb_publishable_OCQq0CCwcJj8eXLUs65row_v3b0htkA"
-};
+import { getFirebaseConfig as getConfig } from './firebase/config.js';
 
-export function getSupabaseConfig() {
-  if (typeof window !== "undefined" && window.SUPABASE_CONFIG && window.SUPABASE_CONFIG.url) {
-    return window.SUPABASE_CONFIG;
-  }
-  return DEFAULT_CONFIG;
+export function getFirebaseConfig() {
+  return getConfig();
 }
