@@ -9,7 +9,7 @@ import {
   onSaveStateChange 
 } from './storage.js';
 
-import { showAppConfirm, showAppAlert } from './modal.js';
+import { showAppConfirm, showAppAlert, showChangePasswordModal, showForgotPasswordModal } from './modal.js';
 
 let onAuthChangedCallback = null;
 
@@ -31,6 +31,15 @@ export function setupAuthUI(onReloadData) {
       } else {
         openAuthModal("login");
       }
+    });
+  }
+
+  // Change Password button inside Profile Dropdown
+  const dropdownChangePassBtn = document.getElementById("dropdownChangePassBtn");
+  if (dropdownChangePassBtn) {
+    dropdownChangePassBtn.addEventListener("click", async () => {
+      closeProfileDropdown();
+      await showChangePasswordModal();
     });
   }
 
@@ -89,6 +98,17 @@ export function setupAuthUI(onReloadData) {
     authToggleBtn.addEventListener("click", () => {
       const isLogin = authToggleBtn.dataset.mode === "login";
       setAuthModalMode(isLogin ? "signup" : "login");
+    });
+  }
+
+  // Forgot Password button inside Auth Modal
+  const authForgotPasswordBtn = document.getElementById("authForgotPasswordBtn");
+  if (authForgotPasswordBtn) {
+    authForgotPasswordBtn.addEventListener("click", async () => {
+      const emailInput = document.getElementById("authEmail");
+      const currentEmail = emailInput ? emailInput.value.trim() : "";
+      closeAuthModal();
+      await showForgotPasswordModal(currentEmail);
     });
   }
 
@@ -286,11 +306,13 @@ function setAuthModalMode(mode) {
   const toggleBtn = document.getElementById("authToggleModeBtn");
   const nameGroup = document.getElementById("authNameGroup");
   const nameInput = document.getElementById("authName");
+  const forgotBtn = document.getElementById("authForgotPasswordBtn");
 
   if (mode === "login") {
     if (titleEl) titleEl.textContent = "Sign In to DSA Tracker";
     if (nameGroup) nameGroup.style.display = "none";
     if (nameInput) nameInput.removeAttribute("required");
+    if (forgotBtn) forgotBtn.style.display = "inline-block";
     if (submitBtn) {
       submitBtn.textContent = "Sign In";
       submitBtn.dataset.mode = "login";
@@ -303,6 +325,7 @@ function setAuthModalMode(mode) {
     if (titleEl) titleEl.textContent = "Create Account";
     if (nameGroup) nameGroup.style.display = "block";
     if (nameInput) nameInput.setAttribute("required", "true");
+    if (forgotBtn) forgotBtn.style.display = "none";
     if (submitBtn) {
       submitBtn.textContent = "Create Account";
       submitBtn.dataset.mode = "signup";

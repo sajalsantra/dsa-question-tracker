@@ -56,6 +56,9 @@
         <div class="dropdown-email" id="dropdownUserEmail">user@example.com</div>
       </div>
       <div class="dropdown-divider"></div>
+      <button class="dropdown-item" id="dropdownChangePassBtn">
+        <span>🔑 Change Password</span>
+      </button>
       <button class="dropdown-item danger" id="dropdownLogoutBtn">
         <span>🚪 Log Out</span>
       </button>
@@ -338,7 +341,10 @@
         <input type="email" id="authEmail" required placeholder="you@example.com" class="input-text">
       </div>
       <div class="modal-field-full">
-        <label for="authPassword">Password</label>
+        <div class="field-label-row">
+          <label for="authPassword">Password</label>
+          <button type="button" class="btn-link forgot-pass-btn" id="authForgotPasswordBtn">Forgot Password?</button>
+        </div>
         <input type="password" id="authPassword" required minlength="6" placeholder="••••••••" class="input-text">
       </div>
       <div class="auth-error-msg" id="authErrorMsg"></div>

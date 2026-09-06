@@ -12,7 +12,11 @@ import {
   signInWithEmailAndPassword, 
   signOut, 
   onAuthStateChanged,
-  updateProfile
+  updateProfile,
+  sendPasswordResetEmail,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  updatePassword
 } from 'https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js';
 import { getFirebaseApp } from './config.js';
 
@@ -28,11 +32,13 @@ export function getFirebaseAuth() {
 }
 
 export function getCurrentUser() {
-  return currentUser;
+  const auth = getFirebaseAuth();
+  return auth.currentUser || currentUser;
 }
 
 export function isAuthenticated() {
-  return !!currentUser;
+  const user = getCurrentUser();
+  return !!user;
 }
 
 export function initAuth(onAuthChangeCallback) {
@@ -78,7 +84,31 @@ export async function signOutUser() {
   }
 }
 
-export function formatAuthError(error) {
+export async function sendResetPasswordEmail(email) {
+  const auth = getFirebaseAuth();
+  try {
+    await sendPasswordResetEmail(auth, email);
+  } catch (error) {
+    throw formatAuthError(error, "reset");
+  }
+}
+
+export async function changeUserPassword(currentPassword, newPassword) {
+  const auth = getFirebaseAuth();
+  const user = auth.currentUser || currentUser;
+  if (!user || !user.email) {
+    throw new Error('Please log in again before changing your password.');
+  }
+  try {
+    const credential = EmailAuthProvider.credential(user.email, currentPassword);
+    await reauthenticateWithCredential(user, credential);
+    await updatePassword(user, newPassword);
+  } catch (error) {
+    throw formatAuthError(error, "change_pass");
+  }
+}
+
+export function formatAuthError(error, context = "") {
   const code = error ? (error.code || '') : '';
   let message = error ? (error.message || 'Authentication error') : 'Authentication error';
   
@@ -90,15 +120,29 @@ export function formatAuthError(error) {
       message = 'Please enter a valid email address.';
       break;
     case 'auth/weak-password':
-      message = 'Password should be at least 6 characters long.';
+      message = 'The new password is too weak. Please use at least 6 characters.';
       break;
     case 'auth/user-not-found':
+      if (context === "reset") {
+        // Return clear user message without exposing user registration status unnecessarily
+        message = 'If an account exists for this email address, check your inbox for instructions to reset your password.';
+      } else {
+        message = 'Invalid email or password. Please check your credentials and try again.';
+      }
+      break;
     case 'auth/wrong-password':
     case 'auth/invalid-credential':
-      message = 'Invalid email or password. Please check your credentials and try again.';
+      if (context === "change_pass") {
+        message = 'The current password is incorrect. Please check and try again.';
+      } else {
+        message = 'Invalid email or password. Please check your credentials and try again.';
+      }
+      break;
+    case 'auth/requires-recent-login':
+      message = 'Please log in again before changing your password.';
       break;
     case 'auth/too-many-requests':
-      message = 'Access to this account has been temporarily disabled due to many failed login attempts. Try again later.';
+      message = 'Access to this account has been temporarily disabled due to many requests. Try again later.';
       break;
     case 'auth/network-request-failed':
       message = 'Network error. Please check your internet connection.';

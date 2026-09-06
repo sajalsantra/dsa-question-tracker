@@ -3,6 +3,8 @@ import {
   signUpUser as signUpFirebaseUser, 
   signInUser as signInFirebaseUser, 
   signOutUser as signOutFirebaseUser, 
+  sendResetPasswordEmail as sendFirebaseResetPasswordEmail,
+  changeUserPassword as changeFirebaseUserPassword,
   getCurrentUser as getFirebaseCurrentUser, 
   isAuthenticated as isFirebaseAuthenticated 
 } from './firebase/auth.js';
@@ -17,6 +19,9 @@ import {
   saveUserProfileFirestore,
   loadUserProfileFirestore
 } from './firebase/firestore.js';
+
+export const sendResetPasswordEmail = sendFirebaseResetPasswordEmail;
+export const changeUserPassword = changeFirebaseUserPassword;
 
 export const K = {
   progress: "dsaProgress",

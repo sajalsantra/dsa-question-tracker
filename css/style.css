@@ -808,6 +808,36 @@ body.light .profile-dropdown-menu {
   line-height: 1.55;
   margin-top: 12px;
 }
+.field-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.field-label-row label {
+  margin-bottom: 0;
+}
+.forgot-pass-btn {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0;
+  text-decoration: none;
+}
+.forgot-pass-btn:hover {
+  text-decoration: underline;
+}
+.toggle-pass-btn {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.toggle-pass-btn:hover {
+  color: #ffffff;
+}
 
 
 
