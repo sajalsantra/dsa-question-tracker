@@ -73,17 +73,19 @@ button{font-family:inherit; cursor:pointer;}
   padding:26px 28px;
   margin-bottom:20px;
   position:relative;
-  overflow:hidden;
+  overflow:visible !important;
+  z-index:10;
 }
 .header::before{
   content:"";
   position:absolute; inset:0;
+  border-radius:18px;
   background: radial-gradient(600px 200px at 85% -20%, rgba(91,127,255,0.16), transparent 70%);
   pointer-events:none;
 }
 .header-top{
   display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap;
-  position:relative; z-index:1;
+  position:relative; z-index:100 !important;
 }
 .brand-mark{
   display:flex; align-items:center; gap:12px;
@@ -107,7 +109,7 @@ h1{
   margin-top:3px;
   font-family:var(--mono);
 }
-.header-actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.header-actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; position:relative; z-index:200 !important; }
 .icon-btn{
   width:40px; height:40px; border-radius:10px;
   background:var(--surface-2); border:1px solid var(--border);
@@ -132,7 +134,7 @@ h1{
 
 .header-stats{
   margin-top:22px; display:flex; gap:0; flex-wrap:wrap;
-  border-top:1px solid var(--border-soft); padding-top:18px; position:relative; z-index:1;
+  border-top:1px solid var(--border-soft); padding-top:18px; position:static !important; z-index:auto !important;
 }
 .hstat{
   flex:1; min-width:110px; padding:0 18px; border-right:1px solid var(--border-soft);
@@ -145,7 +147,7 @@ h1{
 .hstat-value.orange{ color:var(--orange); }
 @media (max-width:900px){ .hstat{ min-width:33%; border-right:none; padding:8px 0; border-bottom:1px solid var(--border-soft);} }
 
-.meta-line{ font-size:11.5px; color:var(--text-faint); margin-top:14px; font-family:var(--mono); position:relative; z-index:1;}
+.meta-line{ font-size:11.5px; color:var(--text-faint); margin-top:14px; font-family:var(--mono); }
 
 /* ---------- KPI CARDS ---------- */
 .kpi-grid{
@@ -693,5 +695,119 @@ body.light .insight-grid > .section,
 body.light .streak-goal-grid > .section {
   box-shadow: 0 2px 8px rgba(30, 41, 71, 0.04);
 }
+
+/* ---------- PROFILE DROPDOWN MENU & AVATAR ---------- */
+.profile-dropdown-wrap {
+  position: relative;
+  display: inline-block;
+  z-index: 300;
+}
+.profile-btn {
+  gap: 8px;
+}
+.user-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--display);
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+.profile-dropdown-menu {
+  position: absolute;
+  top: 72px;
+  right: 28px;
+  min-width: 240px;
+  background-color: var(--surface) !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85);
+  z-index: 99999 !important;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+body.light .profile-dropdown-menu {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+}
+.profile-dropdown-menu.open {
+  opacity: 1 !important;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.dropdown-header {
+  padding: 4px 6px 8px;
+}
+.dropdown-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dropdown-email {
+  font-size: 11.5px;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+.dropdown-divider {
+  height: 1px;
+  background: var(--border-soft);
+  margin: 8px 0;
+}
+.dropdown-item {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.dropdown-item:hover {
+  background: var(--surface-2);
+}
+.dropdown-item.danger {
+  color: var(--red);
+}
+.dropdown-item.danger:hover {
+  background: var(--red-bg);
+}
+
+/* ---------- REUSABLE APPLICATION MODAL ---------- */
+.app-modal {
+  max-width: 460px;
+  width: 92%;
+}
+.modal-body-text {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.55;
+  margin-top: 12px;
+}
+
 
 

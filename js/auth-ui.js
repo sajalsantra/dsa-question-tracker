@@ -5,8 +5,11 @@ import {
   signOutUser, 
   isAuthenticated, 
   getCurrentUser, 
+  getUserProfile,
   onSaveStateChange 
-} from './storage.js?v=12';
+} from './storage.js';
+
+import { showAppConfirm, showAppAlert } from './modal.js';
 
 let onAuthChangedCallback = null;
 
@@ -21,16 +24,50 @@ export function setupAuthUI(onReloadData) {
   // Header Auth button click
   const authUserBtn = document.getElementById("authUserBtn");
   if (authUserBtn) {
-    authUserBtn.addEventListener("click", () => {
+    authUserBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
       if (isAuthenticated()) {
-        if (confirm(`Logged in as ${getCurrentUser().email}. Do you want to sign out?`)) {
-          handleSignOut();
-        }
+        toggleProfileDropdown();
       } else {
         openAuthModal("login");
       }
     });
   }
+
+  // Logout button inside Profile Dropdown
+  const dropdownLogoutBtn = document.getElementById("dropdownLogoutBtn");
+  if (dropdownLogoutBtn) {
+    dropdownLogoutBtn.addEventListener("click", async () => {
+      closeProfileDropdown();
+      const user = getCurrentUser();
+      const profile = await getUserProfile(user);
+      const confirmed = await showAppConfirm({
+        title: "Log Out",
+        message: `Are you sure you want to log out, ${profile.name}? Your progress will remain saved in the cloud.`,
+        confirmText: "Log Out",
+        cancelText: "Cancel",
+        type: "danger"
+      });
+      if (confirmed) {
+        await handleSignOut();
+      }
+    });
+  }
+
+  // Document listener to close dropdown on click outside
+  document.addEventListener("click", (e) => {
+    const wrap = document.getElementById("profileDropdownWrap");
+    if (wrap && !wrap.contains(e.target)) {
+      closeProfileDropdown();
+    }
+  });
+
+  // Escape key listener for profile dropdown
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeProfileDropdown();
+    }
+  });
 
   // Auth Modal Close button
   const authCloseBtn = document.getElementById("authCloseBtn");
@@ -60,14 +97,22 @@ export function setupAuthUI(onReloadData) {
   if (authForm) {
     authForm.addEventListener("submit", async (e) => {
       e.preventDefault();
+      const nameInput = document.getElementById("authName");
+      const name = nameInput ? nameInput.value.trim() : "";
       const email = document.getElementById("authEmail").value.trim();
       const password = document.getElementById("authPassword").value;
       const mode = document.getElementById("authSubmitBtn").dataset.mode;
       const errorEl = document.getElementById("authErrorMsg");
       const submitBtn = document.getElementById("authSubmitBtn");
 
+      if (mode === "signup" && !name) {
+        if (errorEl) errorEl.textContent = "Please enter your name.";
+        if (nameInput) nameInput.focus();
+        return;
+      }
+
       if (!email || !password) {
-        if (errorEl) errorEl.textContent = "Please fill in all fields.";
+        if (errorEl) errorEl.textContent = "Please fill in all required fields.";
         return;
       }
 
@@ -79,8 +124,14 @@ export function setupAuthUI(onReloadData) {
         if (mode === "login") {
           await signInUser(email, password);
         } else {
-          await signUpUser(email, password);
-          alert("Account created successfully! If email confirmation is enabled, please check your inbox.");
+          await signUpUser(email, password, name);
+          closeAuthModal();
+          await showAppAlert({
+            title: "Account Created",
+            message: `Welcome ${name || "to DSA Tracker"}! Your account has been successfully created.`,
+            confirmText: "Get Started",
+            type: "success"
+          });
         }
 
         closeAuthModal();
@@ -95,7 +146,7 @@ export function setupAuthUI(onReloadData) {
         }
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = mode === "login" ? "Sign In" : "Sign Up";
+        submitBtn.textContent = mode === "login" ? "Sign In" : "Create Account";
         const passEl = document.getElementById("authPassword");
         if (passEl) passEl.value = "";
       }
@@ -104,21 +155,84 @@ export function setupAuthUI(onReloadData) {
 
   // Initialize Auth lifecycle
   initAuth(async (user) => {
-    updateAuthUserUI(user);
+    await updateAuthUserUI(user);
     if (onAuthChangedCallback) await onAuthChangedCallback();
   });
 }
 
-export function updateAuthUserUI(user) {
-  const btn = document.getElementById("authUserBtn");
+export function toggleProfileDropdown() {
+  const dropdown = document.getElementById("profileDropdown");
+  const authBtn = document.getElementById("authUserBtn");
+  if (!dropdown) return;
+  const isOpen = dropdown.classList.contains("open");
+  if (isOpen) {
+    closeProfileDropdown();
+  } else {
+    dropdown.style.display = "block";
+    // Trigger reflow for smooth animation
+    dropdown.offsetHeight;
+    dropdown.classList.add("open");
+    if (authBtn) authBtn.setAttribute("aria-expanded", "true");
+  }
+}
+
+export function closeProfileDropdown() {
+  const dropdown = document.getElementById("profileDropdown");
+  const authBtn = document.getElementById("authUserBtn");
+  if (dropdown) {
+    dropdown.classList.remove("open");
+    dropdown.style.display = "none";
+  }
+  if (authBtn) authBtn.setAttribute("aria-expanded", "false");
+}
+
+export async function updateAuthUserUI(user) {
+  const userAvatar = document.getElementById("userAvatar");
+  const userNameDisplay = document.getElementById("userNameDisplay");
+  const authBtnChev = document.getElementById("authBtnChev");
+  const dropdownUserName = document.getElementById("dropdownUserName");
+  const dropdownUserEmail = document.getElementById("dropdownUserEmail");
   const textEl = document.getElementById("authStatusText");
 
   if (user) {
-    if (btn) btn.textContent = `👤 ${user.email.split('@')[0]}`;
-    if (textEl) textEl.textContent = `Cloud Synced (${user.email})`;
+    const profile = await getUserProfile(user);
+    const displayName = profile.name || "User";
+    const displayEmail = profile.email || user.email || "";
+
+    // Generate initials (e.g. "John Doe" -> "JD", "Sajal" -> "S", "sajal@ex.com" -> "S")
+    const words = displayName.trim().split(/\s+/);
+    let initials = words[0] ? words[0][0].toUpperCase() : "U";
+    if (words.length > 1 && words[1]) {
+      initials += words[1][0].toUpperCase();
+    }
+
+    if (userAvatar) {
+      userAvatar.textContent = initials;
+      userAvatar.style.display = "inline-flex";
+    }
+    if (userNameDisplay) {
+      userNameDisplay.textContent = displayName;
+    }
+    if (authBtnChev) {
+      authBtnChev.style.display = "inline-block";
+    }
+    if (dropdownUserName) {
+      dropdownUserName.textContent = displayName;
+    }
+    if (dropdownUserEmail) {
+      dropdownUserEmail.textContent = displayEmail;
+    }
+    if (textEl) {
+      textEl.textContent = `Cloud Synced (${displayEmail})`;
+    }
   } else {
-    if (btn) btn.textContent = "🔑 Sign In / Sign Up";
+    if (userAvatar) userAvatar.style.display = "none";
+    if (userNameDisplay) userNameDisplay.textContent = "🔑 Sign In / Sign Up";
+    if (authBtnChev) authBtnChev.style.display = "none";
+    if (dropdownUserName) dropdownUserName.textContent = "";
+    if (dropdownUserEmail) dropdownUserEmail.textContent = "";
     if (textEl) textEl.textContent = "Local Storage (Guest)";
+    closeProfileDropdown();
   }
 }
 
@@ -160,6 +274,8 @@ export function closeAuthModal() {
   if (overlay) overlay.classList.remove("open");
   const errorEl = document.getElementById("authErrorMsg");
   if (errorEl) errorEl.textContent = "";
+  const nameEl = document.getElementById("authName");
+  if (nameEl) nameEl.value = "";
   const passEl = document.getElementById("authPassword");
   if (passEl) passEl.value = "";
 }
@@ -168,9 +284,13 @@ function setAuthModalMode(mode) {
   const titleEl = document.getElementById("authTitle");
   const submitBtn = document.getElementById("authSubmitBtn");
   const toggleBtn = document.getElementById("authToggleModeBtn");
+  const nameGroup = document.getElementById("authNameGroup");
+  const nameInput = document.getElementById("authName");
 
   if (mode === "login") {
     if (titleEl) titleEl.textContent = "Sign In to DSA Tracker";
+    if (nameGroup) nameGroup.style.display = "none";
+    if (nameInput) nameInput.removeAttribute("required");
     if (submitBtn) {
       submitBtn.textContent = "Sign In";
       submitBtn.dataset.mode = "login";
@@ -181,8 +301,10 @@ function setAuthModalMode(mode) {
     }
   } else {
     if (titleEl) titleEl.textContent = "Create Account";
+    if (nameGroup) nameGroup.style.display = "block";
+    if (nameInput) nameInput.setAttribute("required", "true");
     if (submitBtn) {
-      submitBtn.textContent = "Sign Up";
+      submitBtn.textContent = "Create Account";
       submitBtn.dataset.mode = "signup";
     }
     if (toggleBtn) {
@@ -195,9 +317,10 @@ function setAuthModalMode(mode) {
 async function handleSignOut() {
   try {
     await signOutUser();
-    updateAuthUserUI(null);
+    await updateAuthUserUI(null);
     if (onAuthChangedCallback) await onAuthChangedCallback();
   } catch (err) {
     console.error("Sign out error:", err);
   }
 }
+

@@ -319,3 +319,43 @@ export async function migrateLocalStorageToFirestore(uid, localData) {
     throw err;
   }
 }
+
+/**
+ * Save user profile data to users/{uid}/profile/info
+ */
+export async function saveUserProfileFirestore(uid, profileData) {
+  if (!uid) return;
+  const db = getFirestoreDb();
+  try {
+    const profileRef = doc(db, "users", uid, "profile", "info");
+    await setDoc(profileRef, {
+      name: profileData.name || "",
+      email: profileData.email || "",
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+  } catch (err) {
+    console.error("Failed to save user profile to Firestore:", err);
+    throw err;
+  }
+}
+
+/**
+ * Load user profile data from users/{uid}/profile/info
+ */
+export async function loadUserProfileFirestore(uid) {
+  if (!uid) return null;
+  const db = getFirestoreDb();
+  try {
+    const profileRef = doc(db, "users", uid, "profile", "info");
+    const snap = await getDoc(profileRef);
+    if (snap.exists()) {
+      return snap.data();
+    }
+    return null;
+  } catch (err) {
+    console.warn("Failed to load user profile from Firestore:", err);
+    return null;
+  }
+}
+

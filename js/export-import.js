@@ -1,6 +1,7 @@
-import { K, persistAll, loadJSON, isAuthenticated, saveProgressDB, saveNoteDB, saveActivityDB } from './storage.js?v=12';
-import { state } from './state.js?v=12';
-import { getQuestions, defaultProgressFor } from './data.js?v=12';
+import { K, persistAll, loadJSON, isAuthenticated, saveProgressDB, saveNoteDB, saveActivityDB } from './storage.js';
+import { state } from './state.js';
+import { getQuestions, defaultProgressFor } from './data.js';
+import { showAppConfirm } from './modal.js';
 
 export function downloadFile(name, content, type) {
   const blob = new Blob([content], { type });
@@ -102,8 +103,16 @@ export function setupExportImportListeners(onRenderAll, showToast, applyTheme, a
     });
   }
 
-  const handleReset = () => {
-    if (confirm("This will erase saved progress, notes, favorites, streaks and goals. Continue?")) {
+  const handleReset = async () => {
+    const confirmed = await showAppConfirm({
+      title: "Reset All Progress",
+      message: "This will erase saved progress, notes, favorites, streaks and goals. Are you sure you want to continue?",
+      confirmText: "Reset Everything",
+      cancelText: "Cancel",
+      type: "danger"
+    });
+
+    if (confirmed) {
       localStorage.removeItem(K.progress);
       localStorage.removeItem(K.notes);
       localStorage.removeItem(K.activity);
@@ -127,3 +136,4 @@ export function setupExportImportListeners(onRenderAll, showToast, applyTheme, a
   const resetAllBtn = document.getElementById("resetAllBtn");
   if (resetAllBtn) resetAllBtn.addEventListener("click", handleReset);
 }
+

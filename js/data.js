@@ -1,5 +1,5 @@
-import { K, saveJSON } from './storage.js?v=12';
-import { state } from './state.js?v=12';
+import { K, saveJSON } from './storage.js';
+import { state } from './state.js';
 
 export const PRESET_PROGRESS = {};
 

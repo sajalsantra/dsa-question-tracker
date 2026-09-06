@@ -11,7 +11,8 @@ import {
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
   signOut, 
-  onAuthStateChanged 
+  onAuthStateChanged,
+  updateProfile
 } from 'https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js';
 import { getFirebaseApp } from './config.js';
 
@@ -42,10 +43,13 @@ export function initAuth(onAuthChangeCallback) {
   });
 }
 
-export async function signUpUser(email, password) {
+export async function signUpUser(email, password, name) {
   const auth = getFirebaseAuth();
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    if (name) {
+      await updateProfile(userCredential.user, { displayName: name });
+    }
     currentUser = userCredential.user;
     return userCredential.user;
   } catch (error) {

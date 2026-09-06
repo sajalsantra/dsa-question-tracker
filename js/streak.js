@@ -1,5 +1,5 @@
-import { state } from './state.js?v=12';
-import { todayStr, persistAll, saveActivityDB, isAuthenticated } from './storage.js?v=12';
+import { state } from './state.js';
+import { todayStr, persistAll, saveActivityDB, isAuthenticated } from './storage.js';
 
 export function recordActivity() {
   const t = todayStr();

@@ -13,7 +13,9 @@ import {
   saveNoteFirestore, 
   saveActivityFirestore, 
   saveSettingsFirestore, 
-  migrateLocalStorageToFirestore 
+  migrateLocalStorageToFirestore,
+  saveUserProfileFirestore,
+  loadUserProfileFirestore
 } from './firebase/firestore.js';
 
 export const K = {
@@ -71,6 +73,34 @@ export function isAuthenticated() {
   return isFirebaseAuthenticated();
 }
 
+/**
+ * Resolve user profile name with graceful fallbacks for existing users
+ * Priority: 1. Firestore profile -> 2. Auth displayName -> 3. Email username -> 4. "User"
+ */
+export async function getUserProfile(user = getCurrentUser()) {
+  if (!user) return { name: "Guest", email: "" };
+  const userEmail = user.email || "";
+
+  try {
+    const profile = await loadUserProfileFirestore(user.uid);
+    if (profile && profile.name && profile.name.trim()) {
+      return { name: profile.name.trim(), email: profile.email || userEmail };
+    }
+  } catch (e) {
+    console.warn("Error fetching profile from Firestore:", e);
+  }
+
+  if (user.displayName && user.displayName.trim()) {
+    return { name: user.displayName.trim(), email: userEmail };
+  }
+
+  if (userEmail) {
+    return { name: userEmail.split('@')[0], email: userEmail };
+  }
+
+  return { name: "User", email: "" };
+}
+
 // Auth Lifecycle
 export async function initAuth(onAuthChangeCallback) {
   try {
@@ -88,8 +118,16 @@ export async function initAuth(onAuthChangeCallback) {
   }
 }
 
-export async function signUpUser(email, password) {
-  return await signUpFirebaseUser(email, password);
+export async function signUpUser(email, password, name = "") {
+  const user = await signUpFirebaseUser(email, password, name);
+  if (user && name) {
+    try {
+      await saveUserProfileFirestore(user.uid, { name, email });
+    } catch (err) {
+      console.warn("Failed to persist user profile in Firestore after signup:", err);
+    }
+  }
+  return user;
 }
 
 export async function signInUser(email, password) {

@@ -1,7 +1,7 @@
-import { state, STATUSES, STATUS_EMOJI } from './state.js?v=12';
-import { getQuestions, starStr, defaultProgressFor } from './data.js?v=12';
-import { persistAll, todayStr, saveProgressDB, saveNoteDB, isAuthenticated } from './storage.js?v=12';
-import { recordActivity, refreshDailyGoalDate } from './streak.js?v=12';
+import { state, STATUSES, STATUS_EMOJI } from './state.js';
+import { getQuestions, starStr, defaultProgressFor } from './data.js';
+import { persistAll, todayStr, saveProgressDB, saveNoteDB, isAuthenticated } from './storage.js';
+import { recordActivity, refreshDailyGoalDate } from './streak.js';
 
 function slug(s) {
   return s.replace(/\s+/g, '-');
@@ -216,4 +216,110 @@ export function setupModalListeners(onRenderAll, showToast) {
       if (showToast) showToast("Status reset");
     });
   }
+
+  // App Modal overlay click & cancel button listeners
+  const appOverlay = document.getElementById("appModalOverlay");
+  const appCloseBtn = document.getElementById("appModalCloseBtn");
+  const appConfirmBtn = document.getElementById("appModalConfirmBtn");
+  const appCancelBtn = document.getElementById("appModalCancelBtn");
+
+  if (appCloseBtn) appCloseBtn.addEventListener("click", () => closeAppModal(false));
+  if (appCancelBtn) appCancelBtn.addEventListener("click", () => closeAppModal(false));
+  if (appConfirmBtn) appConfirmBtn.addEventListener("click", () => closeAppModal(true));
+  if (appOverlay) {
+    appOverlay.addEventListener("click", (e) => {
+      if (e.target === appOverlay) closeAppModal(false);
+    });
+  }
+
+  // Global Escape key listener for all open modals
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const activeAppOverlay = document.getElementById("appModalOverlay");
+      if (activeAppOverlay && activeAppOverlay.classList.contains("open")) {
+        closeAppModal(false);
+      }
+    }
+  });
 }
+
+let appModalResolver = null;
+
+/**
+ * Reusable Custom Application Modal System
+ * Replaces browser native alert(), confirm(), prompt() with accessible custom dialogs.
+ */
+export function showAppModal(options = {}) {
+  const {
+    title = "Notification",
+    message = "",
+    confirmText = "OK",
+    cancelText = "Cancel",
+    showCancel = false,
+    type = "info"
+  } = options;
+
+  return new Promise((resolve) => {
+    appModalResolver = resolve;
+
+    const overlay = document.getElementById("appModalOverlay");
+    const titleEl = document.getElementById("appModalTitle");
+    const subEl = document.getElementById("appModalSub");
+    const msgEl = document.getElementById("appModalMessage");
+    const confirmBtn = document.getElementById("appModalConfirmBtn");
+    const cancelBtn = document.getElementById("appModalCancelBtn");
+
+    if (titleEl) titleEl.textContent = title;
+    if (subEl) {
+      subEl.textContent = type === "danger" ? "Action requires confirmation" : "Application Notification";
+    }
+    if (msgEl) msgEl.textContent = message;
+
+    if (confirmBtn) {
+      confirmBtn.textContent = confirmText;
+      confirmBtn.className = `btn ${type === "danger" ? "danger" : "primary"}`;
+    }
+
+    if (cancelBtn) {
+      cancelBtn.textContent = cancelText;
+      cancelBtn.style.display = showCancel ? "inline-flex" : "none";
+    }
+
+    if (overlay) {
+      overlay.classList.add("open");
+      if (confirmBtn) confirmBtn.focus();
+    }
+  });
+}
+
+export function closeAppModal(result = false) {
+  const overlay = document.getElementById("appModalOverlay");
+  if (overlay) overlay.classList.remove("open");
+  if (appModalResolver) {
+    const resolve = appModalResolver;
+    appModalResolver = null;
+    resolve(result);
+  }
+}
+
+export function showAppConfirm({ title, message, confirmText = "Confirm", cancelText = "Cancel", type = "danger" }) {
+  return showAppModal({
+    title,
+    message,
+    confirmText,
+    cancelText,
+    showCancel: true,
+    type
+  });
+}
+
+export function showAppAlert({ title, message, confirmText = "OK", type = "info" }) {
+  return showAppModal({
+    title,
+    message,
+    confirmText,
+    showCancel: false,
+    type
+  });
+}
+
