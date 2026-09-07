@@ -1,3 +1,5 @@
+import { state, STATUSES, STATUS_EMOJI } from './state.js';
+import { getQuestions, starStr, defaultProgressFor } from './data.js';
 import { 
   persistAll, 
   todayStr, 
