@@ -17,17 +17,18 @@ export function escapeHtml(str) {
 }
 
 export function computeRevisionQueue(all) {
-  return all.filter(q => {
-    if (q.status === "Mastered") return false;
-    if (isRevisionFlagged(q)) return true;
-    if ((q.status === "Solved") && (q.confidence < 60 || q.attempts >= 3)) return true;
-    return false;
-  }).map(q => {
+  return all.filter(q => isRevisionFlagged(q)).map(q => {
     let priority = "Low";
     const daysSince = q.lastSolved ? Math.floor((Date.now() - new Date(q.lastSolved).getTime()) / 86400000) : 999;
-    let score = (100 - q.confidence) + (daysSince > 7 ? 15 : 0) + (q.attempts >= 3 ? 10 : 0);
-    if (score >= 70) priority = "High"; else if (score >= 40) priority = "Medium";
-    return { ...q, priority, daysSince };
+    const stars = Math.max(1, Math.min(5, Number(q.stars) || 3));
+
+    const diffWeight = stars <= 2 ? 10 : (stars >= 4 ? 0 : 5);
+    let score = (100 - (Number(q.confidence) || 0)) + (daysSince > 7 ? 15 : 0) + (q.attempts >= 3 ? 10 : 0) + diffWeight;
+
+    if (score >= 70) priority = "High";
+    else if (score >= 40) priority = "Medium";
+
+    return { ...q, priority, daysSince, revisionPriority: priority };
   }).sort((a, b) => ({ High: 0, Medium: 1, Low: 2 }[a.priority] - { High: 0, Medium: 1, Low: 2 }[b.priority]));
 }
 

@@ -1,5 +1,5 @@
 import { state, STATUSES, STATUS_EMOJI } from './state.js';
-import { getQuestions, starStr, defaultProgressFor } from './data.js';
+import { getQuestions, starStr, defaultProgressFor, calculateConfidence } from './data.js';
 import { 
   persistAll, 
   todayStr, 
@@ -25,16 +25,29 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
+export function getConfidenceDescriptor(score) {
+  const s = Number(score) || 0;
+  if (s >= 80) return "High";
+  if (s >= 60) return "Medium";
+  if (s >= 40) return "Low";
+  return "Very Low";
+}
+
 export function setStatus(id, status, onUpdate) {
   if (!state.progress[id]) {
     state.progress[id] = defaultProgressFor(id);
   }
   const p = state.progress[id];
+  const q = state.rawQuestions.find(x => x.id === id);
+  const stars = q ? q.stars : 3;
+
   const wasSolved = p.status === "Solved" || p.status === "Mastered";
   p.status = status;
   if (status === "Needs Revision") p.revision = true;
   if (status === "Solved" || status === "Mastered") {
     p.lastSolved = todayStr();
+    if (p.attempts === 0) p.attempts = 1;
+    p.confidence = calculateConfidence(p.attempts, p.timeTaken, stars);
     if (!wasSolved) {
       recordActivity();
       refreshDailyGoalDate();
@@ -78,7 +91,7 @@ export function openModal(id, onRenderAll, showToast) {
   if (linkWrap) linkWrap.innerHTML = q.problemUrl ? `<a id="mLink" href="${q.problemUrl}" target="_blank" rel="noopener">Open Problem →</a>` : `No link available`;
   if (mLastSolved) mLastSolved.textContent = q.lastSolved || "Not solved yet";
   if (mConfidence) mConfidence.value = q.confidence;
-  if (mConfVal) mConfVal.textContent = q.confidence + "%";
+  if (mConfVal) mConfVal.textContent = `${q.confidence}% (${getConfidenceDescriptor(q.confidence)})`;
   if (mAttempts) mAttempts.value = q.attempts;
   if (mTime) mTime.value = q.timeTaken;
   if (mNotes) mNotes.value = q.notes;
@@ -105,6 +118,28 @@ export function closeModal() {
   state.activeQuestionId = null;
 }
 
+function syncAutoConfidence(onRenderAll) {
+  const id = state.activeQuestionId;
+  if (id == null) return;
+  if (!state.progress[id]) state.progress[id] = defaultProgressFor(id);
+  const p = state.progress[id];
+  const q = state.rawQuestions.find(x => x.id === id);
+  const stars = q ? q.stars : 3;
+
+  p.confidence = calculateConfidence(p.attempts, p.timeTaken, stars);
+
+  const mConf = document.getElementById("mConfidence");
+  const mConfVal = document.getElementById("mConfVal");
+  if (mConf) mConf.value = p.confidence;
+  if (mConfVal) mConfVal.textContent = `${p.confidence}% (${getConfidenceDescriptor(p.confidence)})`;
+
+  persistAll(state);
+  if (isAuthenticated()) {
+    saveProgressDB(id, p);
+  }
+  if (onRenderAll) onRenderAll();
+}
+
 export function setupModalListeners(onRenderAll, showToast) {
   const overlay = document.getElementById("modalOverlay");
   const closeBtn = document.getElementById("modalCloseBtn");
@@ -119,24 +154,11 @@ export function setupModalListeners(onRenderAll, showToast) {
   if (mConf) {
     mConf.addEventListener("input", e => {
       const confVal = document.getElementById("mConfVal");
-      if (confVal) confVal.textContent = e.target.value + "%";
+      const score = Number(e.target.value) || 0;
+      if (confVal) confVal.textContent = `${score}% (${getConfidenceDescriptor(score)})`;
       if (state.activeQuestionId != null) {
         if (!state.progress[state.activeQuestionId]) state.progress[state.activeQuestionId] = defaultProgressFor(state.activeQuestionId);
-        state.progress[state.activeQuestionId].confidence = Number(e.target.value);
-        persistAll(state);
-        if (isAuthenticated()) {
-          saveProgressDB(state.activeQuestionId, state.progress[state.activeQuestionId]);
-        }
-      }
-    });
-  }
-
-  const mAtt = document.getElementById("mAttempts");
-  if (mAtt) {
-    mAtt.addEventListener("change", e => {
-      if (state.activeQuestionId != null) {
-        if (!state.progress[state.activeQuestionId]) state.progress[state.activeQuestionId] = defaultProgressFor(state.activeQuestionId);
-        state.progress[state.activeQuestionId].attempts = Math.max(0, Number(e.target.value) || 0);
+        state.progress[state.activeQuestionId].confidence = score;
         persistAll(state);
         if (isAuthenticated()) {
           saveProgressDB(state.activeQuestionId, state.progress[state.activeQuestionId]);
@@ -146,18 +168,30 @@ export function setupModalListeners(onRenderAll, showToast) {
     });
   }
 
+  const mAtt = document.getElementById("mAttempts");
+  if (mAtt) {
+    const handleAttChange = e => {
+      if (state.activeQuestionId != null) {
+        if (!state.progress[state.activeQuestionId]) state.progress[state.activeQuestionId] = defaultProgressFor(state.activeQuestionId);
+        state.progress[state.activeQuestionId].attempts = Math.max(0, Number(e.target.value) || 0);
+        syncAutoConfidence(onRenderAll);
+      }
+    };
+    mAtt.addEventListener("change", handleAttChange);
+    mAtt.addEventListener("input", handleAttChange);
+  }
+
   const mTime = document.getElementById("mTime");
   if (mTime) {
-    mTime.addEventListener("change", e => {
+    const handleTimeChange = e => {
       if (state.activeQuestionId != null) {
         if (!state.progress[state.activeQuestionId]) state.progress[state.activeQuestionId] = defaultProgressFor(state.activeQuestionId);
         state.progress[state.activeQuestionId].timeTaken = Math.max(0, Number(e.target.value) || 0);
-        persistAll(state);
-        if (isAuthenticated()) {
-          saveProgressDB(state.activeQuestionId, state.progress[state.activeQuestionId]);
-        }
+        syncAutoConfidence(onRenderAll);
       }
-    });
+    };
+    mTime.addEventListener("change", handleTimeChange);
+    mTime.addEventListener("input", handleTimeChange);
   }
 
   const mNotes = document.getElementById("mNotes");

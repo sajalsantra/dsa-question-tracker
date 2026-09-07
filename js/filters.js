@@ -78,5 +78,24 @@ export function applySort(list) {
 }
 
 export function isRevisionFlagged(q) {
-  return q.status !== "Mastered" && (q.status === "Needs Revision" || q.revision === true);
+  if (q.status === "Mastered") return false;
+  if (q.status === "Needs Revision" || q.revision === true) return true;
+
+  if (q.status === "Solved" || q.status === "In Progress") {
+    const daysSince = q.lastSolved ? Math.floor((Date.now() - new Date(q.lastSolved).getTime()) / 86400000) : 999;
+    const stars = Math.max(1, Math.min(5, Number(q.stars) || 3));
+
+    if (q.confidence < 60) return true;
+
+    const maxAttempts = stars <= 2 ? 2 : (stars >= 4 ? 4 : 3);
+    if (q.attempts >= maxAttempts) return true;
+
+    const maxTime = stars <= 2 ? 30 : (stars >= 4 ? 75 : 45);
+    if (q.timeTaken >= maxTime) return true;
+
+    if (daysSince > 14 && q.confidence < 80) return true;
+    if (daysSince > 30) return true;
+  }
+
+  return false;
 }
