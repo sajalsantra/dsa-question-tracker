@@ -13,6 +13,7 @@
   --border: rgba(255, 255, 255, 0.08);
   --text: #E2E8F0;
   --text-dim: #9AA5BE;
+  --text-faint: #5D6785;
   --accent: #5B7FFF;
   --accent-soft: rgba(91, 127, 255, 0.12);
   --green: #2FD180;
@@ -25,19 +26,24 @@
   --transition: 0.2s ease;
 }
 
-body.light {
-  --bg: #F0F4FF;
+:root.light, body.light {
+  --bg: #F4F7FC;
   --bg-2: #FFFFFF;
-  --bg-3: #E8EEFE;
-  --border: rgba(0, 0, 0, 0.08);
-  --text: #1A2040;
-  --text-dim: #5E6883;
-  --accent: #4A6FFF;
-  --accent-soft: rgba(74, 111, 255, 0.10);
+  --bg-3: #EBF1FC;
+  --border: rgba(0, 0, 0, 0.09);
+  --text: #1E293B;
+  --text-dim: #475569;
+  --text-faint: #64748B;
+  --accent: #3B82F6;
+  --accent-soft: rgba(59, 130, 246, 0.10);
+  --green: #10B981;
+  --orange: #F59E0B;
+  --red: #EF4444;
 }
 
 html, body {
-  height: 100%;
+  min-height: 100vh;
+  height: auto;
   background: var(--bg);
   color: var(--text);
   font-family: 'Inter', sans-serif;

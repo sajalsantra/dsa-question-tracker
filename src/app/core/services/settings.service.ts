@@ -42,11 +42,16 @@ export class SettingsService {
   }
 
   private applyTheme(theme: 'dark' | 'light'): void {
+    const root = this.document.documentElement;
     const body = this.document.body;
     if (theme === 'light') {
+      root.classList.add('light');
+      root.classList.remove('dark');
       body.classList.add('light');
       body.classList.remove('dark');
     } else {
+      root.classList.remove('light');
+      root.classList.add('dark');
       body.classList.remove('light');
       body.classList.add('dark');
     }

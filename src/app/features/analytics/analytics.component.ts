@@ -6,6 +6,7 @@ import { FilterService } from '../../core/services/filter.service';
 import { ProgressService } from '../../core/services/progress.service';
 import { ActivityService } from '../../core/services/activity.service';
 import { RevisionService } from '../../core/services/revision.service';
+import { SettingsService } from '../../core/services/settings.service';
 
 @Component({
   selector: 'app-analytics',
@@ -60,7 +61,7 @@ import { RevisionService } from '../../core/services/revision.service';
             <canvas
               baseChart
               [data]="statusDoughnutData()"
-              [options]="doughnutOptions"
+              [options]="doughnutOptions()"
               [type]="'doughnut'"
             ></canvas>
           </div>
@@ -73,7 +74,7 @@ import { RevisionService } from '../../core/services/revision.service';
             <canvas
               baseChart
               [data]="difficultyBarData()"
-              [options]="barOptions"
+              [options]="barOptions()"
               [type]="'bar'"
             ></canvas>
           </div>
@@ -86,7 +87,7 @@ import { RevisionService } from '../../core/services/revision.service';
             <canvas
               baseChart
               [data]="timeLineData()"
-              [options]="lineOptions"
+              [options]="lineOptions()"
               [type]="'line'"
             ></canvas>
           </div>
@@ -99,7 +100,7 @@ import { RevisionService } from '../../core/services/revision.service';
             <canvas
               baseChart
               [data]="topicCountBarData()"
-              [options]="topicBarOptions"
+              [options]="topicBarOptions()"
               [type]="'bar'"
             ></canvas>
           </div>
@@ -112,7 +113,7 @@ import { RevisionService } from '../../core/services/revision.service';
             <canvas
               baseChart
               [data]="topicCompletionBarData()"
-              [options]="horizontalBarOptions"
+              [options]="horizontalBarOptions()"
               [type]="'bar'"
             ></canvas>
           </div>
@@ -173,6 +174,11 @@ export class AnalyticsComponent {
   readonly progressService = inject(ProgressService);
   readonly activityService = inject(ActivityService);
   readonly revisionService = inject(RevisionService);
+  readonly settingsService = inject(SettingsService);
+
+  readonly isLight = computed(() => this.settingsService.settings().theme === 'light');
+  readonly chartTextColor = computed(() => this.isLight() ? '#475569' : '#9AA5BE');
+  readonly chartGridColor = computed(() => this.isLight() ? 'rgba(0, 0, 0, 0.08)' : 'rgba(255, 255, 255, 0.05)');
 
   readonly solvedCount = computed(() =>
     this.filterService.enrichedQuestions().filter(q => q.status === 'Solved' || q.status === 'Mastered').length
@@ -198,7 +204,11 @@ export class AnalyticsComponent {
       labels: ['Solved', 'Pending', 'Needs Revision'],
       datasets: [{
         data: [this.solvedCount(), this.pendingCount(), this.revisionCount()],
-        backgroundColor: ['#2FD180', '#5D6785', '#38BDF8'],
+        backgroundColor: [
+          this.isLight() ? '#10B981' : '#2FD180',
+          this.isLight() ? '#CBD5E1' : '#334155',
+          '#38BDF8'
+        ],
         borderWidth: 0
       }]
     };
@@ -237,8 +247,8 @@ export class AnalyticsComponent {
       datasets: [{
         label: 'Cumulative Solves',
         data: dates.map(d => cumMap[d] || 0),
-        borderColor: '#5B7FFF',
-        backgroundColor: 'rgba(91, 127, 255, 0.15)',
+        borderColor: this.isLight() ? '#3B82F6' : '#5B7FFF',
+        backgroundColor: this.isLight() ? 'rgba(59, 130, 246, 0.12)' : 'rgba(91, 127, 255, 0.15)',
         tension: 0.35,
         fill: true,
         pointRadius: 3
@@ -254,7 +264,7 @@ export class AnalyticsComponent {
       datasets: [{
         label: 'Total Questions',
         data: stats.map(s => s.total),
-        backgroundColor: '#5B7FFF',
+        backgroundColor: this.isLight() ? '#3B82F6' : '#5B7FFF',
         borderRadius: 6
       }]
     };
@@ -274,61 +284,61 @@ export class AnalyticsComponent {
     };
   });
 
-  readonly doughnutOptions: ChartConfiguration<'doughnut'>['options'] = {
+  readonly doughnutOptions = computed<ChartConfiguration<'doughnut'>['options']>(() => ({
     responsive: true,
     maintainAspectRatio: false,
     cutout: '65%',
     plugins: {
-      legend: { position: 'bottom', labels: { color: '#9AA5BE', font: { family: 'Inter', size: 11 } } }
+      legend: { position: 'bottom', labels: { color: this.chartTextColor(), font: { family: 'Inter', size: 11 } } }
     }
-  };
+  }));
 
-  readonly barOptions: ChartConfiguration<'bar'>['options'] = {
+  readonly barOptions = computed<ChartConfiguration<'bar'>['options']>(() => ({
     responsive: true,
     maintainAspectRatio: false,
     scales: {
-      x: { ticks: { color: '#9AA5BE', font: { size: 10 } }, grid: { display: false } },
-      y: { ticks: { color: '#9AA5BE', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' }, beginAtZero: true }
+      x: { ticks: { color: this.chartTextColor(), font: { size: 10 } }, grid: { display: false } },
+      y: { ticks: { color: this.chartTextColor(), font: { size: 10 } }, grid: { color: this.chartGridColor() }, beginAtZero: true }
     },
     plugins: {
       legend: { display: false }
     }
-  };
+  }));
 
-  readonly lineOptions: ChartConfiguration<'line'>['options'] = {
+  readonly lineOptions = computed<ChartConfiguration<'line'>['options']>(() => ({
     responsive: true,
     maintainAspectRatio: false,
     scales: {
-      x: { ticks: { color: '#9AA5BE', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' } },
-      y: { ticks: { color: '#9AA5BE', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' }, beginAtZero: true }
+      x: { ticks: { color: this.chartTextColor(), font: { size: 10 } }, grid: { color: this.chartGridColor() } },
+      y: { ticks: { color: this.chartTextColor(), font: { size: 10 } }, grid: { color: this.chartGridColor() }, beginAtZero: true }
     },
     plugins: {
       legend: { display: false }
     }
-  };
+  }));
 
-  readonly topicBarOptions: ChartConfiguration<'bar'>['options'] = {
+  readonly topicBarOptions = computed<ChartConfiguration<'bar'>['options']>(() => ({
     responsive: true,
     maintainAspectRatio: false,
     scales: {
-      x: { ticks: { color: '#9AA5BE', font: { size: 9 }, maxRotation: 60, minRotation: 45 }, grid: { display: false } },
-      y: { ticks: { color: '#9AA5BE', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' }, beginAtZero: true }
+      x: { ticks: { color: this.chartTextColor(), font: { size: 9 }, maxRotation: 60, minRotation: 45 }, grid: { display: false } },
+      y: { ticks: { color: this.chartTextColor(), font: { size: 10 } }, grid: { color: this.chartGridColor() }, beginAtZero: true }
     },
     plugins: {
       legend: { display: false }
     }
-  };
+  }));
 
-  readonly horizontalBarOptions: ChartConfiguration<'bar'>['options'] = {
+  readonly horizontalBarOptions = computed<ChartConfiguration<'bar'>['options']>(() => ({
     responsive: true,
     maintainAspectRatio: false,
     indexAxis: 'y',
     scales: {
-      x: { max: 100, ticks: { color: '#9AA5BE', callback: v => v + '%' }, grid: { color: 'rgba(255,255,255,0.05)' }, beginAtZero: true },
-      y: { ticks: { color: '#9AA5BE', font: { size: 10 } }, grid: { display: false } }
+      x: { max: 100, ticks: { color: this.chartTextColor(), callback: v => v + '%' }, grid: { color: this.chartGridColor() }, beginAtZero: true },
+      y: { ticks: { color: this.chartTextColor(), font: { size: 10 } }, grid: { display: false } }
     },
     plugins: {
       legend: { display: false }
     }
-  };
+  }));
 }
