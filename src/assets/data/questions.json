@@ -1,0 +1,4493 @@
+[
+  {
+    "id": 1,
+    "title": "Find Element at a Given Index",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/c-array-print-an-element-set-25933/1",
+    "topic": "Arrays",
+    "pattern": "Array Basics",
+    "stars": 1
+  },
+  {
+    "id": 2,
+    "title": "Min and Max in Array",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/find-minimum-and-maximum-element-in-an-array4428/1",
+    "topic": "Arrays",
+    "pattern": "Array Basics",
+    "stars": 1
+  },
+  {
+    "id": 3,
+    "title": "Sum of Array",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/sum-of-array2326/1",
+    "topic": "Arrays",
+    "pattern": "Array Basics",
+    "stars": 1
+  },
+  {
+    "id": 4,
+    "title": "Sum of Digits",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/sum-of-digits1742/1",
+    "topic": "Arrays",
+    "pattern": "Array Basics",
+    "stars": 1
+  },
+  {
+    "id": 5,
+    "title": "Check If Array is Sorted",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/check-if-an-array-is-sorted0701/1",
+    "topic": "Arrays",
+    "pattern": "Array Basics",
+    "stars": 1
+  },
+  {
+    "id": 6,
+    "title": "Alternates In Array",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/print-alternate-elements-of-an-array/0",
+    "topic": "Arrays",
+    "pattern": "Array Basics",
+    "stars": 1
+  },
+  {
+    "id": 7,
+    "title": "Remove Duplicates from Array",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/",
+    "topic": "Arrays",
+    "pattern": "Core Manipulations",
+    "stars": 2
+  },
+  {
+    "id": 8,
+    "title": "Second Largest in Array",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/second-largest3735/1",
+    "topic": "Arrays",
+    "pattern": "Core Manipulations",
+    "stars": 2
+  },
+  {
+    "id": 9,
+    "title": "Reverse an Array",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/reverse-an-array/1",
+    "topic": "Arrays",
+    "pattern": "Core Manipulations",
+    "stars": 2
+  },
+  {
+    "id": 10,
+    "title": "Missing Number",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/missing-number/description/",
+    "topic": "Arrays",
+    "pattern": "Core Manipulations",
+    "stars": 2
+  },
+  {
+    "id": 11,
+    "title": "Segregate 0s and 1s",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/segregate-0s-and-1s5106/1",
+    "topic": "Arrays",
+    "pattern": "Core Manipulations",
+    "stars": 2
+  },
+  {
+    "id": 12,
+    "title": "Maximum Consecutive Ones",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/max-consecutive-ones/description/",
+    "topic": "Arrays",
+    "pattern": "Core Manipulations",
+    "stars": 2
+  },
+  {
+    "id": 13,
+    "title": "Palindromic Array",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/palindromic-array-1587115620/1",
+    "topic": "Arrays",
+    "pattern": "Core Manipulations",
+    "stars": 2
+  },
+  {
+    "id": 14,
+    "title": "Move Zeroes to End",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/move-zeroes/description/",
+    "topic": "Arrays",
+    "pattern": "Core Manipulations",
+    "stars": 2
+  },
+  {
+    "id": 15,
+    "title": "Sort array with 0's 1's and 2's (Dutch Flag)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/sort-colors/",
+    "topic": "Arrays",
+    "pattern": "Core Manipulations",
+    "stars": 2
+  },
+  {
+    "id": 16,
+    "title": "Equilibrium Point",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/equilibrium-point-1587115620/1",
+    "topic": "Arrays",
+    "pattern": "Intermediate Problems",
+    "stars": 3
+  },
+  {
+    "id": 17,
+    "title": "Reverse Integer",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/reverse-integer/description/",
+    "topic": "Arrays",
+    "pattern": "Intermediate Problems",
+    "stars": 3
+  },
+  {
+    "id": 18,
+    "title": "Leaders in Array",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/leaders-in-an-array-1587115620/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card",
+    "topic": "Arrays",
+    "pattern": "Intermediate Problems",
+    "stars": 3
+  },
+  {
+    "id": 19,
+    "title": "Increasing Array",
+    "platform": "Other",
+    "problemUrl": "https://cses.fi/problemset/task/1094",
+    "topic": "Arrays",
+    "pattern": "Intermediate Problems",
+    "stars": 3
+  },
+  {
+    "id": 20,
+    "title": "Rearrange Array Elements by Sign",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/rearrange-array-elements-by-sign/",
+    "topic": "Arrays",
+    "pattern": "Intermediate Problems",
+    "stars": 3
+  },
+  {
+    "id": 21,
+    "title": "Rotate Array by One",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/cyclically-rotate-an-array-by-one2614/1",
+    "topic": "Arrays",
+    "pattern": "Intermediate Problems",
+    "stars": 3
+  },
+  {
+    "id": 22,
+    "title": "Majority Element I (Boyer - Moore)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/majority-element/",
+    "topic": "Arrays",
+    "pattern": "Intermediate Problems",
+    "stars": 3
+  },
+  {
+    "id": 23,
+    "title": "Rotate Array by K steps",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/rotate-array/",
+    "topic": "Arrays",
+    "pattern": "Advanced Problems",
+    "stars": 4
+  },
+  {
+    "id": 24,
+    "title": "Wiggle Sort II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/wiggle-sort-ii/description/",
+    "topic": "Arrays",
+    "pattern": "Advanced Problems",
+    "stars": 4
+  },
+  {
+    "id": 25,
+    "title": "Majority Element II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/majority-element-ii/",
+    "topic": "Arrays",
+    "pattern": "Advanced Problems",
+    "stars": 4
+  },
+  {
+    "id": 26,
+    "title": "Best Time to Buy and Sell Stock",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+    "topic": "Arrays",
+    "pattern": "Advanced Problems",
+    "stars": 4
+  },
+  {
+    "id": 27,
+    "title": "Next Permutation",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/next-permutation/",
+    "topic": "Arrays",
+    "pattern": "Advanced Problems",
+    "stars": 4
+  },
+  {
+    "id": 28,
+    "title": "Maximum Value Of Expression",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/maximum-value-of-expression2515/1",
+    "topic": "Arrays",
+    "pattern": "Advanced Problems",
+    "stars": 4
+  },
+  {
+    "id": 29,
+    "title": "First Missing Positive",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/first-missing-positive/",
+    "topic": "Arrays",
+    "pattern": "Advanced Problems",
+    "stars": 5
+  },
+  {
+    "id": 30,
+    "title": "Sum of elements in a matrix",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/sum-of-elements-in-a-matrix2000/1",
+    "topic": "2D Arrays",
+    "pattern": "Matrix Basics",
+    "stars": 2
+  },
+  {
+    "id": 31,
+    "title": "Count Number Of Zeroes",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/count-zeros-in-a-sorted-matrix/1",
+    "topic": "2D Arrays",
+    "pattern": "Matrix Basics",
+    "stars": 2
+  },
+  {
+    "id": 32,
+    "title": "Count Negative Numbers in a matrix",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/",
+    "topic": "2D Arrays",
+    "pattern": "Matrix Basics",
+    "stars": 2
+  },
+  {
+    "id": 33,
+    "title": "Matrix Diagonal Sum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/matrix-diagonal-sum/",
+    "topic": "2D Arrays",
+    "pattern": "Matrix Basics",
+    "stars": 2
+  },
+  {
+    "id": 34,
+    "title": "Addition of Two Square Matrix",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/addition-of-two-square-matrices4916/1",
+    "topic": "2D Arrays",
+    "pattern": "Matrix Operations",
+    "stars": 3
+  },
+  {
+    "id": 35,
+    "title": "Multiply Matrices",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/multiply-matrices/1",
+    "topic": "2D Arrays",
+    "pattern": "Matrix Operations",
+    "stars": 3
+  },
+  {
+    "id": 36,
+    "title": "Transpose Matrix",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/transpose-matrix/",
+    "topic": "2D Arrays",
+    "pattern": "Matrix Operations",
+    "stars": 3
+  },
+  {
+    "id": 37,
+    "title": "Spiral Matrix",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/spiral-matrix/",
+    "topic": "2D Arrays",
+    "pattern": "Advanced Matrix",
+    "stars": 4
+  },
+  {
+    "id": 38,
+    "title": "ZigZag Matrix",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/print-matrix-in-zig-zag-fashion--122748/1",
+    "topic": "2D Arrays",
+    "pattern": "Advanced Matrix",
+    "stars": 4
+  },
+  {
+    "id": 39,
+    "title": "Rotate Matrix (90°)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/rotate-image/",
+    "topic": "2D Arrays",
+    "pattern": "Advanced Matrix",
+    "stars": 4
+  },
+  {
+    "id": 40,
+    "title": "Determine Whether matrix can be obtained by rotation",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/determine-whether-matrix-can-be-obtained-by-rotation/",
+    "topic": "2D Arrays",
+    "pattern": "Advanced Matrix",
+    "stars": 4
+  },
+  {
+    "id": 41,
+    "title": "Set Matrix Zeroes",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/set-matrix-zeroes/",
+    "topic": "2D Arrays",
+    "pattern": "Advanced Matrix",
+    "stars": 5
+  },
+  {
+    "id": 42,
+    "title": "Check if a number is Armstrong",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/armstrong-numbers2727/1",
+    "topic": "Basic Maths",
+    "pattern": "Number Theory Basics",
+    "stars": 1
+  },
+  {
+    "id": 43,
+    "title": "Print all Divisors of a Number",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/all-divisors-of-a-number/1",
+    "topic": "Basic Maths",
+    "pattern": "Number Theory Basics",
+    "stars": 1
+  },
+  {
+    "id": 44,
+    "title": "Check if a number is Prime",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/prime-number2314/1",
+    "topic": "Basic Maths",
+    "pattern": "Number Theory Basics",
+    "stars": 1
+  },
+  {
+    "id": 45,
+    "title": "GCD / HCF of 2 numbers",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/gcd-of-two-numbers3459/1",
+    "topic": "Basic Maths",
+    "pattern": "Number Theory Basics",
+    "stars": 1
+  },
+  {
+    "id": 46,
+    "title": "Prime Factorisation of a Number",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/largest-prime-factor2601/1",
+    "topic": "Basic Maths",
+    "pattern": "Number Theory Basics",
+    "stars": 2
+  },
+  {
+    "id": 47,
+    "title": "Count Primes in range L to R",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/count-primes-in-range1604/1",
+    "topic": "Basic Maths",
+    "pattern": "Number Theory Basics",
+    "stars": 3
+  },
+  {
+    "id": 48,
+    "title": "Maximum Occuring Character",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/maximum-occuring-character-1587115620/1",
+    "topic": "Strings",
+    "pattern": "String Fundamentals",
+    "stars": 1
+  },
+  {
+    "id": 49,
+    "title": "Remove Spaces",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/remove-spaces0128/1",
+    "topic": "Strings",
+    "pattern": "String Fundamentals",
+    "stars": 1
+  },
+  {
+    "id": 50,
+    "title": "Print first letter of every word in the string",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/print-first-letter-of-every-word-in-the-string3632/1",
+    "topic": "Strings",
+    "pattern": "String Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 51,
+    "title": "Remove Consecutive Characters",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/consecutive-elements2306/1",
+    "topic": "Strings",
+    "pattern": "String Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 52,
+    "title": "Valid Palindrome",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/valid-palindrome/description/",
+    "topic": "Strings",
+    "pattern": "String Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 53,
+    "title": "Valid Anagram",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/valid-anagram/",
+    "topic": "Strings",
+    "pattern": "String Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 54,
+    "title": "Isomorphic Strings",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/isomorphic-strings/",
+    "topic": "Strings",
+    "pattern": "String Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 55,
+    "title": "Delete Characters To Make Fancy String",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/delete-characters-to-make-fancy-string/description/",
+    "topic": "Strings",
+    "pattern": "String Manipulation",
+    "stars": 3
+  },
+  {
+    "id": 56,
+    "title": "Reverse Words in a String",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/reverse-words-in-a-string/",
+    "topic": "Strings",
+    "pattern": "String Manipulation",
+    "stars": 3
+  },
+  {
+    "id": 57,
+    "title": "String to integer (atoi)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/string-to-integer-atoi/",
+    "topic": "Strings",
+    "pattern": "String Manipulation",
+    "stars": 3
+  },
+  {
+    "id": 58,
+    "title": "Roman to integer",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/roman-to-integer/description/",
+    "topic": "Strings",
+    "pattern": "String Manipulation",
+    "stars": 3
+  },
+  {
+    "id": 59,
+    "title": "Rotate String",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/rotate-string/description/",
+    "topic": "Strings",
+    "pattern": "String Manipulation",
+    "stars": 3
+  },
+  {
+    "id": 60,
+    "title": "Longest common prefix",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/longest-common-prefix/description/",
+    "topic": "Strings",
+    "pattern": "String Manipulation",
+    "stars": 3
+  },
+  {
+    "id": 61,
+    "title": "Longest palindromic substring",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/longest-palindromic-substring/",
+    "topic": "Strings",
+    "pattern": "Advanced Problems",
+    "stars": 4
+  },
+  {
+    "id": 62,
+    "title": "Multiply Two Strings",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/multiply-two-strings/1",
+    "topic": "Strings",
+    "pattern": "Advanced Problems",
+    "stars": 4
+  },
+  {
+    "id": 63,
+    "title": "Maximum Nesting Depth of the Parentheses",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/",
+    "topic": "Strings",
+    "pattern": "Advanced Problems",
+    "stars": 4
+  },
+  {
+    "id": 64,
+    "title": "Beauty Of All substrings",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/sum-of-beauty-of-all-substrings/",
+    "topic": "Strings",
+    "pattern": "Advanced Problems",
+    "stars": 4
+  },
+  {
+    "id": 65,
+    "title": "Search X in sorted array",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/binary-search/description/",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Basics",
+    "stars": 2
+  },
+  {
+    "id": 66,
+    "title": "Lower Bound",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/implement-lower-bound/1",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Basics",
+    "stars": 2
+  },
+  {
+    "id": 67,
+    "title": "Upper Bound",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/implement-upper-bound/1",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Basics",
+    "stars": 2
+  },
+  {
+    "id": 68,
+    "title": "Search insert position",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/search-insert-position/",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Basics",
+    "stars": 2
+  },
+  {
+    "id": 69,
+    "title": "Floor In Sorted Array",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/floor-in-a-sorted-array-1587115620/1",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Basics",
+    "stars": 2
+  },
+  {
+    "id": 70,
+    "title": "Ceil In Sorted Array",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/ceil-in-a-sorted-array/1",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Basics",
+    "stars": 2
+  },
+  {
+    "id": 71,
+    "title": "Guess Number Higher or Lower API",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/guess-number-higher-or-lower/description/",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Basics",
+    "stars": 2
+  },
+  {
+    "id": 72,
+    "title": "First 1 in a Sorted Binary Array",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/index-of-first-1-in-a-sorted-array-of-0s-and-1s4048/1",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Basics",
+    "stars": 2
+  },
+  {
+    "id": 73,
+    "title": "Kth Missing Positive Number",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/kth-missing-positive-number/description/",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Basics",
+    "stars": 2
+  },
+  {
+    "id": 74,
+    "title": "Find minimum in Rotated Sorted Array",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Basics",
+    "stars": 2
+  },
+  {
+    "id": 75,
+    "title": "First and last occurrence",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Intermediate",
+    "stars": 3
+  },
+  {
+    "id": 76,
+    "title": "Search in rotated sorted array-I",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Intermediate",
+    "stars": 3
+  },
+  {
+    "id": 77,
+    "title": "Search in rotated sorted array-II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/search-in-rotated-sorted-array-ii/",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Intermediate",
+    "stars": 3
+  },
+  {
+    "id": 78,
+    "title": "Single element in a Sorted Array",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/single-element-in-a-sorted-array/",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Intermediate",
+    "stars": 3
+  },
+  {
+    "id": 79,
+    "title": "Find kth Rotation",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/rotation4723/1",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Intermediate",
+    "stars": 3
+  },
+  {
+    "id": 80,
+    "title": "Find Peak Element",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/find-peak-element/",
+    "topic": "Binary Search",
+    "pattern": "BS on 1D Array Intermediate",
+    "stars": 3
+  },
+  {
+    "id": 81,
+    "title": "Count Negative Numbers in a Sorted Matrix",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/description/",
+    "topic": "Binary Search",
+    "pattern": "BS on 2D Arrays",
+    "stars": 2
+  },
+  {
+    "id": 82,
+    "title": "Find row with maximum 1's",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/row-with-maximum-ones/description/",
+    "topic": "Binary Search",
+    "pattern": "BS on 2D Arrays",
+    "stars": 2
+  },
+  {
+    "id": 83,
+    "title": "Search a 2D Matrix I",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/search-a-2d-matrix/description/",
+    "topic": "Binary Search",
+    "pattern": "BS on 2D Arrays",
+    "stars": 2
+  },
+  {
+    "id": 84,
+    "title": "Search a 2D Matrix  II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/search-a-2d-matrix-ii/description/",
+    "topic": "Binary Search",
+    "pattern": "BS on 2D Arrays",
+    "stars": 3
+  },
+  {
+    "id": 85,
+    "title": "Find Peak Element - II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/find-a-peak-element-ii/description/",
+    "topic": "Binary Search",
+    "pattern": "BS on 2D Arrays",
+    "stars": 4
+  },
+  {
+    "id": 86,
+    "title": "Median in a row-wise sorted Matrix",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/median-in-a-row-wise-sorted-matrix1527/1",
+    "topic": "Binary Search",
+    "pattern": "BS on 2D Arrays",
+    "stars": 4
+  },
+  {
+    "id": 87,
+    "title": "Sqrt (x)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/sqrtx/",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 2
+  },
+  {
+    "id": 88,
+    "title": "Valid Perfect Square",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/valid-perfect-square/description/",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 2
+  },
+  {
+    "id": 89,
+    "title": "Find Nth root of a number",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/find-nth-root-of-m5843/1",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 3
+  },
+  {
+    "id": 90,
+    "title": "Koko eating bananas",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/koko-eating-bananas/",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 3
+  },
+  {
+    "id": 91,
+    "title": "Find the Smallest Divisor Given a Threshold",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 3
+  },
+  {
+    "id": 92,
+    "title": "Minimum Speed to Arrive on Time",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-speed-to-arrive-on-time/",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 3
+  },
+  {
+    "id": 93,
+    "title": "Minimum days to make M bouquets",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 3
+  },
+  {
+    "id": 94,
+    "title": "Capacity to Ship Packages Within D Days",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 3
+  },
+  {
+    "id": 95,
+    "title": "Book Allocation Problem",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937/1",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 3
+  },
+  {
+    "id": 96,
+    "title": "Split Array Largest Sum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/split-array-largest-sum/",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 4
+  },
+  {
+    "id": 97,
+    "title": "Painter's Partition Problem",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/the-painters-partition-problem1535/1",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 4
+  },
+  {
+    "id": 98,
+    "title": "K-th element of two sorted Arrays",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/k-th-element-of-two-sorted-array1317/1",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 4
+  },
+  {
+    "id": 99,
+    "title": "Aggressive Cows",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/aggressive-cows/0",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 5
+  },
+  {
+    "id": 100,
+    "title": "Minimize Max Distance to Gas Station",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/minimize-max-distance-to-gas-station/1",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 5
+  },
+  {
+    "id": 101,
+    "title": "Median of Two Sorted Arrays",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/median-of-two-sorted-arrays/description/",
+    "topic": "Binary Search",
+    "pattern": "BS on Answer",
+    "stars": 5
+  },
+  {
+    "id": 102,
+    "title": "Print 1 to N without using loops",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/print-1-to-n-without-using-loops3621/1",
+    "topic": "Recursion",
+    "pattern": "Introduction to Recursion",
+    "stars": 1
+  },
+  {
+    "id": 103,
+    "title": "Print N to 1 without loop",
+    "platform": "Other",
+    "problemUrl": "",
+    "topic": "Recursion",
+    "pattern": "Introduction to Recursion",
+    "stars": 1
+  },
+  {
+    "id": 104,
+    "title": "Sum of first N numbers",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/sum-of-series2811/1",
+    "topic": "Recursion",
+    "pattern": "Introduction to Recursion",
+    "stars": 1
+  },
+  {
+    "id": 105,
+    "title": "Factorial of a given number",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/factorial5739/1",
+    "topic": "Recursion",
+    "pattern": "Introduction to Recursion",
+    "stars": 1
+  },
+  {
+    "id": 106,
+    "title": "Fibonacci Number",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/fibonacci-number/",
+    "topic": "Recursion",
+    "pattern": "Introduction to Recursion",
+    "stars": 1
+  },
+  {
+    "id": 107,
+    "title": "Pow(x, n)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/powx-n/",
+    "topic": "Recursion",
+    "pattern": "Recursion on Arrays & Math",
+    "stars": 2
+  },
+  {
+    "id": 108,
+    "title": "Count Good Numbers",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/count-good-numbers/",
+    "topic": "Recursion",
+    "pattern": "Recursion on Arrays & Math",
+    "stars": 2
+  },
+  {
+    "id": 109,
+    "title": "Recursive Implementation of atoi()",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/implement-atoi/1",
+    "topic": "Recursion",
+    "pattern": "Recursion on Arrays & Math",
+    "stars": 3
+  },
+  {
+    "id": 110,
+    "title": "Generate Binary Strings Without Consecutive 1s",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/generate-binary-strings-without-adjacent-zeros/",
+    "topic": "Recursion",
+    "pattern": "Recursion On strings",
+    "stars": 3
+  },
+  {
+    "id": 111,
+    "title": "Linear Search",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/search-an-element-in-an-array-1587115621/1",
+    "topic": "Sorting",
+    "pattern": "Sorting Fundamentals",
+    "stars": 1
+  },
+  {
+    "id": 112,
+    "title": "Sort An Array (Implement Merge / Quick Sort)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/sort-an-array/description/",
+    "topic": "Sorting",
+    "pattern": "Sorting Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 113,
+    "title": "Sort Array By Parity",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/sort-array-by-parity-ii/description/?envType=problem-list-v2&envId=sorting",
+    "topic": "Sorting",
+    "pattern": "Sorting Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 114,
+    "title": "Maximum Gap",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/maximum-gap/description/?envType=problem-list-v2&envId=sorting",
+    "topic": "Sorting",
+    "pattern": "Sorting Fundamentals",
+    "stars": 3
+  },
+  {
+    "id": 115,
+    "title": "Sort Elements by Decreasing Frequency",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/sorting-elements-of-an-array-by-frequency-1587115621/1",
+    "topic": "Sorting",
+    "pattern": "Custom Comparator Sorting",
+    "stars": 3
+  },
+  {
+    "id": 116,
+    "title": "Reorder Data In Log Files",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/reorder-data-in-log-files/description/?envType=problem-list-v2&envId=sorting",
+    "topic": "Sorting",
+    "pattern": "Custom Comparator Sorting",
+    "stars": 4
+  },
+  {
+    "id": 117,
+    "title": "Merge Intervals",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/merge-intervals/description/",
+    "topic": "Sorting",
+    "pattern": "Advanced Sorting",
+    "stars": 3
+  },
+  {
+    "id": 118,
+    "title": "Count Inversions (Merge Sort)",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/inversion-of-array-1587115620/1",
+    "topic": "Sorting",
+    "pattern": "Advanced Sorting",
+    "stars": 5
+  },
+  {
+    "id": 119,
+    "title": "Reverse Pairs (Merge Sort)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/reverse-pairs/",
+    "topic": "Sorting",
+    "pattern": "Advanced Sorting",
+    "stars": 5
+  },
+  {
+    "id": 120,
+    "title": "Classes, Objects & Constructors",
+    "platform": "Other",
+    "problemUrl": "",
+    "topic": "OOPS",
+    "pattern": "OOPS Fundamentals",
+    "stars": 1
+  },
+  {
+    "id": 121,
+    "title": "Inheritance & Polymorphism",
+    "platform": "Other",
+    "problemUrl": "",
+    "topic": "OOPS",
+    "pattern": "OOPS Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 122,
+    "title": "Encapsulation & Abstraction",
+    "platform": "Other",
+    "problemUrl": "",
+    "topic": "OOPS",
+    "pattern": "OOPS Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 123,
+    "title": "Interfaces & Abstract Classes",
+    "platform": "Other",
+    "problemUrl": "",
+    "topic": "OOPS",
+    "pattern": "OOPS Fundamentals",
+    "stars": 3
+  },
+  {
+    "id": 124,
+    "title": "Singleton Pattern",
+    "platform": "Other",
+    "problemUrl": "",
+    "topic": "OOPS",
+    "pattern": "Design Patterns",
+    "stars": 3
+  },
+  {
+    "id": 125,
+    "title": "Factory Pattern",
+    "platform": "Other",
+    "problemUrl": "",
+    "topic": "OOPS",
+    "pattern": "Design Patterns",
+    "stars": 4
+  },
+  {
+    "id": 126,
+    "title": "Array to Linked List",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/introduction-to-linked-list/1",
+    "topic": "Linkedlist",
+    "pattern": "Foundation",
+    "stars": 1
+  },
+  {
+    "id": 127,
+    "title": "Count Nodes / Find Length of Linked List",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/count-nodes-of-linked-list/1",
+    "topic": "Linkedlist",
+    "pattern": "Foundation",
+    "stars": 1
+  },
+  {
+    "id": 128,
+    "title": "Search in a Linked List",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/search-in-linked-list-1664434326/1",
+    "topic": "Linkedlist",
+    "pattern": "Foundation",
+    "stars": 1
+  },
+  {
+    "id": 129,
+    "title": "Insert Node at Head / Tail",
+    "platform": "HackerRank",
+    "problemUrl": "https://www.hackerrank.com/challenges/insert-a-node-at-the-tail-of-a-linked-list/problem",
+    "topic": "Linkedlist",
+    "pattern": "Insertion and Deletion",
+    "stars": 2
+  },
+  {
+    "id": 130,
+    "title": "Insert in Middle of Linked List",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/insert-in-middle-of-linked-list/1",
+    "topic": "Linkedlist",
+    "pattern": "Insertion and Deletion",
+    "stars": 2
+  },
+  {
+    "id": 131,
+    "title": "Remove Linked List Elements (By Value)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/remove-linked-list-elements/",
+    "topic": "Linkedlist",
+    "pattern": "Insertion and Deletion",
+    "stars": 2
+  },
+  {
+    "id": 132,
+    "title": "Remove Duplicates from Sorted List",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/remove-duplicates-from-sorted-list/",
+    "topic": "Linkedlist",
+    "pattern": "Insertion and Deletion",
+    "stars": 2
+  },
+  {
+    "id": 133,
+    "title": "Delete Node in a Linked List (Given only node ref)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/delete-node-in-a-linked-list/",
+    "topic": "Linkedlist",
+    "pattern": "Insertion and Deletion",
+    "stars": 3
+  },
+  {
+    "id": 134,
+    "title": "Remove Duplicates from Unsorted List",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/remove-duplicates-from-an-unsorted-linked-list/",
+    "topic": "Linkedlist",
+    "pattern": "Insertion and Deletion",
+    "stars": 3
+  },
+  {
+    "id": 135,
+    "title": "Delete the Middle Node of a Linked List",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/",
+    "topic": "Linkedlist",
+    "pattern": "Insertion and Deletion",
+    "stars": 3
+  },
+  {
+    "id": 136,
+    "title": "Middle of the Linked List",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/middle-of-the-linked-list/",
+    "topic": "Linkedlist",
+    "pattern": "Fast and Slow Pointer",
+    "stars": 2
+  },
+  {
+    "id": 137,
+    "title": "Linked List Cycle",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/linked-list-cycle/",
+    "topic": "Linkedlist",
+    "pattern": "Fast and Slow Pointer",
+    "stars": 2
+  },
+  {
+    "id": 138,
+    "title": "Intersection of Two Linked Lists",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/intersection-of-two-linked-lists/",
+    "topic": "Linkedlist",
+    "pattern": "Fast and Slow Pointer",
+    "stars": 2
+  },
+  {
+    "id": 139,
+    "title": "Length of Loop in Linked List",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/find-length-of-loop/1",
+    "topic": "Linkedlist",
+    "pattern": "Fast and Slow Pointer",
+    "stars": 3
+  },
+  {
+    "id": 140,
+    "title": "Linked List Cycle II (Find Starting Point)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/linked-list-cycle-ii/",
+    "topic": "Linkedlist",
+    "pattern": "Fast and Slow Pointer",
+    "stars": 3
+  },
+  {
+    "id": 141,
+    "title": "Remove Loop in Linked List",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/remove-loop-in-linked-list/1",
+    "topic": "Linkedlist",
+    "pattern": "Fast and Slow Pointer",
+    "stars": 3
+  },
+  {
+    "id": 142,
+    "title": "Remove Nth Node From End of List",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
+    "topic": "Linkedlist",
+    "pattern": "Fast and Slow Pointer",
+    "stars": 3
+  },
+  {
+    "id": 143,
+    "title": "Reverse a Linked List (Iterative & Recursive)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/reverse-linked-list/",
+    "topic": "Linkedlist",
+    "pattern": "Reversals and Rotations",
+    "stars": 2
+  },
+  {
+    "id": 144,
+    "title": "Palindrome Linked List",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/palindrome-linked-list/",
+    "topic": "Linkedlist",
+    "pattern": "Reversals and Rotations",
+    "stars": 2
+  },
+  {
+    "id": 145,
+    "title": "Swap Nodes in Pairs",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/swap-nodes-in-pairs/",
+    "topic": "Linkedlist",
+    "pattern": "Reversals and Rotations",
+    "stars": 3
+  },
+  {
+    "id": 146,
+    "title": "Odd Even Linked List (By Index)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/odd-even-linked-list/",
+    "topic": "Linkedlist",
+    "pattern": "Reversals and Rotations",
+    "stars": 3
+  },
+  {
+    "id": 147,
+    "title": "Reorder List",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/reorder-list/",
+    "topic": "Linkedlist",
+    "pattern": "Reversals and Rotations",
+    "stars": 4
+  },
+  {
+    "id": 148,
+    "title": "Rotate List",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/rotate-list/",
+    "topic": "Linkedlist",
+    "pattern": "Reversals and Rotations",
+    "stars": 4
+  },
+  {
+    "id": 149,
+    "title": "Add One to a Number Represented by LL",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/add-1-to-a-number-represented-as-linked-list/1",
+    "topic": "Linkedlist",
+    "pattern": "Math in Linked List",
+    "stars": 3
+  },
+  {
+    "id": 150,
+    "title": "Add Two Numbers (Reverse Order)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/add-two-numbers/",
+    "topic": "Linkedlist",
+    "pattern": "Math in Linked List",
+    "stars": 3
+  },
+  {
+    "id": 151,
+    "title": "Add Two Numbers II (Forward Order)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/add-two-numbers-ii/",
+    "topic": "Linkedlist",
+    "pattern": "Math in Linked List",
+    "stars": 4
+  },
+  {
+    "id": 152,
+    "title": "Merge Two Sorted Lists",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/merge-two-sorted-lists/",
+    "topic": "Linkedlist",
+    "pattern": "Sorting, Merging & Segregating",
+    "stars": 2
+  },
+  {
+    "id": 153,
+    "title": "Sort a Linked List of 0s, 1s, and 2s",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/given-a-linked-list-of-0s-1s-and-2s-sort-it/1",
+    "topic": "Linkedlist",
+    "pattern": "Sorting, Merging & Segregating",
+    "stars": 3
+  },
+  {
+    "id": 154,
+    "title": "Segregate Even and Odd Nodes (By Value)",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/segregate-even-and-odd-nodes-in-a-linked-list5035/1",
+    "topic": "Linkedlist",
+    "pattern": "Sorting, Merging & Segregating",
+    "stars": 3
+  },
+  {
+    "id": 155,
+    "title": "Partition List",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/partition-list/",
+    "topic": "Linkedlist",
+    "pattern": "Sorting, Merging & Segregating",
+    "stars": 4
+  },
+  {
+    "id": 156,
+    "title": "Insertion Sort List",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/insertion-sort-list/",
+    "topic": "Linkedlist",
+    "pattern": "Sorting, Merging & Segregating",
+    "stars": 4
+  },
+  {
+    "id": 157,
+    "title": "Sort List (Merge Sort on LL)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/sort-list/",
+    "topic": "Linkedlist",
+    "pattern": "Sorting, Merging & Segregating",
+    "stars": 5
+  },
+  {
+    "id": 158,
+    "title": "Array to Doubly Linked List",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/create-a-doubly-linked-list-from-a-given-array/1",
+    "topic": "Linkedlist",
+    "pattern": "Doubly Linked Lists (DLL)",
+    "stars": 1
+  },
+  {
+    "id": 159,
+    "title": "Insert/Delete in a Doubly Linked List",
+    "platform": "Other",
+    "problemUrl": "",
+    "topic": "Linkedlist",
+    "pattern": "Doubly Linked Lists (DLL)",
+    "stars": 2
+  },
+  {
+    "id": 160,
+    "title": "Reverse a Doubly Linked List",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/reverse-a-doubly-linked-list/1",
+    "topic": "Linkedlist",
+    "pattern": "Doubly Linked Lists (DLL)",
+    "stars": 2
+  },
+  {
+    "id": 161,
+    "title": "Remove Duplicates from Sorted DLL",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/remove-duplicates-from-a-sorted-doubly-linked-list/1",
+    "topic": "Linkedlist",
+    "pattern": "Doubly Linked Lists (DLL)",
+    "stars": 2
+  },
+  {
+    "id": 162,
+    "title": "Insert in Sorted way in a Sorted DLL",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/insert-in-sorted-way-in-a-sorted-dll/1",
+    "topic": "Linkedlist",
+    "pattern": "Doubly Linked Lists (DLL)",
+    "stars": 3
+  },
+  {
+    "id": 163,
+    "title": "Delete all occurrences of a key in DLL",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/delete-all-occurrences-of-a-given-key-in-a-doubly-linked-list/1",
+    "topic": "Linkedlist",
+    "pattern": "Doubly Linked Lists (DLL)",
+    "stars": 3
+  },
+  {
+    "id": 164,
+    "title": "Find Pairs with Given Sum in a DLL",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/find-pairs-with-given-sum-in-doubly-linked-list/1",
+    "topic": "Linkedlist",
+    "pattern": "Doubly Linked Lists (DLL)",
+    "stars": 3
+  },
+  {
+    "id": 165,
+    "title": "Copy List with Random Pointer (Clone LL)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/copy-list-with-random-pointer/",
+    "topic": "Linkedlist",
+    "pattern": "Advanced Problems",
+    "stars": 4
+  },
+  {
+    "id": 166,
+    "title": "Flattening a Linked List",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/flattening-a-linked-list/1",
+    "topic": "Linkedlist",
+    "pattern": "Advanced Problems",
+    "stars": 4
+  },
+  {
+    "id": 167,
+    "title": "Reverse Linked List in Groups of Size K",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/reverse-nodes-in-k-group/",
+    "topic": "Linkedlist",
+    "pattern": "Advanced Problems",
+    "stars": 5
+  },
+  {
+    "id": 168,
+    "title": "Reverse Alternate K Nodes",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/reverse-nodes-in-k-group/description/",
+    "topic": "Linkedlist",
+    "pattern": "Advanced Problems",
+    "stars": 5
+  },
+  {
+    "id": 169,
+    "title": "Implement Stack using Arrays",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/implement-stack-using-array/1",
+    "topic": "Stacks",
+    "pattern": "Core Implementation",
+    "stars": 1
+  },
+  {
+    "id": 170,
+    "title": "Implement Stack using Linked List",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/implement-stack-using-linked-list/1",
+    "topic": "Stacks",
+    "pattern": "Core Implementation",
+    "stars": 1
+  },
+  {
+    "id": 171,
+    "title": "Valid Parentheses",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/valid-parentheses/",
+    "topic": "Stacks",
+    "pattern": "Parentheses & String Parsing",
+    "stars": 2
+  },
+  {
+    "id": 172,
+    "title": "Remove Outermost Parentheses",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/remove-outermost-parentheses/",
+    "topic": "Stacks",
+    "pattern": "Parentheses & String Parsing",
+    "stars": 2
+  },
+  {
+    "id": 173,
+    "title": "Remove All Adjacent Duplicates In String",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/",
+    "topic": "Stacks",
+    "pattern": "Parentheses & String Parsing",
+    "stars": 2
+  },
+  {
+    "id": 174,
+    "title": "Minimum Add to Make Parentheses Valid",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/",
+    "topic": "Stacks",
+    "pattern": "Parentheses & String Parsing",
+    "stars": 2
+  },
+  {
+    "id": 175,
+    "title": "Minimum Remove to Make Valid Parentheses",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/",
+    "topic": "Stacks",
+    "pattern": "Parentheses & String Parsing",
+    "stars": 3
+  },
+  {
+    "id": 176,
+    "title": "Evaluate Reverse Polish Notation",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+    "topic": "Stacks",
+    "pattern": "Parentheses & String Parsing",
+    "stars": 3
+  },
+  {
+    "id": 177,
+    "title": "Sort a Stack Using Recursion",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/sort-a-stack/1",
+    "topic": "Stacks",
+    "pattern": "Recursion Based Stack Problems",
+    "stars": 3
+  },
+  {
+    "id": 178,
+    "title": "Reverse a Stack (Using Recursion)",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/reverse-a-stack/1",
+    "topic": "Stacks",
+    "pattern": "Recursion Based Stack Problems",
+    "stars": 3
+  },
+  {
+    "id": 179,
+    "title": "Infix to Postfix Conversion",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/infix-to-postfix-1587115620/1",
+    "topic": "Stacks",
+    "pattern": "Expression Conversions",
+    "stars": 2
+  },
+  {
+    "id": 180,
+    "title": "Prefix to Infix Conversion",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/prefix-to-infix-conversion/1",
+    "topic": "Stacks",
+    "pattern": "Expression Conversions",
+    "stars": 2
+  },
+  {
+    "id": 181,
+    "title": "Postfix to Prefix Conversion",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/postfix-to-prefix-conversion/1",
+    "topic": "Stacks",
+    "pattern": "Expression Conversions",
+    "stars": 2
+  },
+  {
+    "id": 182,
+    "title": "Infix to Prefix Conversion",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/infix-to-prefix-notation/1",
+    "topic": "Stacks",
+    "pattern": "Expression Conversions",
+    "stars": 3
+  },
+  {
+    "id": 183,
+    "title": "Next Greater Element I",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/next-greater-element-i/",
+    "topic": "Stacks",
+    "pattern": "The Monotonic Stack Pattern",
+    "stars": 2
+  },
+  {
+    "id": 184,
+    "title": "Next Smaller Element / Help Classmates",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/help-classmates--141631/1",
+    "topic": "Stacks",
+    "pattern": "The Monotonic Stack Pattern",
+    "stars": 3
+  },
+  {
+    "id": 185,
+    "title": "Next Greater Element II (Circular Array)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/next-greater-element-ii/",
+    "topic": "Stacks",
+    "pattern": "The Monotonic Stack Pattern",
+    "stars": 3
+  },
+  {
+    "id": 186,
+    "title": "Stock Span Problem",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/online-stock-span/",
+    "topic": "Stacks",
+    "pattern": "The Monotonic Stack Pattern",
+    "stars": 3
+  },
+  {
+    "id": 187,
+    "title": "Number of Greater Elements to the Right",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/number-of-nges-to-the-right/1",
+    "topic": "Stacks",
+    "pattern": "The Monotonic Stack Pattern",
+    "stars": 3
+  },
+  {
+    "id": 188,
+    "title": "Asteroid Collision",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/asteroid-collision/",
+    "topic": "Stacks",
+    "pattern": "The Monotonic Stack Pattern",
+    "stars": 3
+  },
+  {
+    "id": 189,
+    "title": "Remove K Digits",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/remove-k-digits/",
+    "topic": "Stacks",
+    "pattern": "The Monotonic Stack Pattern",
+    "stars": 4
+  },
+  {
+    "id": 190,
+    "title": "Remove Duplicate Letters",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/remove-duplicate-letters/",
+    "topic": "Stacks",
+    "pattern": "The Monotonic Stack Pattern",
+    "stars": 4
+  },
+  {
+    "id": 191,
+    "title": "Largest Rectangle in Histogram",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/largest-rectangle-in-histogram/",
+    "topic": "Stacks",
+    "pattern": "Advanced Monotonic Stack & Applications",
+    "stars": 4
+  },
+  {
+    "id": 192,
+    "title": "Sum of Subarray Minimums",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/sum-of-subarray-minimums/",
+    "topic": "Stacks",
+    "pattern": "Advanced Monotonic Stack & Applications",
+    "stars": 4
+  },
+  {
+    "id": 193,
+    "title": "Sum of Subarray Ranges",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/sum-of-subarray-ranges/",
+    "topic": "Stacks",
+    "pattern": "Advanced Monotonic Stack & Applications",
+    "stars": 4
+  },
+  {
+    "id": 194,
+    "title": "Maximal Rectangle (2D Grid)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/maximal-rectangle/",
+    "topic": "Stacks",
+    "pattern": "Advanced Monotonic Stack & Applications",
+    "stars": 5
+  },
+  {
+    "id": 195,
+    "title": "Min Stack (Design a stack with O(1) getMin)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/min-stack/description/",
+    "topic": "Stacks",
+    "pattern": "Classic Design Problems",
+    "stars": 3
+  },
+  {
+    "id": 196,
+    "title": "The Celebrity Problem (Elimination via Stack)",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/the-celebrity-problem/1",
+    "topic": "Stacks",
+    "pattern": "Classic Design Problems",
+    "stars": 3
+  },
+  {
+    "id": 197,
+    "title": "Implement Queue using Arrays",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/implement-queue-using-array/1",
+    "topic": "Queues",
+    "pattern": "Queue Implementation",
+    "stars": 1
+  },
+  {
+    "id": 198,
+    "title": "Implement Queue using Linked List",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/implement-queue-using-linked-list/1",
+    "topic": "Queues",
+    "pattern": "Queue Implementation",
+    "stars": 1
+  },
+  {
+    "id": 199,
+    "title": "Implement Queue using Stacks",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/implement-queue-using-stacks/",
+    "topic": "Queues",
+    "pattern": "Queue Implementation",
+    "stars": 2
+  },
+  {
+    "id": 200,
+    "title": "Implement Stack using Queues",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/implement-stack-using-queues/",
+    "topic": "Queues",
+    "pattern": "Queue Implementation",
+    "stars": 2
+  },
+  {
+    "id": 201,
+    "title": "Reverse First K elements of Queue",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/reverse-first-k-elements-of-queue/1",
+    "topic": "Queues",
+    "pattern": "Queue Implementation",
+    "stars": 2
+  },
+  {
+    "id": 202,
+    "title": "Number of Students Unable to Eat Lunch",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/",
+    "topic": "Queues",
+    "pattern": "Queue Applications",
+    "stars": 2
+  },
+  {
+    "id": 203,
+    "title": "First non-repeating character in a stream",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/first-unique-character-in-a-string/",
+    "topic": "Queues",
+    "pattern": "Queue Applications",
+    "stars": 3
+  },
+  {
+    "id": 204,
+    "title": "Sliding Window Maximum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/sliding-window-maximum/",
+    "topic": "Queues",
+    "pattern": "Deque & Sliding Window Max",
+    "stars": 4
+  },
+  {
+    "id": 205,
+    "title": "Longest Continuous Subarray With Abs Diff ≤ Limit",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/",
+    "topic": "Queues",
+    "pattern": "Deque & Sliding Window Max",
+    "stars": 4
+  },
+  {
+    "id": 206,
+    "title": "Constrained Subsequence Sum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/constrained-subsequence-sum/",
+    "topic": "Queues",
+    "pattern": "Deque & Sliding Window Max",
+    "stars": 5
+  },
+  {
+    "id": 207,
+    "title": "Preorder Traversal (Recursive & Iterative)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/binary-tree-preorder-traversal/",
+    "topic": "Binary Trees",
+    "pattern": "Traversals & Views (Fundamentals)",
+    "stars": 3
+  },
+  {
+    "id": 208,
+    "title": "Inorder Traversal (Recursive & Iterative)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/binary-tree-inorder-traversal/",
+    "topic": "Binary Trees",
+    "pattern": "Traversals & Views (Fundamentals)",
+    "stars": 3
+  },
+  {
+    "id": 209,
+    "title": "Postorder Traversal (Recursive & Iterative)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/binary-tree-postorder-traversal/",
+    "topic": "Binary Trees",
+    "pattern": "Traversals & Views (Fundamentals)",
+    "stars": 3
+  },
+  {
+    "id": 210,
+    "title": "Binary Tree Level Order Traversal",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+    "topic": "Binary Trees",
+    "pattern": "Traversals & Views (Fundamentals)",
+    "stars": 4
+  },
+  {
+    "id": 211,
+    "title": "Binary Tree Zigzag Level Order Traversal",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/",
+    "topic": "Binary Trees",
+    "pattern": "Traversals & Views (Fundamentals)",
+    "stars": 4
+  },
+  {
+    "id": 212,
+    "title": "Left / Right View of Binary Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/binary-tree-right-side-view/",
+    "topic": "Binary Trees",
+    "pattern": "Traversals & Views (Fundamentals)",
+    "stars": 4
+  },
+  {
+    "id": 213,
+    "title": "Top / Bottom View of Binary Tree",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1",
+    "topic": "Binary Trees",
+    "pattern": "Traversals & Views (Fundamentals)",
+    "stars": 4
+  },
+  {
+    "id": 214,
+    "title": "Boundary Traversal of Binary Tree",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1",
+    "topic": "Binary Trees",
+    "pattern": "Traversals & Views (Fundamentals)",
+    "stars": 4
+  },
+  {
+    "id": 215,
+    "title": "Diagonal Traversal of Binary Tree",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/diagonal-traversal-of-binary-tree/1",
+    "topic": "Binary Trees",
+    "pattern": "Traversals & Views (Fundamentals)",
+    "stars": 4
+  },
+  {
+    "id": 216,
+    "title": "Vertical Order Traversal of a Binary Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/",
+    "topic": "Binary Trees",
+    "pattern": "Traversals & Views (Fundamentals)",
+    "stars": 5
+  },
+  {
+    "id": 217,
+    "title": "Maximum Depth of Binary Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+    "topic": "Binary Trees",
+    "pattern": "Tree Properties & Dimensions",
+    "stars": 3
+  },
+  {
+    "id": 218,
+    "title": "Same Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/same-tree/",
+    "topic": "Binary Trees",
+    "pattern": "Tree Properties & Dimensions",
+    "stars": 3
+  },
+  {
+    "id": 219,
+    "title": "Invert Binary Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/invert-binary-tree/",
+    "topic": "Binary Trees",
+    "pattern": "Tree Properties & Dimensions",
+    "stars": 3
+  },
+  {
+    "id": 220,
+    "title": "Symmetric Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/symmetric-tree/",
+    "topic": "Binary Trees",
+    "pattern": "Tree Properties & Dimensions",
+    "stars": 4
+  },
+  {
+    "id": 221,
+    "title": "Maximum Width of Binary Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/maximum-width-of-binary-tree/",
+    "topic": "Binary Trees",
+    "pattern": "Tree Properties & Dimensions",
+    "stars": 4
+  },
+  {
+    "id": 222,
+    "title": "Count Complete Tree Nodes",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/count-complete-tree-nodes/",
+    "topic": "Binary Trees",
+    "pattern": "Tree Properties & Dimensions",
+    "stars": 4
+  },
+  {
+    "id": 223,
+    "title": "Diameter of Binary Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/diameter-of-binary-tree/",
+    "topic": "Binary Trees",
+    "pattern": "Tree Properties & Dimensions",
+    "stars": 5
+  },
+  {
+    "id": 224,
+    "title": "Balanced Binary Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/balanced-binary-tree/",
+    "topic": "Binary Trees",
+    "pattern": "Tree Properties & Dimensions",
+    "stars": 5
+  },
+  {
+    "id": 225,
+    "title": "Path Sum I",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/path-sum/",
+    "topic": "Binary Trees",
+    "pattern": "Paths, Sums & LCA",
+    "stars": 3
+  },
+  {
+    "id": 226,
+    "title": "Path Sum II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/path-sum-ii/",
+    "topic": "Binary Trees",
+    "pattern": "Paths, Sums & LCA",
+    "stars": 4
+  },
+  {
+    "id": 227,
+    "title": "Sum Root to Leaf Numbers",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/sum-root-to-leaf-numbers/",
+    "topic": "Binary Trees",
+    "pattern": "Paths, Sums & LCA",
+    "stars": 4
+  },
+  {
+    "id": 228,
+    "title": "Maximum Difference Between Node and Ancestor",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/",
+    "topic": "Binary Trees",
+    "pattern": "Paths, Sums & LCA",
+    "stars": 4
+  },
+  {
+    "id": 229,
+    "title": "Lowest Common Ancestor of a Binary Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/",
+    "topic": "Binary Trees",
+    "pattern": "Paths, Sums & LCA",
+    "stars": 5
+  },
+  {
+    "id": 230,
+    "title": "Binary Tree Maximum Path Sum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/binary-tree-maximum-path-sum/",
+    "topic": "Binary Trees",
+    "pattern": "Paths, Sums & LCA",
+    "stars": 5
+  },
+  {
+    "id": 231,
+    "title": "Path Sum III",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/path-sum-iii/",
+    "topic": "Binary Trees",
+    "pattern": "Paths, Sums & LCA",
+    "stars": 5
+  },
+  {
+    "id": 232,
+    "title": "Minimum time taken to burn the BT",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/burning-tree/1",
+    "topic": "Binary Trees",
+    "pattern": "Graph-Like Traversals in Trees",
+    "stars": 4
+  },
+  {
+    "id": 233,
+    "title": "All Nodes Distance K in Binary Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/",
+    "topic": "Binary Trees",
+    "pattern": "Graph-Like Traversals in Trees",
+    "stars": 5
+  },
+  {
+    "id": 234,
+    "title": "Step-By-Step Directions From a Binary Tree Node to Another",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/description/",
+    "topic": "Binary Trees",
+    "pattern": "Graph-Like Traversals in Trees",
+    "stars": 5
+  },
+  {
+    "id": 235,
+    "title": "Merge Two Binary Trees",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/merge-two-binary-trees/",
+    "topic": "Binary Trees",
+    "pattern": "Structural Modifications & Construction",
+    "stars": 3
+  },
+  {
+    "id": 236,
+    "title": "Children Sum Property in a Binary Tree",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/children-sum-parent/1",
+    "topic": "Binary Trees",
+    "pattern": "Structural Modifications & Construction",
+    "stars": 3
+  },
+  {
+    "id": 237,
+    "title": "Construct Binary Tree from Preorder and Inorder Traversal",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/",
+    "topic": "Binary Trees",
+    "pattern": "Structural Modifications & Construction",
+    "stars": 5
+  },
+  {
+    "id": 238,
+    "title": "Construct Binary Tree from Inorder and Postorder Traversal",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/",
+    "topic": "Binary Trees",
+    "pattern": "Structural Modifications & Construction",
+    "stars": 4
+  },
+  {
+    "id": 239,
+    "title": "Flatten Binary Tree to Linked List",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/flatten-binary-tree-to-linked-list/",
+    "topic": "Binary Trees",
+    "pattern": "Structural Modifications & Construction",
+    "stars": 4
+  },
+  {
+    "id": 240,
+    "title": "Serialize and Deserialize Binary Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/",
+    "topic": "Binary Trees",
+    "pattern": "Structural Modifications & Construction",
+    "stars": 5
+  },
+  {
+    "id": 241,
+    "title": "Search in a Binary Search Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/search-in-a-binary-search-tree/",
+    "topic": "Binary Search Trees",
+    "pattern": "Core Properties & Search",
+    "stars": 2
+  },
+  {
+    "id": 242,
+    "title": "Find Minimum/Maximum in BST",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/minimum-element-in-bst/1",
+    "topic": "Binary Search Trees",
+    "pattern": "Core Properties & Search",
+    "stars": 2
+  },
+  {
+    "id": 243,
+    "title": "Insert into a Binary Search Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/insert-into-a-binary-search-tree/",
+    "topic": "Binary Search Trees",
+    "pattern": "Core Properties & Search",
+    "stars": 3
+  },
+  {
+    "id": 244,
+    "title": "Floor and Ceil in a BST",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/implementing-ceil-in-bst/1",
+    "topic": "Binary Search Trees",
+    "pattern": "Core Properties & Search",
+    "stars": 3
+  },
+  {
+    "id": 245,
+    "title": "Inorder Successor in BST",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/inorder-successor-in-bst/1",
+    "topic": "Binary Search Trees",
+    "pattern": "Core Properties & Search",
+    "stars": 4
+  },
+  {
+    "id": 246,
+    "title": "Lowest Common Ancestor of a Binary Search Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/",
+    "topic": "Binary Search Trees",
+    "pattern": "Core Properties & Search",
+    "stars": 4
+  },
+  {
+    "id": 247,
+    "title": "Validate Binary Search Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/validate-binary-search-tree/",
+    "topic": "Binary Search Trees",
+    "pattern": "Core Properties & Search",
+    "stars": 5
+  },
+  {
+    "id": 248,
+    "title": "Kth Smallest Element in a BST",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
+    "topic": "Binary Search Trees",
+    "pattern": "Core Properties & Search",
+    "stars": 5
+  },
+  {
+    "id": 249,
+    "title": "Delete Node in a BST",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/delete-node-in-a-bst/",
+    "topic": "Binary Search Trees",
+    "pattern": "Standard Modifications & Deletions",
+    "stars": 4
+  },
+  {
+    "id": 250,
+    "title": "Two Sum IV - Input is a BST",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/two-sum-iv-input-is-a-bst/",
+    "topic": "Binary Search Trees",
+    "pattern": "Standard Modifications & Deletions",
+    "stars": 5
+  },
+  {
+    "id": 251,
+    "title": "Convert Sorted Array to Binary Search Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/",
+    "topic": "Binary Search Trees",
+    "pattern": "Construction & Advanced Operations",
+    "stars": 3
+  },
+  {
+    "id": 252,
+    "title": "Construct BST from Preorder Traversal",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/",
+    "topic": "Binary Search Trees",
+    "pattern": "Construction & Advanced Operations",
+    "stars": 4
+  },
+  {
+    "id": 253,
+    "title": "Balance a Binary Search Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/balance-a-binary-search-tree/",
+    "topic": "Binary Search Trees",
+    "pattern": "Construction & Advanced Operations",
+    "stars": 4
+  },
+  {
+    "id": 254,
+    "title": "Merge Two Balanced Binary Search Trees",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/merge-two-bst-s/1",
+    "topic": "Binary Search Trees",
+    "pattern": "Construction & Advanced Operations",
+    "stars": 4
+  },
+  {
+    "id": 255,
+    "title": "Recover Binary Search Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/recover-binary-search-tree/",
+    "topic": "Binary Search Trees",
+    "pattern": "Construction & Advanced Operations",
+    "stars": 5
+  },
+  {
+    "id": 256,
+    "title": "Largest BST in a Binary Tree",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/",
+    "topic": "Binary Search Trees",
+    "pattern": "Construction & Advanced Operations",
+    "stars": 5
+  },
+  {
+    "id": 257,
+    "title": "Implement Trie (Prefix Tree)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/implement-trie-prefix-tree/",
+    "topic": "Tries",
+    "pattern": "Implementation & String Search",
+    "stars": 4
+  },
+  {
+    "id": 258,
+    "title": "Design Add and Search Words Data Structure",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/design-add-and-search-words-data-structure/",
+    "topic": "Tries",
+    "pattern": "Implementation & String Search",
+    "stars": 4
+  },
+  {
+    "id": 259,
+    "title": "Longest Word with All Prefixes",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/find-the-longest-string--170645/1",
+    "topic": "Tries",
+    "pattern": "Implementation & String Search",
+    "stars": 4
+  },
+  {
+    "id": 260,
+    "title": "Number of Distinct Substrings in a String",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/count-of-distinct-substrings/1",
+    "topic": "Tries",
+    "pattern": "Implementation & String Search",
+    "stars": 4
+  },
+  {
+    "id": 261,
+    "title": "Word Search II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/word-search-ii/",
+    "topic": "Tries",
+    "pattern": "Implementation & String Search",
+    "stars": 5
+  },
+  {
+    "id": 262,
+    "title": "Maximum XOR of Two Numbers in an Array",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/",
+    "topic": "Tries",
+    "pattern": "Bitwise Tries (Advanced)",
+    "stars": 5
+  },
+  {
+    "id": 263,
+    "title": "Maximum XOR With an Element From Array",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/maximum-xor-with-an-element-from-array/",
+    "topic": "Tries",
+    "pattern": "Bitwise Tries (Advanced)",
+    "stars": 5
+  },
+  {
+    "id": 264,
+    "title": "Contains Duplicate",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/contains-duplicate/",
+    "topic": "Hashmaps",
+    "pattern": "Hashmap Fundamentals",
+    "stars": 1
+  },
+  {
+    "id": 265,
+    "title": "Valid Anagram (Hashmap Approach)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/valid-anagram/",
+    "topic": "Hashmaps",
+    "pattern": "Hashmap Fundamentals",
+    "stars": 1
+  },
+  {
+    "id": 266,
+    "title": "Unique Number of Occurrences",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/unique-number-of-occurrences/",
+    "topic": "Hashmaps",
+    "pattern": "Hashmap Fundamentals",
+    "stars": 1
+  },
+  {
+    "id": 267,
+    "title": "Find distinct elements / Find the Frequency",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/find-distinct-elements--130928/1",
+    "topic": "Hashmaps",
+    "pattern": "Hashmap Fundamentals",
+    "stars": 1
+  },
+  {
+    "id": 268,
+    "title": "Two Sum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/two-sum/",
+    "topic": "Hashmaps",
+    "pattern": "Hashmap Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 269,
+    "title": "Intersection of Two Arrays",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/intersection-of-two-arrays/",
+    "topic": "Hashmaps",
+    "pattern": "Hashmap Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 270,
+    "title": "Count Number of Pairs With Absolute Difference K",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/",
+    "topic": "Hashmaps",
+    "pattern": "Hashmap Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 271,
+    "title": "Design HashMap",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/design-hashmap/",
+    "topic": "Hashmaps",
+    "pattern": "Hashmap Fundamentals",
+    "stars": 3
+  },
+  {
+    "id": 272,
+    "title": "Group Anagrams",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/group-anagrams/",
+    "topic": "Hashmaps",
+    "pattern": "Intermediate Hashmap Problems",
+    "stars": 3
+  },
+  {
+    "id": 273,
+    "title": "Longest Consecutive Sequence",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/longest-consecutive-sequence/",
+    "topic": "Hashmaps",
+    "pattern": "Intermediate Hashmap Problems",
+    "stars": 3
+  },
+  {
+    "id": 274,
+    "title": "Subarray Sum Equals K",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/subarray-sum-equals-k/",
+    "topic": "Hashmaps",
+    "pattern": "Intermediate Hashmap Problems",
+    "stars": 3
+  },
+  {
+    "id": 275,
+    "title": "Contiguous Array / Largest subarray with 0 sum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/contiguous-array/",
+    "topic": "Hashmaps",
+    "pattern": "Intermediate Hashmap Problems",
+    "stars": 3
+  },
+  {
+    "id": 276,
+    "title": "Count subarrays with given XOR",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/count-subarray-with-given-xor/1",
+    "topic": "Hashmaps",
+    "pattern": "Intermediate Hashmap Problems",
+    "stars": 3
+  },
+  {
+    "id": 277,
+    "title": "Subarray Sums Divisible by K",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
+    "topic": "Hashmaps",
+    "pattern": "Intermediate Hashmap Problems",
+    "stars": 3
+  },
+  {
+    "id": 278,
+    "title": "Continuous Subarray Sum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/continuous-subarray-sum/description/",
+    "topic": "Hashmaps",
+    "pattern": "Intermediate Hashmap Problems",
+    "stars": 3
+  },
+  {
+    "id": 279,
+    "title": "Maximum Size Subarray Sum Equals k",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1",
+    "topic": "Hashmaps",
+    "pattern": "Advanced / Multi Concept",
+    "stars": 3
+  },
+  {
+    "id": 280,
+    "title": "Top K Frequent Elements",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/top-k-frequent-elements/",
+    "topic": "Hashmaps",
+    "pattern": "Advanced / Multi Concept",
+    "stars": 3
+  },
+  {
+    "id": 281,
+    "title": "LRU Cache (Least Recently Used)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/lru-cache/",
+    "topic": "Hashmaps",
+    "pattern": "Advanced / Multi Concept",
+    "stars": 4
+  },
+  {
+    "id": 282,
+    "title": "LFU Cache (Least Frequently Used)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/lfu-cache/",
+    "topic": "Hashmaps",
+    "pattern": "Advanced / Multi Concept",
+    "stars": 5
+  },
+  {
+    "id": 283,
+    "title": "Check if an array represents a min heap",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/does-array-represent-heap4345/1",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "Heap Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 284,
+    "title": "Convert Min Heap to Max Heap",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/convert-min-heap-to-max-heap-1666385109/1",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "Heap Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 285,
+    "title": "Implement Min/Max Heap",
+    "platform": "Other",
+    "problemUrl": "",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "Heap Fundamentals",
+    "stars": 3
+  },
+  {
+    "id": 286,
+    "title": "Last Stone Weight",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/last-stone-weight/",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "The Top-K Pattern",
+    "stars": 3
+  },
+  {
+    "id": 287,
+    "title": "Kth Largest Element in an Array",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/kth-largest-element-in-an-array/",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "The Top-K Pattern",
+    "stars": 4
+  },
+  {
+    "id": 288,
+    "title": "K Closest Points to Origin",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/k-closest-points-to-origin/",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "The Top-K Pattern",
+    "stars": 4
+  },
+  {
+    "id": 289,
+    "title": "Sort a K Sorted Array / Nearly Sorted Algorithm",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/nearly-sorted-1587115620/1",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "The Top-K Pattern",
+    "stars": 4
+  },
+  {
+    "id": 290,
+    "title": "Top K Frequent Elements (Heap Approach)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/top-k-frequent-elements/",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "The Top-K Pattern",
+    "stars": 4
+  },
+  {
+    "id": 291,
+    "title": "Minimum Cost of Ropes",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/minimum-cost-of-ropes-1587115620/1",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "Merging & Combinations",
+    "stars": 4
+  },
+  {
+    "id": 292,
+    "title": "Merge K Sorted Lists",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/merge-k-sorted-lists/",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "Merging & Combinations",
+    "stars": 5
+  },
+  {
+    "id": 293,
+    "title": "Kth Smallest Element in a Sorted Matrix",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "Merging & Combinations",
+    "stars": 4
+  },
+  {
+    "id": 294,
+    "title": "Task Scheduler",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/task-scheduler/",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "Advanced / Two-Heaps / Scheduling",
+    "stars": 5
+  },
+  {
+    "id": 295,
+    "title": "Reorganize String",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/reorganize-string/",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "Advanced / Two-Heaps / Scheduling",
+    "stars": 5
+  },
+  {
+    "id": 296,
+    "title": "Minimum Number of Refueling Stops",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-number-of-refueling-stops/",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "Advanced / Two-Heaps / Scheduling",
+    "stars": 5
+  },
+  {
+    "id": 297,
+    "title": "Find Median from Data Stream",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/find-median-from-data-stream/",
+    "topic": "Heaps / Priority Queues",
+    "pattern": "Advanced / Two-Heaps / Scheduling",
+    "stars": 5
+  },
+  {
+    "id": 298,
+    "title": "Running Sum of 1D Array",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/running-sum-of-1d-array/description/",
+    "topic": "Prefix Sum",
+    "pattern": "1d Prefix Sum",
+    "stars": 1
+  },
+  {
+    "id": 299,
+    "title": "Find the Highest Altitude",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/range-sum-query-immutable/description/",
+    "topic": "Prefix Sum",
+    "pattern": "1d Prefix Sum",
+    "stars": 2
+  },
+  {
+    "id": 300,
+    "title": "Find Pivot Index",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/find-pivot-index/",
+    "topic": "Prefix Sum",
+    "pattern": "1d Prefix Sum",
+    "stars": 2
+  },
+  {
+    "id": 301,
+    "title": "Range Sum Query - Immutable",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/range-sum-query-immutable/",
+    "topic": "Prefix Sum",
+    "pattern": "1d Prefix Sum",
+    "stars": 2
+  },
+  {
+    "id": 302,
+    "title": "Product of Array Except Self",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/product-of-array-except-self/",
+    "topic": "Prefix Sum",
+    "pattern": "1d Prefix Sum",
+    "stars": 3
+  },
+  {
+    "id": 303,
+    "title": "Corporate Flight Bookings",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/corporate-flight-bookings/description/",
+    "topic": "Prefix Sum",
+    "pattern": "1d Prefix Sum",
+    "stars": 4
+  },
+  {
+    "id": 304,
+    "title": "Trapping Rain Water (Prefix Max / Min)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/trapping-rain-water/",
+    "topic": "Prefix Sum",
+    "pattern": "1d Prefix Sum",
+    "stars": 4
+  },
+  {
+    "id": 305,
+    "title": "Range Sum Query 2D - Immutable",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/range-sum-query-2d-immutable/description/",
+    "topic": "Prefix Sum",
+    "pattern": "2d Prefix Sum",
+    "stars": 3
+  },
+  {
+    "id": 306,
+    "title": "Matrix Block Sum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/matrix-block-sum/",
+    "topic": "Prefix Sum",
+    "pattern": "2d Prefix Sum",
+    "stars": 3
+  },
+  {
+    "id": 307,
+    "title": "Maximum Sum of a 2D Subgrid of size K x K",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/coins-of-geekland--141631/1",
+    "topic": "Prefix Sum",
+    "pattern": "2d Prefix Sum",
+    "stars": 4
+  },
+  {
+    "id": 308,
+    "title": "Move Zeroes (Two Pointer Intution)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/move-zeroes/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Two Pointers Basics",
+    "stars": 1
+  },
+  {
+    "id": 309,
+    "title": "Valid Palindrome (Two Pointers)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/valid-palindrome/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Two Pointers Basics",
+    "stars": 1
+  },
+  {
+    "id": 310,
+    "title": "Two Sum II - Input Array Is Sorted",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Two Pointers Basics",
+    "stars": 2
+  },
+  {
+    "id": 311,
+    "title": "Sort Colors (Dutch National Flag)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/sort-colors/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Two Pointers Basics",
+    "stars": 2
+  },
+  {
+    "id": 312,
+    "title": "Container With Most Water",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/container-with-most-water/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Two Pointers Basics",
+    "stars": 3
+  },
+  {
+    "id": 313,
+    "title": "3Sum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/3sum/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Two Pointers Basics",
+    "stars": 3
+  },
+  {
+    "id": 314,
+    "title": "Maximum Average Subarray I",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/maximum-average-subarray-i/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Fixed Size Slding Window",
+    "stars": 2
+  },
+  {
+    "id": 315,
+    "title": "Max Sum Subarray of size K",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Fixed Size Slding Window",
+    "stars": 2
+  },
+  {
+    "id": 316,
+    "title": "Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Fixed Size Slding Window",
+    "stars": 2
+  },
+  {
+    "id": 317,
+    "title": "Minimum Consecutive Cards to Pick Up",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-consecutive-cards-to-pick-up/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Fixed Size Slding Window",
+    "stars": 2
+  },
+  {
+    "id": 318,
+    "title": "Maximum Points You Can Obtain from Cards",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Fixed Size Slding Window",
+    "stars": 3
+  },
+  {
+    "id": 319,
+    "title": "Find All Anagrams in a String",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/find-all-anagrams-in-a-string/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Variable Size Sliding Window",
+    "stars": 3
+  },
+  {
+    "id": 320,
+    "title": "Permutation in String",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/permutation-in-string/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Variable Size Sliding Window",
+    "stars": 3
+  },
+  {
+    "id": 321,
+    "title": "Minimum Size Subarray Sum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-size-subarray-sum/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Variable Size Sliding Window",
+    "stars": 3
+  },
+  {
+    "id": 322,
+    "title": "Longest Substring Without Repeating Characters",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Variable Size Sliding Window",
+    "stars": 3
+  },
+  {
+    "id": 323,
+    "title": "Longest Repeating Character Replacement",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/longest-repeating-character-replacement/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Variable Size Sliding Window",
+    "stars": 3
+  },
+  {
+    "id": 324,
+    "title": "Max Consecutive Ones III",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/max-consecutive-ones-iii/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Variable Size Sliding Window",
+    "stars": 3
+  },
+  {
+    "id": 325,
+    "title": "Fruit Into Baskets",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/fruit-into-baskets/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Variable Size Sliding Window",
+    "stars": 3
+  },
+  {
+    "id": 326,
+    "title": "Maximum Erasure Value",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/maximum-erasure-value/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Variable Size Sliding Window",
+    "stars": 3
+  },
+  {
+    "id": 327,
+    "title": "Number of Substrings Containing All Three Characters",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Variable Size Sliding Window",
+    "stars": 3
+  },
+  {
+    "id": 328,
+    "title": "Binary Subarrays With Sum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/binary-subarrays-with-sum/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Advanced Sliding Window / Counting / Atmost K",
+    "stars": 3
+  },
+  {
+    "id": 329,
+    "title": "Count Number of Nice Subarrays",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/count-number-of-nice-subarrays/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Advanced Sliding Window / Counting / Atmost K",
+    "stars": 3
+  },
+  {
+    "id": 330,
+    "title": "Subarrays with K Different Integers",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/subarrays-with-k-different-integers/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Advanced Sliding Window / Counting / Atmost K",
+    "stars": 4
+  },
+  {
+    "id": 331,
+    "title": "Minimum Window Subsequence",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-window-subsequence/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Advanced Sliding Window / Counting / Atmost K",
+    "stars": 4
+  },
+  {
+    "id": 332,
+    "title": "Minimum Window Substring",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-window-substring/",
+    "topic": "Two Pointers & Sliding Window",
+    "pattern": "Advanced Sliding Window / Counting / Atmost K",
+    "stars": 5
+  },
+  {
+    "id": 333,
+    "title": "K-th Bit is Set or Not",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/check-whether-k-th-bit-is-set-or-not-1587115620/1",
+    "topic": "Bit Manipulation",
+    "pattern": "Bit Basics & Properties",
+    "stars": 1
+  },
+  {
+    "id": 334,
+    "title": "Check if a Number is Odd or Not",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/odd-or-even3618/1",
+    "topic": "Bit Manipulation",
+    "pattern": "Bit Basics & Properties",
+    "stars": 1
+  },
+  {
+    "id": 335,
+    "title": "Check If Number Power of 2 or Not",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/power-of-two/",
+    "topic": "Bit Manipulation",
+    "pattern": "Bit Basics & Properties",
+    "stars": 2
+  },
+  {
+    "id": 336,
+    "title": "Number Of Even and Odd Bits",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/number-of-even-and-odd-bits/description/",
+    "topic": "Bit Manipulation",
+    "pattern": "Bit Basics & Properties",
+    "stars": 2
+  },
+  {
+    "id": 337,
+    "title": "Minimum Bit Flips To Convert Number",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-bit-flips-to-convert-number/",
+    "topic": "Bit Manipulation",
+    "pattern": "Bit Basics & Properties",
+    "stars": 3
+  },
+  {
+    "id": 338,
+    "title": "Swap Two Numbers (XOR Trick)",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/swap-two-numbers3844/1",
+    "topic": "Bit Manipulation",
+    "pattern": "XOR Tricks",
+    "stars": 2
+  },
+  {
+    "id": 339,
+    "title": "Single Number I",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/single-number/description/",
+    "topic": "Bit Manipulation",
+    "pattern": "XOR Tricks",
+    "stars": 2
+  },
+  {
+    "id": 340,
+    "title": "Is Binary Number Multiple of 3",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/is-binary-number-multiple-of-30654/1?page=1&category=Bit%20Magic&sortBy=submissions",
+    "topic": "Bit Manipulation",
+    "pattern": "XOR Tricks",
+    "stars": 2
+  },
+  {
+    "id": 341,
+    "title": "Find the repeating and missing number",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/find-missing-and-repeated-values/",
+    "topic": "Bit Manipulation",
+    "pattern": "XOR Tricks",
+    "stars": 3
+  },
+  {
+    "id": 342,
+    "title": "Single Number II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/single-number-ii/",
+    "topic": "Bit Manipulation",
+    "pattern": "XOR Tricks",
+    "stars": 4
+  },
+  {
+    "id": 343,
+    "title": "Single Number III",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/single-number-iii/description/",
+    "topic": "Bit Manipulation",
+    "pattern": "XOR Tricks",
+    "stars": 5
+  },
+  {
+    "id": 344,
+    "title": "Count Set Bits From 1 to N",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/count-total-set-bits-1587115620/1?page=1&category=Bit%20Magic&sortBy=submissions",
+    "topic": "Bit Manipulation",
+    "pattern": "Bit Counting & Advanced",
+    "stars": 4
+  },
+  {
+    "id": 345,
+    "title": "Bleak Numbers",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/bleak-numbers1552/1?page=6&category=Bit%20Magic&sortBy=difficulty",
+    "topic": "Bit Manipulation",
+    "pattern": "Bit Counting & Advanced",
+    "stars": 4
+  },
+  {
+    "id": 346,
+    "title": "Minimum Xor Pair",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/minimum-xor-value-pair/1",
+    "topic": "Bit Manipulation",
+    "pattern": "Bit Counting & Advanced",
+    "stars": 4
+  },
+  {
+    "id": 347,
+    "title": "Divide Two Integers (Bit Shifting)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/divide-two-integers/description/",
+    "topic": "Bit Manipulation",
+    "pattern": "Bit Counting & Advanced",
+    "stars": 4
+  },
+  {
+    "id": 348,
+    "title": "Assign Cookies",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/assign-cookies/",
+    "topic": "Greedy",
+    "pattern": "Basics & Array Manipulation",
+    "stars": 1
+  },
+  {
+    "id": 349,
+    "title": "Lemonade Change",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/lemonade-change/",
+    "topic": "Greedy",
+    "pattern": "Basics & Array Manipulation",
+    "stars": 2
+  },
+  {
+    "id": 350,
+    "title": "Maximize Sum of Array After K Negations",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/maximize-sum-of-array-after-k-negations/",
+    "topic": "Greedy",
+    "pattern": "Basics & Array Manipulation",
+    "stars": 2
+  },
+  {
+    "id": 351,
+    "title": "Shortest Job First",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/shortest-job-first/1",
+    "topic": "Greedy",
+    "pattern": "Basics & Array Manipulation",
+    "stars": 2
+  },
+  {
+    "id": 352,
+    "title": "Activity Selection / N Meetings in One Room",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1",
+    "topic": "Greedy",
+    "pattern": "Basics & Array Manipulation",
+    "stars": 2
+  },
+  {
+    "id": 353,
+    "title": "Merge Intervals (Greedy View)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/merge-intervals/",
+    "topic": "Greedy",
+    "pattern": "Intervals & Scheduling",
+    "stars": 3
+  },
+  {
+    "id": 354,
+    "title": "Insert Interval",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/insert-interval/",
+    "topic": "Greedy",
+    "pattern": "Intervals & Scheduling",
+    "stars": 3
+  },
+  {
+    "id": 355,
+    "title": "Non-overlapping Intervals",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/non-overlapping-intervals/",
+    "topic": "Greedy",
+    "pattern": "Intervals & Scheduling",
+    "stars": 3
+  },
+  {
+    "id": 356,
+    "title": "Minimum Number of Arrows to Burst Balloons",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+    "topic": "Greedy",
+    "pattern": "Intervals & Scheduling",
+    "stars": 3
+  },
+  {
+    "id": 357,
+    "title": "Job Sequencing Problem",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1",
+    "topic": "Greedy",
+    "pattern": "Intervals & Scheduling",
+    "stars": 3
+  },
+  {
+    "id": 358,
+    "title": "Minimum Platforms required for a railway",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/minimum-platforms-1587115620/1",
+    "topic": "Greedy",
+    "pattern": "Intervals & Scheduling",
+    "stars": 3
+  },
+  {
+    "id": 359,
+    "title": "Maximum Meetings in One Room",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/maximum-meetings-in-one-room/1",
+    "topic": "Greedy",
+    "pattern": "Intervals & Scheduling",
+    "stars": 3
+  },
+  {
+    "id": 360,
+    "title": "Task Scheduler (Greedy Approach)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/task-scheduler/",
+    "topic": "Greedy",
+    "pattern": "Intervals & Scheduling",
+    "stars": 3
+  },
+  {
+    "id": 361,
+    "title": "Jump Game",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/jump-game/",
+    "topic": "Greedy",
+    "pattern": "Array & Jump Greedy",
+    "stars": 3
+  },
+  {
+    "id": 362,
+    "title": "Valid Parenthesis String",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/valid-parenthesis-string/",
+    "topic": "Greedy",
+    "pattern": "Array & Jump Greedy",
+    "stars": 3
+  },
+  {
+    "id": 363,
+    "title": "Gas Station",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/gas-station/",
+    "topic": "Greedy",
+    "pattern": "Array & Jump Greedy",
+    "stars": 3
+  },
+  {
+    "id": 364,
+    "title": "Jump Game II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/jump-game-ii/",
+    "topic": "Greedy",
+    "pattern": "Array & Jump Greedy",
+    "stars": 3
+  },
+  {
+    "id": 365,
+    "title": "Minimize the Heights II",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/minimize-the-heights3351/1",
+    "topic": "Greedy",
+    "pattern": "Advanced Greedy",
+    "stars": 4
+  },
+  {
+    "id": 366,
+    "title": "Candy",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/candy/description/",
+    "topic": "Greedy",
+    "pattern": "Advanced Greedy",
+    "stars": 4
+  },
+  {
+    "id": 367,
+    "title": "Huffman Decoding / Coding",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/huffman-encoding3345/1",
+    "topic": "Greedy",
+    "pattern": "Advanced Greedy",
+    "stars": 4
+  },
+  {
+    "id": 368,
+    "title": "Minimum Number of Taps to Open to Water a Garden",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/",
+    "topic": "Greedy",
+    "pattern": "Advanced Greedy",
+    "stars": 4
+  },
+  {
+    "id": 369,
+    "title": "Course Schedule III",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/course-schedule-iii/",
+    "topic": "Greedy",
+    "pattern": "Advanced Greedy",
+    "stars": 5
+  },
+  {
+    "id": 370,
+    "title": "BFS of Graph",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1",
+    "topic": "Graphs",
+    "pattern": "Graphs Fundamentals & Traversals",
+    "stars": 1
+  },
+  {
+    "id": 371,
+    "title": "DFS of Graph",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1",
+    "topic": "Graphs",
+    "pattern": "Graphs Fundamentals & Traversals",
+    "stars": 1
+  },
+  {
+    "id": 372,
+    "title": "Find if Path Exists in Graph",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/find-if-path-exists-in-graph/",
+    "topic": "Graphs",
+    "pattern": "Graphs Fundamentals & Traversals",
+    "stars": 2
+  },
+  {
+    "id": 373,
+    "title": "Number of Provinces",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/number-of-provinces/",
+    "topic": "Graphs",
+    "pattern": "Graphs Fundamentals & Traversals",
+    "stars": 2
+  },
+  {
+    "id": 374,
+    "title": "Clone Graph",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/clone-graph/",
+    "topic": "Graphs",
+    "pattern": "Graphs Fundamentals & Traversals",
+    "stars": 3
+  },
+  {
+    "id": 375,
+    "title": "Is Graph Bipartite?",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/is-graph-bipartite/",
+    "topic": "Graphs",
+    "pattern": "Graphs Fundamentals & Traversals",
+    "stars": 3
+  },
+  {
+    "id": 376,
+    "title": "Flood Fill",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/flood-fill/",
+    "topic": "Graphs",
+    "pattern": "Matrix / Grid BFS Problems",
+    "stars": 2
+  },
+  {
+    "id": 377,
+    "title": "Max Area of Island",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/max-area-of-island/",
+    "topic": "Graphs",
+    "pattern": "Matrix / Grid BFS Problems",
+    "stars": 2
+  },
+  {
+    "id": 378,
+    "title": "Number of Islands",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/number-of-islands/",
+    "topic": "Graphs",
+    "pattern": "Matrix / Grid BFS Problems",
+    "stars": 3
+  },
+  {
+    "id": 379,
+    "title": "Rotting Oranges",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/rotting-oranges/",
+    "topic": "Graphs",
+    "pattern": "Matrix / Grid BFS Problems",
+    "stars": 3
+  },
+  {
+    "id": 380,
+    "title": "01 Matrix / Distance of nearest cell having 1",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/distance-of-nearest-cell-having-1-1587115620/1",
+    "topic": "Graphs",
+    "pattern": "Matrix / Grid BFS Problems",
+    "stars": 3
+  },
+  {
+    "id": 381,
+    "title": "Surrounded Regions",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/surrounded-regions/",
+    "topic": "Graphs",
+    "pattern": "Matrix / Grid BFS Problems",
+    "stars": 3
+  },
+  {
+    "id": 382,
+    "title": "Number of Enclaves",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/number-of-enclaves/",
+    "topic": "Graphs",
+    "pattern": "Matrix / Grid BFS Problems",
+    "stars": 3
+  },
+  {
+    "id": 383,
+    "title": "Shortest Path in Binary Matrix",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/shortest-path-in-binary-matrix/",
+    "topic": "Graphs",
+    "pattern": "Matrix / Grid BFS Problems",
+    "stars": 3
+  },
+  {
+    "id": 384,
+    "title": "Swim in Rising Water",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/swim-in-rising-water/",
+    "topic": "Graphs",
+    "pattern": "Matrix / Grid BFS Problems",
+    "stars": 4
+  },
+  {
+    "id": 385,
+    "title": "Making A Large Island",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/making-a-large-island/description/",
+    "topic": "Graphs",
+    "pattern": "Matrix / Grid BFS Problems",
+    "stars": 4
+  },
+  {
+    "id": 386,
+    "title": "Cycle Detection in Undirected Graph",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1",
+    "topic": "Graphs",
+    "pattern": "Cycle Detection",
+    "stars": 2
+  },
+  {
+    "id": 387,
+    "title": "Detect Cycle in a Directed Graph",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1",
+    "topic": "Graphs",
+    "pattern": "Cycle Detection",
+    "stars": 3
+  },
+  {
+    "id": 388,
+    "title": "Find Eventual Safe States",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/find-eventual-safe-states/",
+    "topic": "Graphs",
+    "pattern": "Cycle Detection",
+    "stars": 3
+  },
+  {
+    "id": 389,
+    "title": "Topological Sort",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/topological-sort/1",
+    "topic": "Graphs",
+    "pattern": "Topological Sorting (Kahn's Algorithm)",
+    "stars": 2
+  },
+  {
+    "id": 390,
+    "title": "Course Schedule",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/course-schedule/",
+    "topic": "Graphs",
+    "pattern": "Topological Sorting (Kahn's Algorithm)",
+    "stars": 3
+  },
+  {
+    "id": 391,
+    "title": "Course Schedule II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/course-schedule-ii/",
+    "topic": "Graphs",
+    "pattern": "Topological Sorting (Kahn's Algorithm)",
+    "stars": 3
+  },
+  {
+    "id": 392,
+    "title": "Alien Dictionary",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/alien-dictionary/1",
+    "topic": "Graphs",
+    "pattern": "Topological Sorting (Kahn's Algorithm)",
+    "stars": 4
+  },
+  {
+    "id": 393,
+    "title": "Parallel Courses III",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/parallel-courses-iii/",
+    "topic": "Graphs",
+    "pattern": "Topological Sorting (Kahn's Algorithm)",
+    "stars": 4
+  },
+  {
+    "id": 394,
+    "title": "Shortest Path in Undirected Graph (Unit Weights)",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/shortest-path-in-undirected-graph-having-unit-distance/1",
+    "topic": "Graphs",
+    "pattern": "Shortest Path Algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall)",
+    "stars": 2
+  },
+  {
+    "id": 395,
+    "title": "Shortest Path in DAG",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/shortest-path-in-undirected-graph/1",
+    "topic": "Graphs",
+    "pattern": "Shortest Path Algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall)",
+    "stars": 2
+  },
+  {
+    "id": 396,
+    "title": "Dijkstra's Algorithm",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1",
+    "topic": "Graphs",
+    "pattern": "Shortest Path Algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall)",
+    "stars": 3
+  },
+  {
+    "id": 397,
+    "title": "Network Delay Time",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/network-delay-time/",
+    "topic": "Graphs",
+    "pattern": "Shortest Path Algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall)",
+    "stars": 3
+  },
+  {
+    "id": 398,
+    "title": "Path With Minimum Effort",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/path-with-minimum-effort/",
+    "topic": "Graphs",
+    "pattern": "Shortest Path Algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall)",
+    "stars": 3
+  },
+  {
+    "id": 399,
+    "title": "Cheapest Flights Within K Stops",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/cheapest-flights-within-k-stops/description/",
+    "topic": "Graphs",
+    "pattern": "Shortest Path Algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall)",
+    "stars": 3
+  },
+  {
+    "id": 400,
+    "title": "Path with Maximum Probability",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/path-with-maximum-probability/",
+    "topic": "Graphs",
+    "pattern": "Shortest Path Algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall)",
+    "stars": 3
+  },
+  {
+    "id": 401,
+    "title": "Bellman-Ford Algorithm",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/1",
+    "topic": "Graphs",
+    "pattern": "Shortest Path Algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall)",
+    "stars": 3
+  },
+  {
+    "id": 402,
+    "title": "Floyd Warshall Algorithm",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/implementing-floyd-warshall2042/1",
+    "topic": "Graphs",
+    "pattern": "Shortest Path Algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall)",
+    "stars": 3
+  },
+  {
+    "id": 403,
+    "title": "Find the City With the Smallest Number of Neighbors",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/",
+    "topic": "Graphs",
+    "pattern": "Shortest Path Algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall)",
+    "stars": 3
+  },
+  {
+    "id": 404,
+    "title": "Minimum Multiplications to Reach End",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/minimum-multiplications-to-reach-end/1",
+    "topic": "Graphs",
+    "pattern": "Shortest Path Algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall)",
+    "stars": 3
+  },
+  {
+    "id": 405,
+    "title": "Number of Ways to Arrive at Destination",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/",
+    "topic": "Graphs",
+    "pattern": "Shortest Path Algorithms (Dijkstra, Bellman-Ford, Floyd-Warshall)",
+    "stars": 3
+  },
+  {
+    "id": 406,
+    "title": "Minimum Spanning Tree",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1",
+    "topic": "Graphs",
+    "pattern": "Minimum Spanning Tree (MST)",
+    "stars": 2
+  },
+  {
+    "id": 407,
+    "title": "Prim's Algorithm",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1",
+    "topic": "Graphs",
+    "pattern": "Minimum Spanning Tree (MST)",
+    "stars": 3
+  },
+  {
+    "id": 408,
+    "title": "Min Cost to Connect All Points (Kruskal)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/min-cost-to-connect-all-points/",
+    "topic": "Graphs",
+    "pattern": "Minimum Spanning Tree (MST)",
+    "stars": 3
+  },
+  {
+    "id": 409,
+    "title": "Disjoint Set",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/disjoint-set-union-find/1",
+    "topic": "Graphs",
+    "pattern": "Disjoint Set Union (DSU) / Union Find",
+    "stars": 2
+  },
+  {
+    "id": 410,
+    "title": "Number of Operations to Make Network Connected",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/number-of-operations-to-make-network-connected/",
+    "topic": "Graphs",
+    "pattern": "Disjoint Set Union (DSU) / Union Find",
+    "stars": 3
+  },
+  {
+    "id": 411,
+    "title": "Accounts Merge",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/accounts-merge/",
+    "topic": "Graphs",
+    "pattern": "Disjoint Set Union (DSU) / Union Find",
+    "stars": 3
+  },
+  {
+    "id": 412,
+    "title": "Most Stones Removed with Same Row or Column",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/",
+    "topic": "Graphs",
+    "pattern": "Disjoint Set Union (DSU) / Union Find",
+    "stars": 3
+  },
+  {
+    "id": 413,
+    "title": "Redundant Connection",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/redundant-connection/",
+    "topic": "Graphs",
+    "pattern": "Disjoint Set Union (DSU) / Union Find",
+    "stars": 3
+  },
+  {
+    "id": 414,
+    "title": "Evaluate Division",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/evaluate-division/description/",
+    "topic": "Graphs",
+    "pattern": "Disjoint Set Union (DSU) / Union Find",
+    "stars": 4
+  },
+  {
+    "id": 415,
+    "title": "Number of Islands II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/number-of-islands-ii/",
+    "topic": "Graphs",
+    "pattern": "Disjoint Set Union (DSU) / Union Find",
+    "stars": 4
+  },
+  {
+    "id": 416,
+    "title": "Kosaraju's Algorithm",
+    "platform": "Other",
+    "problemUrl": "",
+    "topic": "Graphs",
+    "pattern": "Bridges, Articulation Points & Strongly Connected Components",
+    "stars": 4
+  },
+  {
+    "id": 417,
+    "title": "Tarjan's Algorithm / Bridges in Graph",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/bridge-edge-in-graph/1",
+    "topic": "Graphs",
+    "pattern": "Bridges, Articulation Points & Strongly Connected Components",
+    "stars": 4
+  },
+  {
+    "id": 418,
+    "title": "Articulation Point in Graph",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/articulation-point-1/1",
+    "topic": "Graphs",
+    "pattern": "Bridges, Articulation Points & Strongly Connected Components",
+    "stars": 4
+  },
+  {
+    "id": 419,
+    "title": "Critical Connections in a Network",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/critical-connections-in-a-network/",
+    "topic": "Graphs",
+    "pattern": "Bridges, Articulation Points & Strongly Connected Components",
+    "stars": 4
+  },
+  {
+    "id": 420,
+    "title": "Snake and Ladder Problem",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/snakes-and-ladders/",
+    "topic": "Graphs",
+    "pattern": "Advanced Graphs Problems",
+    "stars": 3
+  },
+  {
+    "id": 421,
+    "title": "Word Ladder",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/word-ladder/",
+    "topic": "Graphs",
+    "pattern": "Advanced Graphs Problems",
+    "stars": 4
+  },
+  {
+    "id": 422,
+    "title": "Reorder Routes to Make All Paths Lead to the City Zero",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/",
+    "topic": "Graphs",
+    "pattern": "Advanced Graphs Problems",
+    "stars": 4
+  },
+  {
+    "id": 423,
+    "title": "Word Ladder II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/word-ladder-ii/",
+    "topic": "Graphs",
+    "pattern": "Advanced Graphs Problems",
+    "stars": 5
+  },
+  {
+    "id": 424,
+    "title": "Escape the Spreading Fire",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/escape-the-spreading-fire/",
+    "topic": "Graphs",
+    "pattern": "Advanced Graphs Problems",
+    "stars": 5
+  },
+  {
+    "id": 425,
+    "title": "Check if subsequence with sum K Exists",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/check-if-there-exists-a-subsequence-with-sum-k/1",
+    "topic": "Backtracking",
+    "pattern": "Subsequence & Subset Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 426,
+    "title": "Count all subsequences with sum K",
+    "platform": "Other",
+    "problemUrl": "",
+    "topic": "Backtracking",
+    "pattern": "Subsequence & Subset Fundamentals",
+    "stars": 2
+  },
+  {
+    "id": 427,
+    "title": "Subsets / Power Set",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/subsets/",
+    "topic": "Backtracking",
+    "pattern": "Subsequence & Subset Fundamentals",
+    "stars": 3
+  },
+  {
+    "id": 428,
+    "title": "Subsets II (With Duplicates)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/subsets-ii/",
+    "topic": "Backtracking",
+    "pattern": "Subsequence & Subset Fundamentals",
+    "stars": 3
+  },
+  {
+    "id": 429,
+    "title": "Subset Sums",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/subset-sums2234/1",
+    "topic": "Backtracking",
+    "pattern": "Subsequence & Subset Fundamentals",
+    "stars": 3
+  },
+  {
+    "id": 430,
+    "title": "Combination Sum I",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/combination-sum/",
+    "topic": "Backtracking",
+    "pattern": "Combinations",
+    "stars": 3
+  },
+  {
+    "id": 431,
+    "title": "Combination Sum II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/combination-sum-ii/",
+    "topic": "Backtracking",
+    "pattern": "Combinations",
+    "stars": 3
+  },
+  {
+    "id": 432,
+    "title": "Combination Sum III",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/combination-sum-iii/",
+    "topic": "Backtracking",
+    "pattern": "Combinations",
+    "stars": 3
+  },
+  {
+    "id": 433,
+    "title": "N Digit numbers with digits in increasing order",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/n-digit-numbers-with-digits-in-increasing-order5903/1",
+    "topic": "Backtracking",
+    "pattern": "Combinations",
+    "stars": 3
+  },
+  {
+    "id": 434,
+    "title": "Permutations II (With Duplicates)",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/permutations-ii/",
+    "topic": "Backtracking",
+    "pattern": "Permutations",
+    "stars": 3
+  },
+  {
+    "id": 435,
+    "title": "Letter Combinations of a Phone Number",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/letter-combinations-of-a-phone-number/",
+    "topic": "Backtracking",
+    "pattern": "Permutations",
+    "stars": 3
+  },
+  {
+    "id": 436,
+    "title": "Generate Parentheses",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/generate-parentheses/",
+    "topic": "Backtracking",
+    "pattern": "Permutations",
+    "stars": 3
+  },
+  {
+    "id": 437,
+    "title": "Palindrome Partitioning",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/palindrome-partitioning/",
+    "topic": "Backtracking",
+    "pattern": "String BackTracking",
+    "stars": 4
+  },
+  {
+    "id": 438,
+    "title": "Word Break",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/word-break/",
+    "topic": "Backtracking",
+    "pattern": "String BackTracking",
+    "stars": 4
+  },
+  {
+    "id": 439,
+    "title": "Remove Invalid Parentheses",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/remove-invalid-parentheses/",
+    "topic": "Backtracking",
+    "pattern": "String BackTracking",
+    "stars": 5
+  },
+  {
+    "id": 440,
+    "title": "Expression Add Operators",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/expression-add-operators/",
+    "topic": "Backtracking",
+    "pattern": "String BackTracking",
+    "stars": 5
+  },
+  {
+    "id": 441,
+    "title": "Rat in a Maze",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/rat-in-a-maze-problem/1",
+    "topic": "Backtracking",
+    "pattern": "Grid & Maze Backtracking",
+    "stars": 4
+  },
+  {
+    "id": 442,
+    "title": "Word Search",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/word-search/",
+    "topic": "Backtracking",
+    "pattern": "Grid & Maze Backtracking",
+    "stars": 4
+  },
+  {
+    "id": 443,
+    "title": "M-Coloring Problem",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/m-coloring-problem-1587115620/1",
+    "topic": "Backtracking",
+    "pattern": "Grid & Maze Backtracking",
+    "stars": 4
+  },
+  {
+    "id": 444,
+    "title": "N-Queens",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/n-queens/",
+    "topic": "Backtracking",
+    "pattern": "Grid & Maze Backtracking",
+    "stars": 5
+  },
+  {
+    "id": 445,
+    "title": "N-Queens II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/n-queens-ii/",
+    "topic": "Backtracking",
+    "pattern": "Grid & Maze Backtracking",
+    "stars": 5
+  },
+  {
+    "id": 446,
+    "title": "Sudoku Solver",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/sudoku-solver/",
+    "topic": "Backtracking",
+    "pattern": "Grid & Maze Backtracking",
+    "stars": 5
+  },
+  {
+    "id": 447,
+    "title": "Climbing Stairs",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/climbing-stairs/",
+    "topic": "Dynamic Programming",
+    "pattern": "1D DP (Intro to State & Transitions)",
+    "stars": 1
+  },
+  {
+    "id": 448,
+    "title": "Min Cost Climbing Stairs",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/min-cost-climbing-stairs/",
+    "topic": "Dynamic Programming",
+    "pattern": "1D DP (Intro to State & Transitions)",
+    "stars": 2
+  },
+  {
+    "id": 449,
+    "title": "Frog Jump",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/frog-jump/",
+    "topic": "Dynamic Programming",
+    "pattern": "1D DP (Intro to State & Transitions)",
+    "stars": 2
+  },
+  {
+    "id": 450,
+    "title": "Frog Jump with K Distances",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/frog-jump-ii/",
+    "topic": "Dynamic Programming",
+    "pattern": "1D DP (Intro to State & Transitions)",
+    "stars": 2
+  },
+  {
+    "id": 451,
+    "title": "House Robber",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/house-robber/",
+    "topic": "Dynamic Programming",
+    "pattern": "1D DP (Intro to State & Transitions)",
+    "stars": 2
+  },
+  {
+    "id": 452,
+    "title": "House Robber II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/house-robber-ii/",
+    "topic": "Dynamic Programming",
+    "pattern": "1D DP (Intro to State & Transitions)",
+    "stars": 3
+  },
+  {
+    "id": 453,
+    "title": "Decode Ways",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/decode-ways/",
+    "topic": "Dynamic Programming",
+    "pattern": "1D DP (Intro to State & Transitions)",
+    "stars": 3
+  },
+  {
+    "id": 454,
+    "title": "Unique Paths",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/unique-paths/",
+    "topic": "Dynamic Programming",
+    "pattern": "2D Grids & Paths",
+    "stars": 2
+  },
+  {
+    "id": 455,
+    "title": "Unique Paths II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/unique-paths-ii/",
+    "topic": "Dynamic Programming",
+    "pattern": "2D Grids & Paths",
+    "stars": 3
+  },
+  {
+    "id": 456,
+    "title": "Minimum Path Sum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-path-sum/",
+    "topic": "Dynamic Programming",
+    "pattern": "2D Grids & Paths",
+    "stars": 3
+  },
+  {
+    "id": 457,
+    "title": "Triangle",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/triangle/",
+    "topic": "Dynamic Programming",
+    "pattern": "2D Grids & Paths",
+    "stars": 3
+  },
+  {
+    "id": 458,
+    "title": "Minimum Falling Path Sum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-falling-path-sum/",
+    "topic": "Dynamic Programming",
+    "pattern": "2D Grids & Paths",
+    "stars": 3
+  },
+  {
+    "id": 459,
+    "title": "Dungeon Game",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/dungeon-game/",
+    "topic": "Dynamic Programming",
+    "pattern": "2D Grids & Paths",
+    "stars": 4
+  },
+  {
+    "id": 460,
+    "title": "Cherry Pickup II / Ninja and his Friends",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/cherry-pickup-ii/",
+    "topic": "Dynamic Programming",
+    "pattern": "2D Grids & Paths",
+    "stars": 4
+  },
+  {
+    "id": 461,
+    "title": "Subset Sum Problem",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1",
+    "topic": "Dynamic Programming",
+    "pattern": "0/1 Knapsack & Subsets",
+    "stars": 2
+  },
+  {
+    "id": 462,
+    "title": "Partition Equal Subset Sum",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/partition-equal-subset-sum/",
+    "topic": "Dynamic Programming",
+    "pattern": "0/1 Knapsack & Subsets",
+    "stars": 3
+  },
+  {
+    "id": 463,
+    "title": "Count Subsets with Sum K",
+    "platform": "CodeStudio",
+    "problemUrl": "https://www.naukri.com/code360/problems/count-subsets-with-sum-k_3952532",
+    "topic": "Dynamic Programming",
+    "pattern": "0/1 Knapsack & Subsets",
+    "stars": 3
+  },
+  {
+    "id": 464,
+    "title": "Target Sum",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/target-sum-1626326450/1",
+    "topic": "Dynamic Programming",
+    "pattern": "0/1 Knapsack & Subsets",
+    "stars": 3
+  },
+  {
+    "id": 465,
+    "title": "Count Partitions with Given Difference",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/partitions-with-given-difference/1",
+    "topic": "Dynamic Programming",
+    "pattern": "0/1 Knapsack & Subsets",
+    "stars": 3
+  },
+  {
+    "id": 466,
+    "title": "0/1 Knapsack Problem",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/0-1-knapsack-problem0945/1",
+    "topic": "Dynamic Programming",
+    "pattern": "0/1 Knapsack & Subsets",
+    "stars": 3
+  },
+  {
+    "id": 467,
+    "title": "Partition Array Into Two Arrays to Minimize Sum Difference",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/",
+    "topic": "Dynamic Programming",
+    "pattern": "0/1 Knapsack & Subsets",
+    "stars": 4
+  },
+  {
+    "id": 468,
+    "title": "Last Stone Weight II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/last-stone-weight-ii/",
+    "topic": "Dynamic Programming",
+    "pattern": "0/1 Knapsack & Subsets",
+    "stars": 4
+  },
+  {
+    "id": 469,
+    "title": "Rod Cutting Problem",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/rod-cutting0840/1",
+    "topic": "Dynamic Programming",
+    "pattern": "Unbounded Knapsack",
+    "stars": 3
+  },
+  {
+    "id": 470,
+    "title": "Coin Change",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/coin-change/",
+    "topic": "Dynamic Programming",
+    "pattern": "Unbounded Knapsack",
+    "stars": 3
+  },
+  {
+    "id": 471,
+    "title": "Coin Change II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/coin-change-ii/",
+    "topic": "Dynamic Programming",
+    "pattern": "Unbounded Knapsack",
+    "stars": 3
+  },
+  {
+    "id": 472,
+    "title": "Perfect Squares",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/perfect-squares/",
+    "topic": "Dynamic Programming",
+    "pattern": "Unbounded Knapsack",
+    "stars": 3
+  },
+  {
+    "id": 473,
+    "title": "Longest Common Subsequence",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/longest-common-subsequence/",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Strings (LCS & Edit Distance Patterns)",
+    "stars": 3
+  },
+  {
+    "id": 474,
+    "title": "Print Longest Common Subsequence",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/print-all-lcs-sequences3413/1",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Strings (LCS & Edit Distance Patterns)",
+    "stars": 3
+  },
+  {
+    "id": 475,
+    "title": "Longest Common Substring",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/longest-common-substring1452/1",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Strings (LCS & Edit Distance Patterns)",
+    "stars": 3
+  },
+  {
+    "id": 476,
+    "title": "Longest Palindromic Subsequence",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/longest-palindromic-subsequence/",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Strings (LCS & Edit Distance Patterns)",
+    "stars": 3
+  },
+  {
+    "id": 477,
+    "title": "Minimum Insertions to Make String Palindrome",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Strings (LCS & Edit Distance Patterns)",
+    "stars": 3
+  },
+  {
+    "id": 478,
+    "title": "Delete Operation for Two Strings",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/delete-operation-for-two-strings/",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Strings (LCS & Edit Distance Patterns)",
+    "stars": 3
+  },
+  {
+    "id": 479,
+    "title": "Shortest Common Supersequence",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/shortest-common-supersequence/description/",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Strings (LCS & Edit Distance Patterns)",
+    "stars": 4
+  },
+  {
+    "id": 480,
+    "title": "Distinct Subsequences",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/distinct-subsequences/",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Strings (LCS & Edit Distance Patterns)",
+    "stars": 4
+  },
+  {
+    "id": 481,
+    "title": "Edit Distance",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/edit-distance/",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Strings (LCS & Edit Distance Patterns)",
+    "stars": 4
+  },
+  {
+    "id": 482,
+    "title": "Wildcard Matching",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/wildcard-matching/",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Strings (LCS & Edit Distance Patterns)",
+    "stars": 4
+  },
+  {
+    "id": 483,
+    "title": "Regular Expression Matching",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/regular-expression-matching/",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Strings (LCS & Edit Distance Patterns)",
+    "stars": 5
+  },
+  {
+    "id": 484,
+    "title": "Best Time to Buy and Sell Stock II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Stocks",
+    "stars": 2
+  },
+  {
+    "id": 485,
+    "title": "Best Time to Buy and Sell Stock with Cooldown",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Stocks",
+    "stars": 2
+  },
+  {
+    "id": 486,
+    "title": "Best Time to Buy and Sell Stock with Transaction Fee",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Stocks",
+    "stars": 3
+  },
+  {
+    "id": 487,
+    "title": "Best Time to Buy and Sell Stock III",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Stocks",
+    "stars": 4
+  },
+  {
+    "id": 488,
+    "title": "Best Time to Buy and Sell Stock IV",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/",
+    "topic": "Dynamic Programming",
+    "pattern": "DP on Stocks",
+    "stars": 4
+  },
+  {
+    "id": 489,
+    "title": "Longest Increasing Subsequence",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/longest-increasing-subsequence/",
+    "topic": "Dynamic Programming",
+    "pattern": "Longest Increasing Subsequence (LIS)",
+    "stars": 3
+  },
+  {
+    "id": 490,
+    "title": "Print Longest Increasing Subsequence",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/printing-longest-increasing-subsequence/1",
+    "topic": "Dynamic Programming",
+    "pattern": "Longest Increasing Subsequence (LIS)",
+    "stars": 3
+  },
+  {
+    "id": 491,
+    "title": "Largest Divisible Subset",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/largest-divisible-subset/",
+    "topic": "Dynamic Programming",
+    "pattern": "Longest Increasing Subsequence (LIS)",
+    "stars": 3
+  },
+  {
+    "id": 492,
+    "title": "Longest String Chain",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/longest-string-chain/",
+    "topic": "Dynamic Programming",
+    "pattern": "Longest Increasing Subsequence (LIS)",
+    "stars": 3
+  },
+  {
+    "id": 493,
+    "title": "Longest Bitonic Subsequence",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/longest-bitonic-subsequence0824/1",
+    "topic": "Dynamic Programming",
+    "pattern": "Longest Increasing Subsequence (LIS)",
+    "stars": 4
+  },
+  {
+    "id": 494,
+    "title": "Number of Longest Increasing Subsequences",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/number-of-longest-increasing-subsequence/description/",
+    "topic": "Dynamic Programming",
+    "pattern": "Longest Increasing Subsequence (LIS)",
+    "stars": 4
+  },
+  {
+    "id": 495,
+    "title": "Russian Doll Envelopes",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/russian-doll-envelopes/",
+    "topic": "Dynamic Programming",
+    "pattern": "Longest Increasing Subsequence (LIS)",
+    "stars": 5
+  },
+  {
+    "id": 496,
+    "title": "Matrix Chain Multiplication",
+    "platform": "GeeksForGeeks",
+    "problemUrl": "https://www.geeksforgeeks.org/problems/matrix-chain-multiplication0303/1",
+    "topic": "Dynamic Programming",
+    "pattern": "Partition DP & Matrix Chain Multiplication (MCM)",
+    "stars": 4
+  },
+  {
+    "id": 497,
+    "title": "Minimum Cost to Cut a Stick",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/minimum-cost-to-cut-a-stick/",
+    "topic": "Dynamic Programming",
+    "pattern": "Partition DP & Matrix Chain Multiplication (MCM)",
+    "stars": 4
+  },
+  {
+    "id": 498,
+    "title": "Burst Balloons",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/burst-balloons/",
+    "topic": "Dynamic Programming",
+    "pattern": "Partition DP & Matrix Chain Multiplication (MCM)",
+    "stars": 5
+  },
+  {
+    "id": 499,
+    "title": "Palindrome Partitioning II",
+    "platform": "LeetCode",
+    "problemUrl": "https://leetcode.com/problems/palindrome-partitioning-ii/",
+    "topic": "Dynamic Programming",
+    "pattern": "Partition DP & Matrix Chain Multiplication (MCM)",
+    "stars": 5
+  }
+]
