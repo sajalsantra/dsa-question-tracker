@@ -4,7 +4,7 @@ import { LocalNotesRepository } from '../repositories/local/local-notes.reposito
 
 @Injectable({ providedIn: 'root' })
 export class NotesService {
-  private readonly repo: NotesRepository = inject(LocalNotesRepository);
+  private readonly repo = inject(NotesRepository);
 
   private readonly _notes = signal<Record<number, string>>({});
   readonly notes = this._notes.asReadonly();

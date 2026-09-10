@@ -25,7 +25,7 @@ export function defaultProgress(questionId: number): QuestionProgress {
 
 @Injectable({ providedIn: 'root' })
 export class ProgressService {
-  private readonly repo: ProgressRepository = inject(LocalProgressRepository);
+  private readonly repo = inject(ProgressRepository);
 
   private readonly _progress = signal<Record<number, QuestionProgress>>({});
   readonly progress = this._progress.asReadonly();

@@ -9,7 +9,7 @@ function todayStr(): string {
 
 @Injectable({ providedIn: 'root' })
 export class ActivityService {
-  private readonly repo: ActivityRepository = inject(LocalActivityRepository);
+  private readonly repo = inject(ActivityRepository);
 
   private readonly _activity = signal<Record<string, number>>({});
   readonly activity = this._activity.asReadonly();

@@ -6,7 +6,7 @@ import { DOCUMENT } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class SettingsService {
-  private readonly repo: SettingsRepository = inject(LocalSettingsRepository);
+  private readonly repo = inject(SettingsRepository);
   private readonly document = inject(DOCUMENT);
 
   private readonly _settings = signal<AppSettings>({
