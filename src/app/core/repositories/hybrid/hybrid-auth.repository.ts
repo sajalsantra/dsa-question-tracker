@@ -16,8 +16,6 @@ export class HybridAuthRepository implements AuthRepository {
       tap(user => {
         if (user) {
           localStorage.setItem('dsa_tracker_user', JSON.stringify(user));
-        } else {
-          // Fall back to local auth if offline or guest
         }
       })
     );
@@ -35,6 +33,12 @@ export class HybridAuthRepository implements AuthRepository {
     );
   }
 
+  loginWithGithub(): Observable<User> {
+    return this.fbAuth.loginWithGithub().pipe(
+      tap(user => localStorage.setItem('dsa_tracker_user', JSON.stringify(user)))
+    );
+  }
+
   register(name: string, email: string, password: string): Observable<User> {
     return this.fbAuth.register(name, email, password).pipe(
       tap(user => localStorage.setItem('dsa_tracker_user', JSON.stringify(user)))
@@ -44,6 +48,10 @@ export class HybridAuthRepository implements AuthRepository {
   logout(): Observable<void> {
     localStorage.removeItem('dsa_tracker_user');
     return this.fbAuth.logout();
+  }
+
+  sendPasswordResetEmail(email: string): Observable<void> {
+    return this.fbAuth.sendPasswordResetEmail(email);
   }
 
   changePassword(currentPassword: string, newPassword: string): Observable<void> {

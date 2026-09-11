@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SettingsService } from '../../core/services/settings.service';
 import { AuthService } from '../../core/services/auth.service';
+import { AuthModalService } from '../../core/services/auth-modal.service';
 
 @Component({
   selector: 'app-bottom-nav',
@@ -22,7 +23,7 @@ import { AuthService } from '../../core/services/auth.service';
         @if (authService.isAuthenticated()) {
           <button class="auth-btn" (click)="authService.logout()">Logout</button>
         } @else {
-          <a routerLink="/login" class="auth-btn">🔑 Login</a>
+          <button type="button" class="auth-btn" (click)="authModalService.open('signin')">🔑 Login</button>
         }
       </div>
     </div>
@@ -76,11 +77,13 @@ import { AuthService } from '../../core/services/auth.service';
       width: 32px; height: 32px; border-radius: 8px;
       background: var(--bg-3); border: 1px solid var(--border);
       font-size: 14px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
     }
     .auth-btn {
       padding: 6px 12px; font-size: 12px; border-radius: 8px;
       background: var(--accent-soft); color: var(--accent);
       text-decoration: none; font-weight: 600; border: none;
+      cursor: pointer;
     }
 
     .bottom-nav {
@@ -117,4 +120,6 @@ import { AuthService } from '../../core/services/auth.service';
 export class BottomNavComponent {
   readonly settingsService = inject(SettingsService);
   readonly authService = inject(AuthService);
+  readonly authModalService = inject(AuthModalService);
 }
+

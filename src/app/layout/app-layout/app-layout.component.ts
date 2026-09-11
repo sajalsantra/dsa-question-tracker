@@ -11,10 +11,12 @@ import { ActivityService } from '../../core/services/activity.service';
 import { SettingsService } from '../../core/services/settings.service';
 import { AuthService } from '../../core/services/auth.service';
 
+import { AuthModalComponent } from '../../features/auth/auth-modal.component';
+
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, SidebarComponent, BottomNavComponent, ToastComponent],
+  imports: [CommonModule, RouterOutlet, SidebarComponent, BottomNavComponent, ToastComponent, AuthModalComponent],
   template: `
     <app-sidebar></app-sidebar>
     <app-bottom-nav></app-bottom-nav>
@@ -24,6 +26,7 @@ import { AuthService } from '../../core/services/auth.service';
     </main>
 
     <app-toast></app-toast>
+    <app-auth-modal></app-auth-modal>
   `,
   styles: [`
     .main-content {

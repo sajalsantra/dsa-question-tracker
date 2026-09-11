@@ -8,10 +8,6 @@ const SESSION_KEY = 'dsaAuthSession';
 /**
  * Local mock auth implementation.
  * Stores a demo user in localStorage.
- * Replaced by HttpAuthRepository when Spring Boot + JWT is ready.
- *
- * Password validation: any password >= 6 chars accepted for demo.
- * In production, passwords are verified by the backend only.
  */
 @Injectable({ providedIn: 'root' })
 export class LocalAuthRepository extends AuthRepository {
@@ -33,6 +29,14 @@ export class LocalAuthRepository extends AuthRepository {
     return of(user);
   }
 
+  loginWithGoogle(): Observable<User> {
+    return this.login('google@user.com', 'password123');
+  }
+
+  loginWithGithub(): Observable<User> {
+    return this.login('github@user.com', 'password123');
+  }
+
   register(name: string, email: string, password: string): Observable<User> {
     if (!name || !email || password.length < 6) {
       return throwError(() => new Error('Name, email, and password (min 6 chars) are required.'));
@@ -51,11 +55,17 @@ export class LocalAuthRepository extends AuthRepository {
     return of(void 0);
   }
 
+  sendPasswordResetEmail(email: string): Observable<void> {
+    if (!email) {
+      return throwError(() => new Error('Please enter a valid email address.'));
+    }
+    return of(undefined);
+  }
+
   changePassword(_currentPassword: string, newPassword: string): Observable<void> {
     if (newPassword.length < 6) {
       return throwError(() => new Error('New password must be at least 6 characters.'));
     }
-    // Local mock — no real password storage
     return of(void 0);
   }
 

@@ -1,13 +1,15 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, from, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
   updatePassword,
+  sendPasswordResetEmail,
   signInWithPopup,
   GoogleAuthProvider,
+  GithubAuthProvider,
   onAuthStateChanged
 } from 'firebase/auth';
 import { AuthRepository } from '../auth.repository';
@@ -56,6 +58,17 @@ export class FirebaseAuthRepository implements AuthRepository {
     );
   }
 
+  loginWithGithub(): Observable<User> {
+    const provider = new GithubAuthProvider();
+    return from(signInWithPopup(this.fb.auth, provider)).pipe(
+      map(cred => ({
+        id: cred.user.uid,
+        name: cred.user.displayName || cred.user.email?.split('@')[0] || 'User',
+        email: cred.user.email || ''
+      }))
+    );
+  }
+
   register(name: string, email: string, password: string): Observable<User> {
     return from(createUserWithEmailAndPassword(this.fb.auth, email, password)).pipe(
       map(cred => ({
@@ -68,6 +81,10 @@ export class FirebaseAuthRepository implements AuthRepository {
 
   logout(): Observable<void> {
     return from(signOut(this.fb.auth));
+  }
+
+  sendPasswordResetEmail(email: string): Observable<void> {
+    return from(sendPasswordResetEmail(this.fb.auth, email));
   }
 
   changePassword(currentPassword: string, newPassword: string): Observable<void> {

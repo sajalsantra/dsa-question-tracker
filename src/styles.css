@@ -114,3 +114,61 @@ input, select, textarea {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   padding: 24px;
 }
+
+/* Custom Checkbox Design & Perfect Alignment */
+.checkbox-label {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.4;
+}
+
+.checkbox-label input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid var(--text-faint);
+  background: var(--bg-3);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s ease;
+  outline: none;
+  flex-shrink: 0;
+  margin: 0 2px 0 0 !important;
+}
+
+.checkbox-label:hover input[type="checkbox"] {
+  border-color: var(--accent);
+}
+
+.checkbox-label input[type="checkbox"]:focus-visible {
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.checkbox-label input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  width: 4px;
+  height: 8px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+

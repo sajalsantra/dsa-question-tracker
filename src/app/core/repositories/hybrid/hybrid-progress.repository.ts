@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, map, switchMap, startWith } from 'rxjs/operators';
 import { ProgressRepository } from '../progress.repository';
 import { QuestionProgress } from '../../models/progress.model';
 import { LocalProgressRepository } from '../local/local-progress.repository';
@@ -16,53 +16,43 @@ export class HybridProgressRepository implements ProgressRepository {
   getAll(): Observable<Record<number, QuestionProgress>> {
     const local$ = this.localRepo.getAll();
 
-    // If authenticated, perform timestamp-based 2-way smart sync between local & Firestore
     if (this.fb.auth.currentUser) {
-      local$.pipe(
-        tap(localData => {
+      return local$.pipe(
+        switchMap(localData =>
           this.fbRepo.getAll().pipe(
-            tap(remoteData => this.syncProgressWithTimestamp(localData || {}, remoteData || {})),
-            catchError(() => of({}))
-          ).subscribe();
-        })
-      ).subscribe();
+            map(remoteData => {
+              if (remoteData && Object.keys(remoteData).length > 0) {
+                for (const [idStr, progress] of Object.entries(remoteData)) {
+                  this.localRepo.save(Number(idStr), progress).subscribe();
+                }
+                return remoteData;
+              }
+              return localData;
+            }),
+            catchError(() => of(localData)),
+            startWith(localData)
+          )
+        )
+      );
     }
 
     return local$;
   }
 
-  private syncProgressWithTimestamp(
-    localData: Record<number, QuestionProgress>,
-    remoteData: Record<number, QuestionProgress>
-  ): void {
-    const allIds = new Set([
-      ...Object.keys(localData).map(Number),
-      ...Object.keys(remoteData).map(Number)
-    ]);
+  syncLocalToRemote(): Observable<void> {
+    if (!this.fb.auth.currentUser) return of(undefined);
 
-    for (const id of allIds) {
-      const local = localData[id];
-      const remote = remoteData[id];
-
-      if (local && remote) {
-        const localTime = new Date(local.updatedAt || 0).getTime();
-        const remoteTime = new Date(remote.updatedAt || 0).getTime();
-
-        if (localTime > remoteTime) {
-          // Local update is newer -> sync to Cloud Firestore
-          this.fbRepo.save(id, local).subscribe();
-        } else if (remoteTime > localTime) {
-          // Remote update is newer -> sync to LocalStorage
-          this.localRepo.save(id, remote).subscribe();
+    return this.localRepo.getAll().pipe(
+      tap(localData => {
+        if (localData && Object.keys(localData).length > 0) {
+          for (const [idStr, progress] of Object.entries(localData)) {
+            this.fbRepo.save(Number(idStr), progress).subscribe();
+          }
         }
-      } else if (local && !remote) {
-        // Local exists but remote does not -> sync to Cloud Firestore
-        this.fbRepo.save(id, local).subscribe();
-      } else if (remote && !local) {
-        // Remote exists but local does not -> sync to LocalStorage
-        this.localRepo.save(id, remote).subscribe();
-      }
-    }
+      }),
+      map(() => undefined),
+      catchError(() => of(undefined))
+    );
   }
 
   save(questionId: number, progress: QuestionProgress): Observable<void> {

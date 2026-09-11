@@ -11,4 +11,6 @@ export abstract class ProgressRepository {
   abstract save(questionId: number, progress: QuestionProgress): Observable<void>;
   abstract delete(questionId: number): Observable<void>;
   abstract reset(): Observable<void>;
+  syncLocalToRemote?(): Observable<void>;
 }
+

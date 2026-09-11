@@ -8,4 +8,5 @@ export abstract class ActivityRepository {
 
   abstract getDailyGoal(): Observable<DailyGoal>;
   abstract saveDailyGoal(goal: DailyGoal): Observable<void>;
+  syncLocalToRemote?(): Observable<void>;
 }

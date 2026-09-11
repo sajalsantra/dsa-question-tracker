@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, map, switchMap, startWith } from 'rxjs/operators';
 import { SettingsRepository } from '../settings.repository';
 import { AppSettings, DEFAULT_SETTINGS } from '../../models/settings.model';
 import { LocalSettingsRepository } from '../local/local-settings.repository';
@@ -17,14 +17,21 @@ export class HybridSettingsRepository implements SettingsRepository {
     const local$ = this.localRepo.get();
 
     if (this.fb.auth.currentUser) {
-      this.fbRepo.get().pipe(
-        tap(remoteSettings => {
-          if (remoteSettings) {
-            this.localRepo.save(remoteSettings).subscribe();
-          }
-        }),
-        catchError(() => of(DEFAULT_SETTINGS))
-      ).subscribe();
+      return local$.pipe(
+        switchMap(localData =>
+          this.fbRepo.get().pipe(
+            map(remoteSettings => {
+              if (remoteSettings) {
+                this.localRepo.save(remoteSettings).subscribe();
+                return remoteSettings;
+              }
+              return localData;
+            }),
+            catchError(() => of(localData)),
+            startWith(localData)
+          )
+        )
+      );
     }
 
     return local$;
@@ -35,6 +42,21 @@ export class HybridSettingsRepository implements SettingsRepository {
     if (this.fb.auth.currentUser) {
       return this.fbRepo.save(settings);
     }
+    return of(undefined);
+  }
+
+  syncLocalToRemote(): Observable<void> {
+    if (!this.fb.auth.currentUser) return of(undefined);
+
+    this.localRepo.get().pipe(
+      tap(localSettings => {
+        if (localSettings) {
+          this.fbRepo.save(localSettings).subscribe();
+        }
+      }),
+      catchError(() => of(DEFAULT_SETTINGS))
+    ).subscribe();
+
     return of(undefined);
   }
 }

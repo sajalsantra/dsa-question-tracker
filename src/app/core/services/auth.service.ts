@@ -1,8 +1,12 @@
 import { Injectable, signal, computed, inject, Injector } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { AuthRepository } from '../repositories/auth.repository';
+import { ProgressRepository } from '../repositories/progress.repository';
+import { NotesRepository } from '../repositories/notes.repository';
+import { ActivityRepository } from '../repositories/activity.repository';
+import { SettingsRepository } from '../repositories/settings.repository';
 import { ProgressService } from './progress.service';
 import { NotesService } from './notes.service';
 import { ActivityService } from './activity.service';
@@ -35,6 +39,28 @@ export class AuthService {
     }
   }
 
+  private syncLocalRepositories(): void {
+    try {
+      this.injector.get(ProgressRepository, null, { optional: true })?.syncLocalToRemote?.()?.subscribe();
+      this.injector.get(NotesRepository, null, { optional: true })?.syncLocalToRemote?.()?.subscribe();
+      this.injector.get(ActivityRepository, null, { optional: true })?.syncLocalToRemote?.()?.subscribe();
+      this.injector.get(SettingsRepository, null, { optional: true })?.syncLocalToRemote?.()?.subscribe();
+    } catch {
+      // Ignore during DI bootstrapping
+    }
+  }
+
+  private resetLocalRepositories(): void {
+    try {
+      localStorage.removeItem('dsaProgress');
+      localStorage.removeItem('dsaNotes');
+      localStorage.removeItem('dsaActivity');
+      localStorage.removeItem('dsaSettings');
+    } catch {
+      // Ignore
+    }
+  }
+
   login(email: string, password: string): Observable<User> {
     return this.repo.login(email, password).pipe(
       tap(user => {
@@ -45,7 +71,7 @@ export class AuthService {
   }
 
   loginWithGoogle(): Observable<User> {
-    if ('loginWithGoogle' in this.repo) {
+    if ('loginWithGoogle' in this.repo && typeof (this.repo as any).loginWithGoogle === 'function') {
       return (this.repo as any).loginWithGoogle().pipe(
         tap((user: User) => {
           this._currentUser.set(user);
@@ -56,10 +82,27 @@ export class AuthService {
     return this.login('google@user.com', 'pass');
   }
 
-  register(name: string, email: string, password: string): Observable<User> {
+  loginWithGithub(): Observable<User> {
+    if ('loginWithGithub' in this.repo && typeof (this.repo as any).loginWithGithub === 'function') {
+      return (this.repo as any).loginWithGithub().pipe(
+        tap((user: User) => {
+          this._currentUser.set(user);
+          this.refreshServices();
+        })
+      );
+    }
+    return this.login('github@user.com', 'pass');
+  }
+
+  register(name: string, email: string, password: string, syncLocalData: boolean = true): Observable<User> {
     return this.repo.register(name, email, password).pipe(
       tap(user => {
         this._currentUser.set(user);
+        if (syncLocalData) {
+          this.syncLocalRepositories();
+        } else {
+          this.resetLocalRepositories();
+        }
         this.refreshServices();
       })
     );
@@ -72,6 +115,13 @@ export class AuthService {
         this.refreshServices();
       })
     );
+  }
+
+  sendPasswordResetEmail(email: string): Observable<void> {
+    if ('sendPasswordResetEmail' in this.repo && typeof (this.repo as any).sendPasswordResetEmail === 'function') {
+      return (this.repo as any).sendPasswordResetEmail(email);
+    }
+    return of(undefined);
   }
 
   changePassword(currentPassword: string, newPassword: string): Observable<void> {

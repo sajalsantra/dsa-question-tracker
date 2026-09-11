@@ -5,4 +5,5 @@ export abstract class NotesRepository {
   abstract save(questionId: number, notes: string): Observable<void>;
   abstract delete(questionId: number): Observable<void>;
   abstract reset(): Observable<void>;
+  syncLocalToRemote?(): Observable<void>;
 }

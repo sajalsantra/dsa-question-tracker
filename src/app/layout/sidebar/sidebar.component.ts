@@ -7,6 +7,7 @@ import { StreakService } from '../../core/services/streak.service';
 import { RevisionService } from '../../core/services/revision.service';
 import { SettingsService } from '../../core/services/settings.service';
 import { AuthService } from '../../core/services/auth.service';
+import { AuthModalService } from '../../core/services/auth-modal.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -91,7 +92,7 @@ import { AuthService } from '../../core/services/auth.service';
             <button class="logout-btn" (click)="authService.logout()">Logout</button>
           </div>
         } @else {
-          <a routerLink="/login" class="auth-btn">🔑 Sign In / Sign Up</a>
+          <button type="button" class="auth-btn" (click)="authModalService.open('signin')">🔑 Sign In / Sign Up</button>
         }
 
         <div class="footer-row">
@@ -210,12 +211,15 @@ import { AuthService } from '../../core/services/auth.service';
       align-items: center;
       justify-content: center;
       gap: 8px;
+      width: 100%;
       padding: 9px 12px;
       border-radius: 10px;
       background: var(--accent-soft);
       color: var(--accent);
       font-size: 13px;
       font-weight: 600;
+      border: none;
+      cursor: pointer;
       text-decoration: none;
       transition: background var(--transition);
     }
@@ -236,6 +240,7 @@ import { AuthService } from '../../core/services/auth.service';
       color: var(--red);
       font-size: 11px;
       font-weight: 600;
+      cursor: pointer;
     }
 
     .footer-row { display: flex; align-items: center; justify-content: space-between; }
@@ -267,6 +272,7 @@ export class SidebarComponent {
   readonly revisionService = inject(RevisionService);
   readonly settingsService = inject(SettingsService);
   readonly authService = inject(AuthService);
+  readonly authModalService = inject(AuthModalService);
 
   progressPct(): number {
     const total = this.questionService.questions().length;
@@ -274,3 +280,4 @@ export class SidebarComponent {
     return Math.round((this.progressService.solvedCount() / total) * 100);
   }
 }
+

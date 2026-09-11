@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, map, switchMap, startWith } from 'rxjs/operators';
 import { NotesRepository } from '../notes.repository';
 import { LocalNotesRepository } from '../local/local-notes.repository';
 import { FirebaseNotesRepository } from '../firebase/firebase-notes.repository';
@@ -16,40 +16,42 @@ export class HybridNotesRepository implements NotesRepository {
     const local$ = this.localRepo.getAll();
 
     if (this.fb.auth.currentUser) {
-      local$.pipe(
-        tap(localNotes => {
+      return local$.pipe(
+        switchMap(localData =>
           this.fbRepo.getAll().pipe(
-            tap(remoteNotes => {
-              const allIds = new Set([
-                ...Object.keys(localNotes || {}).map(Number),
-                ...Object.keys(remoteNotes || {}).map(Number)
-              ]);
-
-              for (const id of allIds) {
-                const local = localNotes?.[id];
-                const remote = remoteNotes?.[id];
-
-                if (local !== undefined && remote === undefined) {
-                  this.fbRepo.save(id, local).subscribe();
-                } else if (remote !== undefined && local === undefined) {
-                  this.localRepo.save(id, remote).subscribe();
-                } else if (remote !== undefined && local !== undefined) {
-                  // Prefer remote note if non-empty, otherwise local
-                  if (!local && remote) {
-                    this.localRepo.save(id, remote).subscribe();
-                  } else if (local && !remote) {
-                    this.fbRepo.save(id, local).subscribe();
-                  }
+            map(remoteNotes => {
+              if (remoteNotes && Object.keys(remoteNotes).length > 0) {
+                for (const [idStr, text] of Object.entries(remoteNotes)) {
+                  this.localRepo.save(Number(idStr), text).subscribe();
                 }
+                return remoteNotes;
               }
+              return localData;
             }),
-            catchError(() => of({}))
-          ).subscribe();
-        })
-      ).subscribe();
+            catchError(() => of(localData)),
+            startWith(localData)
+          )
+        )
+      );
     }
 
     return local$;
+  }
+
+  syncLocalToRemote(): Observable<void> {
+    if (!this.fb.auth.currentUser) return of(undefined);
+
+    return this.localRepo.getAll().pipe(
+      tap(localNotes => {
+        if (localNotes && Object.keys(localNotes).length > 0) {
+          for (const [idStr, text] of Object.entries(localNotes)) {
+            this.fbRepo.save(Number(idStr), text).subscribe();
+          }
+        }
+      }),
+      map(() => undefined),
+      catchError(() => of(undefined))
+    );
   }
 
   save(questionId: number, notes: string): Observable<void> {
