@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "predeploy": "ng build --base-href /dsa-question-tracker/",
+    "deploy": "angular-cli-ghpages --dir=dist/dsa-tracker-ng/browser"
   },
   "private": true,
   "dependencies": {
