@@ -15,7 +15,7 @@ public class JwtTokenProvider {
     @Value("${app.jwt.secret}")
     private String jwtSecret;
 
-    @Value("${app.jwt.expiration-ms:86400000}")
+    @Value("${app.jwt.access-token-expiration-ms:7200000}")
     private long jwtExpirationMs;
 
     private SecretKey getSigningKey() {
@@ -24,6 +24,10 @@ public class JwtTokenProvider {
     }
 
     public String generateToken(String userId, String email) {
+        return generateAccessToken(userId, email);
+    }
+
+    public String generateAccessToken(String userId, String email) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpirationMs);
 

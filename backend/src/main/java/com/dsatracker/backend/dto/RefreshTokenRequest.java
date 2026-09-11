@@ -9,11 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AuthResponse {
-    private String accessToken;
+public class RefreshTokenRequest {
     private String refreshToken;
-    @Builder.Default
-    private String tokenType = "Bearer";
-    private String token; // Alias for accessToken for backward compatibility
-    private UserDto user;
 }

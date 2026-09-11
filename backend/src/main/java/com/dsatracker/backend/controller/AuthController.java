@@ -2,10 +2,14 @@ package com.dsatracker.backend.controller;
 
 import com.dsatracker.backend.dto.AuthRequest;
 import com.dsatracker.backend.dto.AuthResponse;
+import com.dsatracker.backend.dto.RefreshTokenRequest;
+import com.dsatracker.backend.dto.TokenRefreshResponse;
 import com.dsatracker.backend.dto.UserDto;
+import com.dsatracker.backend.entity.RefreshTokenEntity;
 import com.dsatracker.backend.entity.UserEntity;
 import com.dsatracker.backend.repository.UserRepository;
 import com.dsatracker.backend.security.JwtTokenProvider;
+import com.dsatracker.backend.service.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +27,7 @@ public class AuthController {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider tokenProvider;
+    private final RefreshTokenService refreshTokenService;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody AuthRequest request) {
@@ -40,14 +45,21 @@ public class AuthController {
 
         userRepository.save(user);
 
-        String token = tokenProvider.generateToken(user.getId(), user.getEmail());
+        String accessToken = tokenProvider.generateAccessToken(user.getId(), user.getEmail());
+        RefreshTokenEntity refreshToken = refreshTokenService.createRefreshToken(user.getId());
+
         UserDto userDto = UserDto.builder()
                 .id(user.getId())
                 .name(user.getName())
                 .email(user.getEmail())
                 .build();
 
-        return ResponseEntity.ok(AuthResponse.builder().token(token).user(userDto).build());
+        return ResponseEntity.ok(AuthResponse.builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshToken.getToken())
+                .token(accessToken)
+                .user(userDto)
+                .build());
     }
 
     @PostMapping("/login")
@@ -57,14 +69,64 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
         }
 
-        String token = tokenProvider.generateToken(user.getId(), user.getEmail());
+        String accessToken = tokenProvider.generateAccessToken(user.getId(), user.getEmail());
+        RefreshTokenEntity refreshToken = refreshTokenService.createRefreshToken(user.getId());
+
         UserDto userDto = UserDto.builder()
                 .id(user.getId())
                 .name(user.getName())
                 .email(user.getEmail())
                 .build();
 
-        return ResponseEntity.ok(AuthResponse.builder().token(token).user(userDto).build());
+        return ResponseEntity.ok(AuthResponse.builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshToken.getToken())
+                .token(accessToken)
+                .user(userDto)
+                .build());
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<?> refreshToken(@RequestBody RefreshTokenRequest request) {
+        String requestRefreshToken = request.getRefreshToken();
+
+        if (requestRefreshToken == null || requestRefreshToken.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("Refresh token is required");
+        }
+
+        try {
+            RefreshTokenEntity tokenEntity = refreshTokenService.findByToken(requestRefreshToken)
+                    .orElse(null);
+
+            if (tokenEntity == null) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                        .body("Refresh token is not found in database");
+            }
+
+            tokenEntity = refreshTokenService.verifyExpiration(tokenEntity);
+            UserEntity user = tokenEntity.getUser();
+
+            String accessToken = tokenProvider.generateAccessToken(user.getId(), user.getEmail());
+
+            TokenRefreshResponse response = TokenRefreshResponse.builder()
+                    .accessToken(accessToken)
+                    .refreshToken(requestRefreshToken)
+                    .tokenType("Bearer")
+                    .build();
+
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(Authentication authentication) {
+        if (authentication != null && authentication.getPrincipal() != null) {
+            String userId = (String) authentication.getPrincipal();
+            refreshTokenService.deleteByUserId(userId);
+        }
+        return ResponseEntity.ok("Logged out successfully");
     }
 
     @GetMapping("/me")
