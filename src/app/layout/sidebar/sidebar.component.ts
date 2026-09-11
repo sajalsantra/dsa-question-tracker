@@ -96,7 +96,11 @@ import { AuthModalService } from '../../core/services/auth-modal.service';
         }
 
         <div class="footer-row">
-          <span class="save-indicator">🟢 Saved locally</span>
+          @if (authService.isAuthenticated()) {
+            <span class="save-indicator cloud" title="Progress & notes synced to your cloud account">☁️ Synced to cloud</span>
+          } @else {
+            <span class="save-indicator local" title="Progress saved in local browser storage">🟢 Saved locally</span>
+          }
           <button class="theme-btn" (click)="settingsService.toggleTheme()" title="Toggle theme">
             {{ settingsService.settings().theme === 'dark' ? '🌙' : '☀️' }}
           </button>
@@ -244,7 +248,9 @@ import { AuthModalService } from '../../core/services/auth-modal.service';
     }
 
     .footer-row { display: flex; align-items: center; justify-content: space-between; }
-    .save-indicator { font-size: 11px; color: var(--green); }
+    .save-indicator { font-size: 11px; font-weight: 500; }
+    .save-indicator.local { color: var(--green); }
+    .save-indicator.cloud { color: var(--accent); }
     .theme-btn {
       width: 32px;
       height: 32px;
