@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start:frontend": "cd frontend && npm start",
-    "build:frontend": "cd frontend && npm run build",
-    "deploy:frontend": "cd frontend && npm run deploy",
+    "start:frontend": "cd frontend/dsa-tracker-frontend && npm start",
+    "build:frontend": "cd frontend/dsa-tracker-frontend && npm run build",
+    "deploy:frontend": "cd frontend/dsa-tracker-frontend && npm run deploy",
     "start:backend": "cd backend/dsa-tracker-backend && mvn spring-boot:run",
     "build:backend": "cd backend/dsa-tracker-backend && mvn compile"
   }
