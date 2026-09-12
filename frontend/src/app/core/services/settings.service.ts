@@ -17,8 +17,16 @@ export class SettingsService {
 
   load(): void {
     this.repo.get().subscribe(s => {
-      this._settings.set(s);
-      this.applyTheme(s.theme);
+      const merged: AppSettings = {
+        ...DEFAULT_SETTINGS,
+        ...(s || {}),
+        openAiApiKey: (s && s.openAiApiKey) ? s.openAiApiKey : DEFAULT_SETTINGS.openAiApiKey,
+        geminiApiKey: (s && s.geminiApiKey) ? s.geminiApiKey : DEFAULT_SETTINGS.geminiApiKey,
+        aiProvider: (s && s.aiProvider) ? s.aiProvider : DEFAULT_SETTINGS.aiProvider,
+        ui: { ...DEFAULT_SETTINGS.ui, ...((s && s.ui) || {}) }
+      };
+      this._settings.set(merged);
+      this.applyTheme(merged.theme);
     });
   }
 
@@ -38,6 +46,21 @@ export class SettingsService {
       ...s,
       ui: { ...s.ui, [key]: !s.ui[key] }
     }));
+    this.persist();
+  }
+
+  setAiApiKey(geminiApiKey: string): void {
+    this._settings.update(s => ({ ...s, geminiApiKey }));
+    this.persist();
+  }
+
+  setOpenAiApiKey(openAiApiKey: string): void {
+    this._settings.update(s => ({ ...s, openAiApiKey }));
+    this.persist();
+  }
+
+  setAiProvider(aiProvider: 'gemini' | 'openai'): void {
+    this._settings.update(s => ({ ...s, aiProvider }));
     this.persist();
   }
 

@@ -15,14 +15,48 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.dsatracker.backend.entity.UserAiChatEntity;
+import com.dsatracker.backend.repository.UserAiChatRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
+
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class AiService {
 
     @Value("${app.gemini.api-key:}")
     private String configuredApiKey;
 
+    private final UserAiChatRepository userAiChatRepository;
     private final RestTemplate restTemplate = new RestTemplate();
+
+    @Transactional
+    public List<UserAiChatEntity> saveChatHistory(String userId, String questionId, List<UserAiChatEntity> messages) {
+        if (userId == null || userId.trim().isEmpty() || questionId == null) {
+            return List.of();
+        }
+        userAiChatRepository.deleteByUserIdAndQuestionId(userId, questionId);
+        if (messages != null && !messages.isEmpty()) {
+            for (UserAiChatEntity msg : messages) {
+                msg.setUserId(userId);
+                msg.setQuestionId(questionId);
+            }
+            return userAiChatRepository.saveAll(messages);
+        }
+        return List.of();
+    }
+
+    public List<UserAiChatEntity> getChatHistory(String userId, String questionId) {
+        if (userId == null || questionId == null) return List.of();
+        return userAiChatRepository.findByUserIdAndQuestionIdOrderByIdAsc(userId, questionId);
+    }
+
+    @Transactional
+    public void deleteChatHistory(String userId, String questionId) {
+        if (userId == null || questionId == null) return;
+        userAiChatRepository.deleteByUserIdAndQuestionId(userId, questionId);
+    }
 
     public AiChatResponse generateHintOrAnswer(AiChatRequest request) {
         String apiKey = (request.getApiKey() != null && !request.getApiKey().trim().isEmpty())

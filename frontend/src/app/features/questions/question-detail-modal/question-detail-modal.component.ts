@@ -207,6 +207,10 @@ import {
 
               <!-- Chat Container -->
               <div class="chat-container" #chatContainer>
+                <div class="chat-date-divider">
+                  <span>{{ chatFormattedDate }}</span>
+                </div>
+
                 @for (msg of chatMessages; track $index) {
                   <div class="chat-bubble" [class.user]="msg.sender === 'user'" [class.ai]="msg.sender === 'ai'">
                     <div class="bubble-content" [innerHTML]="formatMarkdown(msg.text)"></div>
@@ -236,8 +240,12 @@ import {
                   class="send-btn"
                   (click)="sendCustomPrompt()"
                   [disabled]="!customPrompt.trim() || isAiThinking"
+                  title="Send message"
                 >
-                  Send ➔
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
                 </button>
               </div>
             </div>
@@ -467,12 +475,22 @@ import {
       .chat-container::-webkit-scrollbar-thumb:hover {
         background: rgba(255, 255, 255, 0.35);
       }
-      .empty-chat {
-        font-size: 13px;
-        color: var(--text-dim);
+      .chat-date-divider {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 4px 0 10px 0;
         text-align: center;
-        margin: auto;
-        padding: 20px;
+      }
+      .chat-date-divider span {
+        font-size: 11px;
+        font-weight: 600;
+        color: #94a3b8;
+        background: rgba(255, 255, 255, 0.06);
+        padding: 4px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        letter-spacing: 0.5px;
       }
 
       .chat-bubble {
@@ -509,23 +527,46 @@ import {
       .chat-input {
         flex: 1;
         padding: 10px 14px;
-        border-radius: 8px;
-        border: 1px solid var(--border);
-        background: var(--bg-3);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(15, 15, 25, 0.6);
         color: var(--text);
         font-size: 13px;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .chat-input:focus {
+        outline: none;
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
       }
       .send-btn {
-        padding: 10px 18px;
-        background: var(--accent);
-        color: #fff;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        color: #ffffff;
         border: none;
-        border-radius: 8px;
+        border-radius: 10px;
         font-weight: 600;
         cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+        flex-shrink: 0;
+      }
+      .send-btn:hover:not(:disabled) {
+        transform: translateY(-1px) scale(1.04);
+        box-shadow: 0 6px 16px rgba(99, 102, 241, 0.5);
+        background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+      }
+      .send-btn:active:not(:disabled) {
+        transform: scale(0.95);
       }
       .send-btn:disabled {
-        opacity: 0.5;
+        background: rgba(255, 255, 255, 0.07);
+        color: rgba(255, 255, 255, 0.25);
+        box-shadow: none;
         cursor: not-allowed;
       }
 
@@ -743,30 +784,23 @@ export class QuestionDetailModalComponent implements OnChanges {
   }
 
   private loadChatHistory(questionId: string | number): void {
-    try {
-      const saved = localStorage.getItem(`dsa_chat_${questionId}`);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          this.chatMessages = parsed;
-          this.hasWelcomedCurrentQuestion = true;
-          return;
-        }
-      }
-    } catch {
-      // Fallback if parsing fails
-    }
     this.chatMessages = [];
     this.hasWelcomedCurrentQuestion = false;
+
+    // Cloud Sync (Spring Boot MySQL / Cloud Firestore)
+    this.aiService.fetchChatFromCloud(questionId).subscribe(cloudMsgs => {
+      if (cloudMsgs && cloudMsgs.length > 0) {
+        this.chatMessages = cloudMsgs;
+        this.hasWelcomedCurrentQuestion = true;
+      }
+    });
   }
 
   private saveChatHistory(): void {
     if (!this.question) return;
-    try {
-      localStorage.setItem(`dsa_chat_${this.question.id}`, JSON.stringify(this.chatMessages));
-    } catch {
-      // Fallback if localStorage quota exceeded
-    }
+
+    // Cloud Sync (MySQL DB & Firestore)
+    this.aiService.saveChatToCloud(this.question.id, this.chatMessages);
   }
 
   selectTab(tab: 'notes' | 'ai'): void {
@@ -823,6 +857,13 @@ export class QuestionDetailModalComponent implements OnChanges {
         this.confidence = 0;
       }
     }
+  }
+
+  get chatFormattedDate(): string {
+    const now = new Date();
+    const day = now.toLocaleDateString('en-US', { weekday: 'long' });
+    const time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+    return `${day} ${time}`;
   }
 
   get confidenceDescriptor(): string {
@@ -1031,9 +1072,7 @@ export class QuestionDetailModalComponent implements OnChanges {
 
     this.progressService.resetQuestion(this.question.id);
     this.notesService.saveNote(this.question.id, '');
-    try {
-      localStorage.removeItem(`dsa_chat_${this.question.id}`);
-    } catch {}
+    this.aiService.deleteChatFromCloud(this.question.id);
     this.chatMessages = [];
     this.hasWelcomedCurrentQuestion = false;
 

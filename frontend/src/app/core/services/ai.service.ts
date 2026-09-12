@@ -6,6 +6,10 @@ import { SettingsService } from './settings.service';
 import { DEFAULT_SETTINGS } from '../models/settings.model';
 import { environment } from '../../../environments/environment';
 
+import { AuthService } from './auth.service';
+import { FirebaseService } from './firebase.service';
+import { doc, setDoc, deleteDoc, getDoc } from 'firebase/firestore';
+
 export interface AiPromptRequest {
   questionTitle: string;
   topic: string;
@@ -34,6 +38,99 @@ export class AiService {
   private readonly http = inject(HttpClient);
   private readonly healthService = inject(ApiHealthService);
   private readonly settingsService = inject(SettingsService);
+  private readonly authService = inject(AuthService);
+  private readonly firebaseService = inject(FirebaseService);
+
+  saveChatToCloud(questionId: string | number, messages: ChatMessage[]): void {
+    const qIdStr = String(questionId);
+
+    // 1. Spring Boot MySQL Backend API Sync
+    if (this.healthService.isSpringBootOnline()) {
+      const backendUrl = `${environment.apiUrl}/ai/history/${qIdStr}`;
+      const payload = messages.map(m => ({
+        questionId: qIdStr,
+        sender: m.sender,
+        messageText: m.text,
+        timestamp: m.timestamp
+      }));
+      this.http.post(backendUrl, payload).pipe(catchError(() => of(null))).subscribe();
+    }
+
+    // 2. Cloud Firestore Sync
+    const user = this.authService.currentUser();
+    if (user && user.id) {
+      try {
+        const docRef = doc(this.firebaseService.db, `users/${user.id}/ai_chat_history/${qIdStr}`);
+        setDoc(docRef, {
+          questionId: qIdStr,
+          messages: messages,
+          updatedAt: new Date().toISOString()
+        }, { merge: true }).catch(err => console.warn('Firestore AI Chat Sync Error', err));
+      } catch (err) {
+        console.warn('Firestore AI Chat Error', err);
+      }
+    }
+  }
+
+  fetchChatFromCloud(questionId: string | number): Observable<ChatMessage[]> {
+    const qIdStr = String(questionId);
+
+    // 1. Primary: Spring Boot Backend API
+    if (this.healthService.isSpringBootOnline()) {
+      const backendUrl = `${environment.apiUrl}/ai/history/${qIdStr}`;
+      return this.http.get<any[]>(backendUrl).pipe(
+        map(list => {
+          if (Array.isArray(list) && list.length > 0) {
+            return list.map(item => ({
+              sender: item.sender as 'user' | 'ai',
+              text: item.messageText,
+              timestamp: item.timestamp
+            }));
+          }
+          return [];
+        }),
+        catchError(() => of([]))
+      );
+    }
+
+    // 2. Fallback: Cloud Firestore
+    const user = this.authService.currentUser();
+    if (user && user.id) {
+      const docRef = doc(this.firebaseService.db, `users/${user.id}/ai_chat_history/${qIdStr}`);
+      return new Observable<ChatMessage[]>(observer => {
+        getDoc(docRef).then(snap => {
+          if (snap.exists()) {
+            const msgs = snap.data()['messages'] || [];
+            observer.next(msgs);
+          } else {
+            observer.next([]);
+          }
+          observer.complete();
+        }).catch(() => {
+          observer.next([]);
+          observer.complete();
+        });
+      });
+    }
+
+    return of([]);
+  }
+
+  deleteChatFromCloud(questionId: string | number): void {
+    const qIdStr = String(questionId);
+    if (this.healthService.isSpringBootOnline()) {
+      const backendUrl = `${environment.apiUrl}/ai/history/${qIdStr}`;
+      this.http.delete(backendUrl).pipe(catchError(() => of(null))).subscribe();
+    }
+
+    const user = this.authService.currentUser();
+    if (user && user.id) {
+      try {
+        const docRef = doc(this.firebaseService.db, `users/${user.id}/ai_chat_history/${qIdStr}`);
+        deleteDoc(docRef).catch(() => {});
+      } catch {}
+    }
+  }
 
   askAiMentor(req: AiPromptRequest): Observable<AiPromptResponse> {
     const settings = this.settingsService.settings();

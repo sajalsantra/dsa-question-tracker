@@ -13,7 +13,7 @@ import { ToastService } from '../../core/services/toast.service';
     <div class="page-container">
       <div class="page-header">
         <h1 class="page-title">⚙️ Settings</h1>
-        <p class="page-sub">Configure application theme, account security, and UI preferences</p>
+        <p class="page-sub">Configure application theme, account security, AI mentor keys, and UI preferences</p>
       </div>
 
       <div class="settings-stack">
@@ -37,6 +37,71 @@ import { ToastService } from '../../core/services/toast.service';
               ☀️ Light Mode
             </button>
           </div>
+        </div>
+
+        <!-- AI Assistant Config Card -->
+        <div class="card">
+          <div class="card-title">🤖 Beru (AI Mentor) Configuration</div>
+          <p class="ai-sub">Choose your preferred AI provider & API Key to enable Beru's progressive hints, algorithm intuition, and code reviews.</p>
+
+          <!-- Provider Switcher -->
+          <div class="form-group" style="margin-top: 14px;">
+            <label>Active AI Provider</label>
+            <div class="theme-row">
+              <button
+                class="theme-option"
+                [class.active]="settingsService.settings().aiProvider === 'openai'"
+                (click)="settingsService.setAiProvider('openai')"
+              >
+                ⚡ OpenAI (GPT-4o-mini)
+              </button>
+              <button
+                class="theme-option"
+                [class.active]="settingsService.settings().aiProvider === 'gemini'"
+                (click)="settingsService.setAiProvider('gemini')"
+              >
+                💎 Google Gemini 2.5 Flash
+              </button>
+            </div>
+          </div>
+          
+          <!-- OpenAI API Key -->
+          @if (settingsService.settings().aiProvider === 'openai') {
+            <div class="form-group" style="margin-top: 14px;">
+              <label>OpenAI Secret API Key</label>
+              <div class="key-input-row">
+                <input
+                  [type]="showOpenAiKey ? 'text' : 'password'"
+                  [ngModel]="settingsService.settings().openAiApiKey || ''"
+                  (ngModelChange)="onOpenAiKeyChange($event)"
+                  class="input"
+                  placeholder="Enter your OpenAI API key"
+                />
+                <button class="btn btn-secondary btn-sm" (click)="showOpenAiKey = !showOpenAiKey">
+                  {{ showOpenAiKey ? '🙈 Hide' : '👁️ Show' }}
+                </button>
+              </div>
+            </div>
+          }
+
+          <!-- Google Gemini Key -->
+          @if (settingsService.settings().aiProvider === 'gemini') {
+            <div class="form-group" style="margin-top: 14px;">
+              <label>Google Gemini API Key</label>
+              <div class="key-input-row">
+                <input
+                  [type]="showGeminiKey ? 'text' : 'password'"
+                  [ngModel]="settingsService.settings().geminiApiKey || ''"
+                  (ngModelChange)="onGeminiKeyChange($event)"
+                  class="input"
+                  placeholder="Enter your Gemini API key"
+                />
+                <button class="btn btn-secondary btn-sm" (click)="showGeminiKey = !showGeminiKey">
+                  {{ showGeminiKey ? '🙈 Hide' : '👁️ Show' }}
+                </button>
+              </div>
+            </div>
+          }
         </div>
 
         <!-- Account Profile Card -->
@@ -101,6 +166,12 @@ import { ToastService } from '../../core/services/toast.service';
     }
     .theme-option.active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
 
+    .ai-sub { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+    .key-input-row { display: flex; gap: 8px; align-items: center; }
+    .btn-sm { padding: 6px 12px; font-size: 11px; }
+    .ai-help { font-size: 11px; color: var(--text-dim); margin-top: 8px; }
+    .ai-help a { color: var(--accent); text-decoration: none; font-weight: 600; }
+
     .user-info { display: flex; align-items: center; justify-content: space-between; }
     .u-name { font-size: 14px; font-weight: 700; color: var(--text); }
     .u-email { font-size: 12px; color: var(--text-dim); }
@@ -135,6 +206,16 @@ export class SettingsComponent {
 
   currentPassword = '';
   newPassword = '';
+  showGeminiKey = false;
+  showOpenAiKey = false;
+
+  onGeminiKeyChange(val: string): void {
+    this.settingsService.setAiApiKey(val);
+  }
+
+  onOpenAiKeyChange(val: string): void {
+    this.settingsService.setOpenAiApiKey(val);
+  }
 
   sendResetEmail(): void {
     const userEmail = this.authService.currentUser()?.email;
