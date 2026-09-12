@@ -742,6 +742,33 @@ export class QuestionDetailModalComponent implements OnChanges {
     }
   }
 
+  private loadChatHistory(questionId: string | number): void {
+    try {
+      const saved = localStorage.getItem(`dsa_chat_${questionId}`);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          this.chatMessages = parsed;
+          this.hasWelcomedCurrentQuestion = true;
+          return;
+        }
+      }
+    } catch {
+      // Fallback if parsing fails
+    }
+    this.chatMessages = [];
+    this.hasWelcomedCurrentQuestion = false;
+  }
+
+  private saveChatHistory(): void {
+    if (!this.question) return;
+    try {
+      localStorage.setItem(`dsa_chat_${this.question.id}`, JSON.stringify(this.chatMessages));
+    } catch {
+      // Fallback if localStorage quota exceeded
+    }
+  }
+
   selectTab(tab: 'notes' | 'ai'): void {
     this.activeTab = tab;
     if (tab === 'ai' && !this.hasWelcomedCurrentQuestion && this.chatMessages.length === 0) {
@@ -762,6 +789,7 @@ export class QuestionDetailModalComponent implements OnChanges {
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         });
         this.hasWelcomedCurrentQuestion = true;
+        this.saveChatHistory();
         this.playMessageSound();
         this.scrollToBottom();
       }
@@ -779,9 +807,8 @@ export class QuestionDetailModalComponent implements OnChanges {
       this.needsRevision = this.question.revision;
       this.isFavorite = this.question.favorite;
       this.notesText = this.notesService.getNote(this.question.id);
-      this.chatMessages = [];
-      this.hasWelcomedCurrentQuestion = false;
       this.activeTab = 'notes';
+      this.loadChatHistory(this.question.id);
 
       // Auto-compute or load confidence
       if (this.question.confidence > 0) {
@@ -866,6 +893,7 @@ export class QuestionDetailModalComponent implements OnChanges {
       text: userLabel,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     });
+    this.saveChatHistory();
 
     this.isAiThinking = true;
     this.scrollToBottom();
@@ -885,6 +913,7 @@ export class QuestionDetailModalComponent implements OnChanges {
           text: res.responseText,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         });
+        this.saveChatHistory();
         this.playMessageSound();
         this.scrollToBottom();
       },
@@ -895,6 +924,7 @@ export class QuestionDetailModalComponent implements OnChanges {
           text: `⚠️ Error fetching AI response: ${err.message || 'Unknown error'}`,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         });
+        this.saveChatHistory();
         this.playMessageSound();
         this.scrollToBottom();
       }
@@ -912,6 +942,7 @@ export class QuestionDetailModalComponent implements OnChanges {
       text: prompt,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     });
+    this.saveChatHistory();
 
     this.isAiThinking = true;
     this.scrollToBottom();
@@ -932,6 +963,7 @@ export class QuestionDetailModalComponent implements OnChanges {
           text: res.responseText,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         });
+        this.saveChatHistory();
         this.playMessageSound();
         this.scrollToBottom();
       },
@@ -942,6 +974,7 @@ export class QuestionDetailModalComponent implements OnChanges {
           text: `⚠️ Error fetching AI response: ${err.message || 'Unknown error'}`,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         });
+        this.saveChatHistory();
         this.playMessageSound();
         this.scrollToBottom();
       }
@@ -998,6 +1031,11 @@ export class QuestionDetailModalComponent implements OnChanges {
 
     this.progressService.resetQuestion(this.question.id);
     this.notesService.saveNote(this.question.id, '');
+    try {
+      localStorage.removeItem(`dsa_chat_${this.question.id}`);
+    } catch {}
+    this.chatMessages = [];
+    this.hasWelcomedCurrentQuestion = false;
 
     this.toast.show('Question progress reset to default!');
     this.saved.emit();
