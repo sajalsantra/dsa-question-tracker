@@ -283,10 +283,11 @@ import {
       .detail-modal {
         width: 90%;
         max-width: 660px;
-        height: 570px;
-        max-height: 85vh;
+        height: 630px;
+        max-height: 88vh;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
       }
       .modal-header {
         display: flex;
@@ -412,11 +413,11 @@ import {
 
       .modal-body {
         flex: 1;
-        overflow-y: auto;
-        padding: 16px 0;
+        overflow-y: hidden;
+        padding: 16px 0 6px 0;
         display: flex;
         flex-direction: column;
-        gap: 14px;
+        gap: 12px;
         min-height: 0;
       }
 
@@ -510,9 +511,92 @@ import {
         align-self: flex-start;
         background: #181825;
         color: #e2e8f0;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-bottom-left-radius: 2px;
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+      }
+
+      .chat-bubble.ai .md-h2,
+      .chat-bubble.ai .md-h3,
+      .chat-bubble.ai .md-h4 {
+        margin-top: 12px;
+        margin-bottom: 4px;
+        font-weight: 700;
+        color: #a5b4fc;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .chat-bubble.ai .md-h2 { font-size: 15.5px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 4px; }
+      .chat-bubble.ai .md-h3 { font-size: 14px; color: #818cf8; }
+      .chat-bubble.ai .md-h4 { font-size: 13px; color: #a5b4fc; }
+
+      .chat-bubble.ai .md-hr {
+        border: none;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 12px 0;
+      }
+
+      .chat-bubble.ai .md-spacer {
+        height: 6px;
+      }
+
+      .chat-bubble.ai .md-ol-item,
+      .chat-bubble.ai .md-ul-item {
+        display: flex;
+        gap: 6px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        align-items: flex-start;
+        line-height: 1.5;
+      }
+      .chat-bubble.ai .md-num {
+        font-weight: 700;
+        color: #818cf8;
+        min-width: 18px;
+        flex-shrink: 0;
+      }
+      .chat-bubble.ai .md-bullet {
+        color: #818cf8;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .chat-bubble.ai .inline-code {
+        background: rgba(255, 255, 255, 0.08);
+        color: #c7d2fe;
+        padding: 1px 5px;
+        border-radius: 4px;
+        font-family: var(--mono, monospace);
+        font-size: 12px;
+      }
+
+      .chat-bubble.ai .latex-math {
+        background: rgba(168, 85, 247, 0.12);
+        color: #e9d5ff;
+        padding: 1px 5px;
+        border-radius: 4px;
+        font-family: var(--mono, monospace);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .chat-bubble.ai pre.code-block {
+        margin: 8px 0;
+        padding: 10px 12px;
+        border-radius: 6px;
+        overflow-x: auto;
+        font-family: var(--mono, monospace);
+        font-size: 12.5px;
+        line-height: 1.5;
+        color: #e2e8f0;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .chat-bubble.ai pre.code-block code {
+        font-family: inherit;
+        white-space: pre;
       }
       .chat-bubble.thinking {
         color: var(--text-dim);
@@ -628,21 +712,54 @@ import {
         flex: 1;
         display: flex;
         flex-direction: column;
-        min-height: 0;
+        min-height: 90px;
       }
 
       .textarea-notes {
         flex: 1;
         width: 100%;
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid var(--border);
-        background: var(--bg-3);
+        min-height: 85px;
+        height: 95px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(15, 15, 25, 0.6);
         color: var(--text);
-        font-size: 12px;
+        font-size: 13px;
+        line-height: 1.6;
         font-family: var(--mono, monospace);
-        resize: none;
+        resize: vertical;
         box-sizing: border-box;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        white-space: pre-wrap;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .textarea-notes:focus {
+        outline: none;
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+      }
+
+      .textarea-notes::placeholder {
+        color: var(--text-faint, #5d6785);
+        font-size: 12.5px;
+      }
+
+      .textarea-notes::-webkit-scrollbar {
+        width: 6px;
+      }
+      .textarea-notes::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+      }
+      .textarea-notes::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 4px;
+      }
+      .textarea-notes::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.3);
       }
 
       .toggles-row {
@@ -787,11 +904,27 @@ export class QuestionDetailModalComponent implements OnChanges {
     this.chatMessages = [];
     this.hasWelcomedCurrentQuestion = false;
 
-    // Cloud Sync (Spring Boot MySQL / Cloud Firestore)
+    // 1. Check localstorage first for immediate offline availability
+    const localKey = `dsa_tracker_ai_chat_${questionId}`;
+    try {
+      const saved = localStorage.getItem(localKey);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          this.chatMessages = parsed;
+          this.hasWelcomedCurrentQuestion = true;
+        }
+      }
+    } catch {}
+
+    // 2. Cloud Sync (Spring Boot MySQL / Cloud Firestore)
     this.aiService.fetchChatFromCloud(questionId).subscribe(cloudMsgs => {
       if (cloudMsgs && cloudMsgs.length > 0) {
         this.chatMessages = cloudMsgs;
         this.hasWelcomedCurrentQuestion = true;
+        try {
+          localStorage.setItem(localKey, JSON.stringify(cloudMsgs));
+        } catch {}
       }
     });
   }
@@ -799,7 +932,13 @@ export class QuestionDetailModalComponent implements OnChanges {
   private saveChatHistory(): void {
     if (!this.question) return;
 
-    // Cloud Sync (MySQL DB & Firestore)
+    // 1. LocalStorage Store
+    const localKey = `dsa_tracker_ai_chat_${this.question.id}`;
+    try {
+      localStorage.setItem(localKey, JSON.stringify(this.chatMessages));
+    } catch {}
+
+    // 2. Cloud Sync (MySQL DB & Firestore)
     this.aiService.saveChatToCloud(this.question.id, this.chatMessages);
   }
 
@@ -959,10 +1098,11 @@ export class QuestionDetailModalComponent implements OnChanges {
         this.scrollToBottom();
       },
       error: (err) => {
+        console.error('AI Service Error:', err);
         this.isAiThinking = false;
         this.chatMessages.push({
           sender: 'ai',
-          text: `⚠️ Error fetching AI response: ${err.message || 'Unknown error'}`,
+          text: '⚠️ Something went wrong while getting your response. Please try again in a moment!',
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         });
         this.saveChatHistory();
@@ -1009,10 +1149,11 @@ export class QuestionDetailModalComponent implements OnChanges {
         this.scrollToBottom();
       },
       error: (err) => {
+        console.error('AI Service Error:', err);
         this.isAiThinking = false;
         this.chatMessages.push({
           sender: 'ai',
-          text: `⚠️ Error fetching AI response: ${err.message || 'Unknown error'}`,
+          text: '⚠️ Something went wrong while getting your response. Please try again in a moment!',
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         });
         this.saveChatHistory();
@@ -1025,38 +1166,63 @@ export class QuestionDetailModalComponent implements OnChanges {
   formatMarkdown(text: string): string {
     if (!text) return '';
 
-    let html = text
+    // 1. Extract and preserve code blocks (to prevent internal replacement)
+    const codeBlocks: string[] = [];
+    let processed = text.replace(/```(\w+)?\n([\s\S]*?)```/g, (_match, lang, code) => {
+      const languageClass = lang ? `language-${lang}` : '';
+      const htmlCode = code
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      const block = `<pre class="code-block ${languageClass}"><code>${htmlCode.trim()}</code></pre>`;
+      codeBlocks.push(block);
+      return `__CODE_BLOCK_${codeBlocks.length - 1}__`;
+    });
+
+    // 2. Escape HTML special characters in remaining text
+    processed = processed
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
 
-    // Code blocks ```lang ... ```
-    html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, (_match, lang, code) => {
-      const languageClass = lang ? `language-${lang}` : '';
-      return `<pre class="code-block ${languageClass}"><code>${code.trim()}</code></pre>`;
+    // 3. Inline code `code`
+    processed = processed.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
+
+    // 4. LaTeX math rendering: $O(N)$ or $O(N \log N)$
+    processed = processed.replace(/\$([^\$]+)\$/g, '<span class="latex-math">$1</span>');
+
+    // 5. Horizontal rule: --- or ***
+    processed = processed.replace(/^[\-*_]{3,}$/gim, '<hr class="md-hr">');
+
+    // 6. Headers: ###, ##, #
+    processed = processed.replace(/^### (.*$)/gim, '<h4 class="md-h4">$1</h4>');
+    processed = processed.replace(/^## (.*$)/gim, '<h3 class="md-h3">$1</h3>');
+    processed = processed.replace(/^# (.*$)/gim, '<h2 class="md-h2">$1</h2>');
+
+    // 7. Bold & Italic
+    processed = processed.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    processed = processed.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    // 8. Numbered lists: 1. item, 2. item
+    processed = processed.replace(/^\s*(\d+)\.\s+(.*$)/gim, '<div class="md-ol-item"><span class="md-num">$1.</span><span>$2</span></div>');
+
+    // 9. Bullet lists: - item, * item
+    processed = processed.replace(/^\s*[-•]\s+(.*$)/gim, '<div class="md-ul-item"><span class="md-bullet">•</span><span>$1</span></div>');
+
+    // 10. Convert double newlines to paragraph breaks, single newlines to <br>
+    processed = processed.replace(/\n\n/g, '<div class="md-spacer"></div>');
+    processed = processed.replace(/\n/g, '<br>');
+
+    // Clean up excessive <br> around block elements
+    processed = processed.replace(/(<h[234][^>]*>|<hr[^>]*>|<div class="md-[^"]+">)<br>/gi, '$1');
+    processed = processed.replace(/<br>(<h[234][^>]*>|<hr[^>]*>|<div class="md-[^"]+">)/gi, '$1');
+
+    // 11. Restore code blocks
+    processed = processed.replace(/__CODE_BLOCK_(\d+)__/g, (_match, index) => {
+      return codeBlocks[Number(index)] || '';
     });
 
-    // Inline code `code`
-    html = html.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
-
-    // LaTeX math rendering: $\mathcal{O}(n)$ or $O(n \log n)$
-    html = html.replace(/\$([^\$]+)\$/g, '<span class="latex-math">$1</span>');
-
-    // Headers ### Header
-    html = html.replace(/^### (.*$)/gim, '<h4 class="md-h4">$1</h4>');
-    html = html.replace(/^## (.*$)/gim, '<h3 class="md-h3">$1</h3>');
-    html = html.replace(/^# (.*$)/gim, '<h2 class="md-h2">$1</h2>');
-
-    // Bold **text**
-    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-
-    // Bullet points - item
-    html = html.replace(/^\s*-\s+(.*$)/gim, '<li class="md-li">$1</li>');
-
-    // Paragraph breaks
-    html = html.replace(/\n\n/g, '<br><br>');
-
-    return html;
+    return processed;
   }
 
   resetQuestion(): void {
@@ -1073,6 +1239,10 @@ export class QuestionDetailModalComponent implements OnChanges {
     this.progressService.resetQuestion(this.question.id);
     this.notesService.saveNote(this.question.id, '');
     this.aiService.deleteChatFromCloud(this.question.id);
+    const localKey = `dsa_tracker_ai_chat_${this.question.id}`;
+    try {
+      localStorage.removeItem(localKey);
+    } catch {}
     this.chatMessages = [];
     this.hasWelcomedCurrentQuestion = false;
 

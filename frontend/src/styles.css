@@ -19,6 +19,7 @@
   --green: #2FD180;
   --orange: #F5A524;
   --red: #F0546B;
+  --mono: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, Monaco, monospace;
   --sidebar-w: 240px;
   --header-h: 64px;
   --bottom-nav-h: 64px;

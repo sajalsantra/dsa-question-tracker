@@ -47,25 +47,35 @@ export class AiService {
     // 1. Spring Boot MySQL Backend API Sync
     if (this.healthService.isSpringBootOnline()) {
       const backendUrl = `${environment.apiUrl}/ai/history/${qIdStr}`;
-      const payload = messages.map(m => ({
+      const payload = messages.map((m) => ({
         questionId: qIdStr,
         sender: m.sender,
         messageText: m.text,
-        timestamp: m.timestamp
+        timestamp: m.timestamp,
       }));
-      this.http.post(backendUrl, payload).pipe(catchError(() => of(null))).subscribe();
+      this.http
+        .post(backendUrl, payload)
+        .pipe(catchError(() => of(null)))
+        .subscribe();
     }
 
     // 2. Cloud Firestore Sync
     const user = this.authService.currentUser();
     if (user && user.id) {
       try {
-        const docRef = doc(this.firebaseService.db, `users/${user.id}/ai_chat_history/${qIdStr}`);
-        setDoc(docRef, {
-          questionId: qIdStr,
-          messages: messages,
-          updatedAt: new Date().toISOString()
-        }, { merge: true }).catch(err => console.warn('Firestore AI Chat Sync Error', err));
+        const docRef = doc(
+          this.firebaseService.db,
+          `users/${user.id}/ai_chat_history/${qIdStr}`,
+        );
+        setDoc(
+          docRef,
+          {
+            questionId: qIdStr,
+            messages: messages,
+            updatedAt: new Date().toISOString(),
+          },
+          { merge: true },
+        ).catch((err) => console.warn('Firestore AI Chat Sync Error', err));
       } catch (err) {
         console.warn('Firestore AI Chat Error', err);
       }
@@ -79,37 +89,42 @@ export class AiService {
     if (this.healthService.isSpringBootOnline()) {
       const backendUrl = `${environment.apiUrl}/ai/history/${qIdStr}`;
       return this.http.get<any[]>(backendUrl).pipe(
-        map(list => {
+        map((list) => {
           if (Array.isArray(list) && list.length > 0) {
-            return list.map(item => ({
+            return list.map((item) => ({
               sender: item.sender as 'user' | 'ai',
               text: item.messageText,
-              timestamp: item.timestamp
+              timestamp: item.timestamp,
             }));
           }
           return [];
         }),
-        catchError(() => of([]))
+        catchError(() => of([])),
       );
     }
 
     // 2. Fallback: Cloud Firestore
     const user = this.authService.currentUser();
     if (user && user.id) {
-      const docRef = doc(this.firebaseService.db, `users/${user.id}/ai_chat_history/${qIdStr}`);
-      return new Observable<ChatMessage[]>(observer => {
-        getDoc(docRef).then(snap => {
-          if (snap.exists()) {
-            const msgs = snap.data()['messages'] || [];
-            observer.next(msgs);
-          } else {
+      const docRef = doc(
+        this.firebaseService.db,
+        `users/${user.id}/ai_chat_history/${qIdStr}`,
+      );
+      return new Observable<ChatMessage[]>((observer) => {
+        getDoc(docRef)
+          .then((snap) => {
+            if (snap.exists()) {
+              const msgs = snap.data()['messages'] || [];
+              observer.next(msgs);
+            } else {
+              observer.next([]);
+            }
+            observer.complete();
+          })
+          .catch(() => {
             observer.next([]);
-          }
-          observer.complete();
-        }).catch(() => {
-          observer.next([]);
-          observer.complete();
-        });
+            observer.complete();
+          });
       });
     }
 
@@ -120,13 +135,19 @@ export class AiService {
     const qIdStr = String(questionId);
     if (this.healthService.isSpringBootOnline()) {
       const backendUrl = `${environment.apiUrl}/ai/history/${qIdStr}`;
-      this.http.delete(backendUrl).pipe(catchError(() => of(null))).subscribe();
+      this.http
+        .delete(backendUrl)
+        .pipe(catchError(() => of(null)))
+        .subscribe();
     }
 
     const user = this.authService.currentUser();
     if (user && user.id) {
       try {
-        const docRef = doc(this.firebaseService.db, `users/${user.id}/ai_chat_history/${qIdStr}`);
+        const docRef = doc(
+          this.firebaseService.db,
+          `users/${user.id}/ai_chat_history/${qIdStr}`,
+        );
         deleteDoc(docRef).catch(() => {});
       } catch {}
     }
@@ -135,31 +156,41 @@ export class AiService {
   askAiMentor(req: AiPromptRequest): Observable<AiPromptResponse> {
     const settings = this.settingsService.settings();
     const provider = settings.aiProvider || 'gemini';
-    const rawKey = provider === 'openai' 
-      ? (settings.openAiApiKey || DEFAULT_SETTINGS.openAiApiKey) 
-      : (settings.geminiApiKey || DEFAULT_SETTINGS.geminiApiKey);
+    const rawKey =
+      provider === 'openai'
+        ? settings.openAiApiKey || DEFAULT_SETTINGS.openAiApiKey
+        : settings.geminiApiKey || DEFAULT_SETTINGS.geminiApiKey;
     const userApiKey = rawKey?.trim();
 
     // Pathway 1: Spring Boot Backend
     if (this.healthService.isSpringBootOnline()) {
       const backendUrl = `${environment.apiUrl}/ai/chat`;
-      return this.http.post<AiPromptResponse>(backendUrl, {
-        ...req,
-        apiKey: userApiKey,
-        provider: provider
-      }).pipe(
-        catchError(err => {
-          console.warn('Spring Boot AI request failed, falling back to direct client call', err);
-          return this.callDirectAiApi(req, provider, userApiKey);
+      return this.http
+        .post<AiPromptResponse>(backendUrl, {
+          ...req,
+          apiKey: userApiKey,
+          provider: provider,
         })
-      );
+        .pipe(
+          catchError((err) => {
+            console.warn(
+              'Spring Boot AI request failed, falling back to direct client call',
+              err,
+            );
+            return this.callDirectAiApi(req, provider, userApiKey);
+          }),
+        );
     }
 
     // Pathway 2: Direct Client Call (Firestore / Offline Mode)
     return this.callDirectAiApi(req, provider, userApiKey);
   }
 
-  private callDirectAiApi(req: AiPromptRequest, provider: string, apiKey?: string): Observable<AiPromptResponse> {
+  private callDirectAiApi(
+    req: AiPromptRequest,
+    provider: string,
+    apiKey?: string,
+  ): Observable<AiPromptResponse> {
     if (provider === 'openai' || (apiKey && apiKey.startsWith('sk-'))) {
       return this.callOpenAiDirect(req, apiKey);
     } else {
@@ -167,13 +198,20 @@ export class AiService {
     }
   }
 
-  private callOpenAiDirect(req: AiPromptRequest, apiKey?: string): Observable<AiPromptResponse> {
+  private callOpenAiDirect(
+    req: AiPromptRequest,
+    apiKey?: string,
+  ): Observable<AiPromptResponse> {
     if (!apiKey) {
+      console.warn(
+        '💡 OpenAI API Key Required: Please check your OpenAI API Key in Settings.',
+      );
       return of({
         success: false,
-        responseText: '💡 **OpenAI API Key Required**\n\nPlease check your OpenAI API Key in **Settings**.',
+        responseText:
+          '⚠️ Something went wrong while getting your response. Please try again in a moment!',
         actionType: req.actionType,
-        errorMessage: 'Missing OpenAI API Key'
+        errorMessage: 'Missing OpenAI API Key',
       });
     }
 
@@ -185,44 +223,53 @@ export class AiService {
       model: 'gpt-4o-mini',
       messages: [
         { role: 'system', content: systemPrompt },
-        { role: 'user', content: userMessage }
+        { role: 'user', content: userMessage },
       ],
-      temperature: 0.7
+      temperature: 0.7,
     };
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`
+      Authorization: `Bearer ${apiKey}`,
     });
 
     return this.http.post<any>(url, body, { headers }).pipe(
-      map(res => {
-        const text = res?.choices?.[0]?.message?.content || 'No response generated.';
+      map((res) => {
+        const text =
+          res?.choices?.[0]?.message?.content || 'No response generated.';
         return {
           success: true,
           responseText: text,
-          actionType: req.actionType
+          actionType: req.actionType,
         };
       }),
-      catchError(err => {
+      catchError((err) => {
         console.error('Direct OpenAI API Call Error:', err);
         return of({
           success: false,
-          responseText: `⚠️ Failed to connect to OpenAI API. Error: ${err?.error?.error?.message || err.message || 'Invalid API Key or Network Issue'}`,
+          responseText:
+            '⚠️ Something went wrong while getting your response. Please try again in a moment!',
           actionType: req.actionType,
-          errorMessage: err.message
+          errorMessage: err.message,
         });
-      })
+      }),
     );
   }
 
-  private callGeminiDirect(req: AiPromptRequest, userApiKey?: string): Observable<AiPromptResponse> {
+  private callGeminiDirect(
+    req: AiPromptRequest,
+    userApiKey?: string,
+  ): Observable<AiPromptResponse> {
     if (!userApiKey || userApiKey.startsWith('gen-lang-client')) {
+      console.warn(
+        '💡 Google Gemini API Key Required: Please enter your Google Gemini API key in Settings or switch to OpenAI!',
+      );
       return of({
         success: false,
-        responseText: '💡 **Google Gemini API Key Required**\n\nPlease enter your Google Gemini API key in **Settings** or switch to **OpenAI**!',
+        responseText:
+          '⚠️ Something went wrong while getting your response. Please try again in a moment!',
         actionType: req.actionType,
-        errorMessage: 'Invalid Gemini API Key format'
+        errorMessage: 'Invalid Gemini API Key format',
       });
     }
 
@@ -234,60 +281,100 @@ export class AiService {
       contents: [
         {
           role: 'user',
-          parts: [{ text: `${systemPrompt}\n\nStudent Request: ${userMessage}` }]
-        }
-      ]
+          parts: [
+            { text: `${systemPrompt}\n\nStudent Request: ${userMessage}` },
+          ],
+        },
+      ],
     };
 
-    const headers = new HttpHeaders({ 
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'X-goog-api-key': userApiKey || ''
+      'X-goog-api-key': userApiKey || '',
     });
 
     return this.http.post<any>(url, body, { headers }).pipe(
-      map(res => {
-        const text = res?.candidates?.[0]?.content?.parts?.[0]?.text || 'No response generated.';
+      map((res) => {
+        const text =
+          res?.candidates?.[0]?.content?.parts?.[0]?.text ||
+          'No response generated.';
         return {
           success: true,
           responseText: text,
-          actionType: req.actionType
+          actionType: req.actionType,
         };
       }),
-      catchError(err => {
+      catchError((err) => {
         console.error('Direct Gemini API Call Error:', err);
-        const is503 = err?.status === 503 || err?.message?.includes('503');
-        const userFriendlyMsg = is503
-          ? '⚡ **Google Gemini Server Temporarily Busy (HTTP 503)**\n\nGoogle\'s Gemini servers are experiencing temporary high traffic or capacity limits right now.\n\n• **Retry**: Click your request chip again in a few seconds.\n• **Instant Backup**: Switch to **OpenAI (GPT-4o-mini)** in **Settings** for zero downtime!'
-          : `⚠️ **Failed to connect to Gemini API**: ${err.message || 'Invalid API Key or Network Issue'}`;
-
         return of({
           success: false,
-          responseText: userFriendlyMsg,
+          responseText:
+            '⚠️ Something went wrong while getting your response. Please try again in a moment!',
           actionType: req.actionType,
-          errorMessage: err.message
         });
-      })
+      }),
     );
   }
 
   private buildSystemPrompt(req: AiPromptRequest): string {
-    let prompt = `You are Beru, an expert, encouraging, and clear Data Structures & Algorithms (DSA) Socratic Mentor.\n`;
-    prompt += `Adopt ChatGPT's signature response style: structured, clear, direct, visually engaging, and well-formatted markdown.\n`;
-    prompt += `Current Problem Context:\n`;
-    prompt += `- Title: ${req.questionTitle}\n`;
-    prompt += `- Topic: ${req.topic}\n`;
-    if (req.pattern) prompt += `- Pattern: ${req.pattern}\n`;
-    prompt += `- Difficulty: ${req.stars} Stars\n`;
-    if (req.notesText && req.notesText.trim()) {
-      prompt += `- Student Notes/Code Snippet:\n\`\`\`\n${req.notesText}\n\`\`\`\n`;
-    }
-    prompt += `Instructions for ChatGPT Writing Style:\n`;
-    prompt += `1. **Clear Structure**: Organize your response into logical sections with clear markdown headings (e.g., \`### 💡 Intuition\`, \`### 🧠 Step-by-Step Approach\`, \`### ⏱️ Complexity Analysis\`).\n`;
-    prompt += `2. **Engaging & Direct**: Be friendly, conversational, and direct. Skip unnecessary filler meta-intros or repetitive intro lines.\n`;
-    prompt += `3. **Visual Markdown**: Highlight key technical terms in **bold**, use inline \`code\` for variables/functions, and use formatted code blocks (\`\`\`python / cpp / java / js\`\`\`) when showing code.\n`;
-    prompt += `4. **Socratic Intuition**: Provide intuitive explanations and progressive hints first. Do NOT dump full solution code immediately unless specifically asked.\n`;
-    prompt += `5. **Language Preference**: If asked for full solution code and no language is specified (and no code is in student notes), ask which language they prefer (e.g., C++, Java, Python, JavaScript, Go) before generating full code.\n`;
-    prompt += `6. **LaTeX Complexities**: Format Big-O notation cleanly using LaTeX like $O(N)$ or $O(N \\log N)$.\n`;
+    let prompt = `
+You are Beru, an expert DSA mentor. Your responses should feel like a clean, modern, mobile-friendly DSA learning app — direct, concise, and easy to scan.
+
+## Problem Context
+- Title: ${req.questionTitle}
+- Topic: ${req.topic}
+${req.pattern ? `- Pattern: ${req.pattern}\n` : ''}
+- Difficulty: ${req.stars} Stars
+${
+  req.notesText?.trim()
+    ? `- Student Notes / Code:
+\`\`\`
+${req.notesText}
+\`\`\`
+`
+    : ''
+}
+
+## Response Formatting & Tone Rules
+
+### 1. Keep It Simple & Direct
+- Start directly with the useful explanation. Skip intros like "Here is the Java solution..." or "Let's dive into...".
+- Be concise and get to the point immediately.
+
+### 2. Avoid Heading Overload (Max 3–4 Sections)
+Use at most 3–4 simple Markdown sections per response.
+Prefer clean headings like:
+- ### 💡 Idea
+- ### 💻 Solution
+- ### ⏱️ Complexity
+
+Only add sections like "Dry Run" or "Edge Cases" when genuinely helpful.
+
+### 3. Compact Explanations & Clean Bullets
+- Keep paragraphs short and scannable.
+- Do not explain the same idea multiple times.
+- Use bullets ONLY when they improve readability. Avoid turning every sentence into a bullet.
+
+### 4. Focused Code
+- Show clean, focused code without excessive line-by-line comments.
+- Only comment on non-obvious logic.
+
+### 5. Visual Dry Run (When Needed)
+Keep dry runs visual and compact (e.g. \`3 → min=3\`, \`5 → max=5\`). Do not write long sentences for every step.
+
+### 6. Concise Complexity
+Always use clean LaTeX notation in a compact format:
+- Time: $O(N)$ — brief reason
+- Space: $O(1)$ — brief reason
+
+### 7. Socratic Behavior
+- Use Socratic teaching when appropriate (e.g. when the student asks for hints or is stuck).
+- If the student asks for the full solution or an optimal approach, answer directly without forcing hints or appending "Food for Thought" / "Can you think of..." questions.
+
+## Final Pre-Response Check
+Ensure the response is lightweight, readable, and free of fluff before sending.
+`;
+
     return prompt;
   }
 

@@ -31,5 +31,5 @@ export const DEFAULT_SETTINGS: AppSettings = {
     questionsOpen: true,
     revOpen: true,
     dataMgmtOpen: true,
-  }
+  },
 };
