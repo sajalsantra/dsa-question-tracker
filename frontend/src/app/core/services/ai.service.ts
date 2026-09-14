@@ -42,6 +42,9 @@ export class AiService {
   private readonly firebaseService = inject(FirebaseService);
 
   saveChatToCloud(questionId: string | number, messages: ChatMessage[]): void {
+    if (this.settingsService.settings().enableCloudSync === false) {
+      return;
+    }
     const qIdStr = String(questionId);
 
     // 1. Spring Boot MySQL Backend API Sync
@@ -83,6 +86,9 @@ export class AiService {
   }
 
   fetchChatFromCloud(questionId: string | number): Observable<ChatMessage[]> {
+    if (this.settingsService.settings().enableCloudSync === false) {
+      return of([]);
+    }
     const qIdStr = String(questionId);
 
     // 1. Primary: Spring Boot Backend API
@@ -132,6 +138,9 @@ export class AiService {
   }
 
   deleteChatFromCloud(questionId: string | number): void {
+    if (this.settingsService.settings().enableCloudSync === false) {
+      return;
+    }
     const qIdStr = String(questionId);
     if (this.healthService.isSpringBootOnline()) {
       const backendUrl = `${environment.apiUrl}/ai/history/${qIdStr}`;
@@ -260,7 +269,7 @@ export class AiService {
     req: AiPromptRequest,
     userApiKey?: string,
   ): Observable<AiPromptResponse> {
-    if (!userApiKey || userApiKey.startsWith('gen-lang-client')) {
+    if (!userApiKey || !userApiKey.trim()) {
       console.warn(
         '💡 Google Gemini API Key Required: Please enter your Google Gemini API key in Settings or switch to OpenAI!',
       );
@@ -273,7 +282,7 @@ export class AiService {
       });
     }
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${encodeURIComponent(userApiKey || '')}`;
     const systemPrompt = this.buildSystemPrompt(req);
     const userMessage = this.buildUserPrompt(req);
 

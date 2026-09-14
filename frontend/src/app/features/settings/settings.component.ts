@@ -68,38 +68,68 @@ import { ToastService } from '../../core/services/toast.service';
           <!-- OpenAI API Key -->
           @if (settingsService.settings().aiProvider === 'openai') {
             <div class="form-group" style="margin-top: 14px;">
-              <label>OpenAI Secret API Key</label>
+              <div class="key-label-row">
+                <label>OpenAI Secret API Key</label>
+                @if (settingsService.settings().openAiApiKey?.trim()) {
+                  <span class="key-badge active">✓ Personal Key Saved</span>
+                } @else {
+                  <span class="key-badge default">System / Fallback Key Active</span>
+                }
+              </div>
               <div class="key-input-row">
                 <input
                   [type]="showOpenAiKey ? 'text' : 'password'"
                   [ngModel]="settingsService.settings().openAiApiKey || ''"
                   (ngModelChange)="onOpenAiKeyChange($event)"
                   class="input"
-                  placeholder="Enter your OpenAI API key"
+                  placeholder="Paste your personal OpenAI API key (sk-...)"
+                  autocomplete="new-password"
                 />
                 <button class="btn btn-secondary btn-sm" (click)="showOpenAiKey = !showOpenAiKey">
                   {{ showOpenAiKey ? '🙈 Hide' : '👁️ Show' }}
                 </button>
               </div>
+              <p class="ai-help">
+                @if (settingsService.settings().openAiApiKey?.trim()) {
+                  🔒 <strong>Personal Key Active:</strong> Beru will send requests using your custom OpenAI key.
+                } @else {
+                  💡 <strong>No Personal Key Set:</strong> Leave blank to use system fallback key, or paste your personal OpenAI API key above.
+                }
+              </p>
             </div>
           }
 
           <!-- Google Gemini Key -->
           @if (settingsService.settings().aiProvider === 'gemini') {
             <div class="form-group" style="margin-top: 14px;">
-              <label>Google Gemini API Key</label>
+              <div class="key-label-row">
+                <label>Google Gemini API Key</label>
+                @if (settingsService.settings().geminiApiKey?.trim()) {
+                  <span class="key-badge active">✓ Personal Key Saved</span>
+                } @else {
+                  <span class="key-badge default">System / Fallback Key Active</span>
+                }
+              </div>
               <div class="key-input-row">
                 <input
                   [type]="showGeminiKey ? 'text' : 'password'"
                   [ngModel]="settingsService.settings().geminiApiKey || ''"
                   (ngModelChange)="onGeminiKeyChange($event)"
                   class="input"
-                  placeholder="Enter your Gemini API key"
+                  placeholder="Paste your personal Google Gemini API key"
+                  autocomplete="new-password"
                 />
                 <button class="btn btn-secondary btn-sm" (click)="showGeminiKey = !showGeminiKey">
                   {{ showGeminiKey ? '🙈 Hide' : '👁️ Show' }}
                 </button>
               </div>
+              <p class="ai-help">
+                @if (settingsService.settings().geminiApiKey?.trim()) {
+                  🔒 <strong>Personal Key Active:</strong> Beru will send requests using your custom Gemini key.
+                } @else {
+                  💡 <strong>No Personal Key Set:</strong> Leave blank to use the backend server system key automatically.
+                }
+              </p>
             </div>
           }
         </div>
@@ -167,9 +197,14 @@ import { ToastService } from '../../core/services/toast.service';
     .theme-option.active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
 
     .ai-sub { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+    .key-label-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+    .key-label-row label { margin-bottom: 0 !important; }
+    .key-badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 12px; }
+    .key-badge.active { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .key-badge.default { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); }
     .key-input-row { display: flex; gap: 8px; align-items: center; }
     .btn-sm { padding: 6px 12px; font-size: 11px; }
-    .ai-help { font-size: 11px; color: var(--text-dim); margin-top: 8px; }
+    .ai-help { font-size: 11px; color: var(--text-dim); margin-top: 8px; line-height: 1.4; }
     .ai-help a { color: var(--accent); text-decoration: none; font-weight: 600; }
 
     .user-info { display: flex; align-items: center; justify-content: space-between; }
