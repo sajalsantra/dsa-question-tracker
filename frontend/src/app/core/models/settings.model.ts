@@ -20,7 +20,7 @@ export interface AppSettings {
 
 export const DEFAULT_SETTINGS: AppSettings = {
   theme: 'dark',
-  geminiApiKey: 'AQ.Ab8RN6JoHMw3cwsPe3kIkBkwTBhRQX2KZHj8Q1d2TsRAeDf4jw',
+  geminiApiKey: '',
   openAiApiKey: '',
   aiProvider: 'gemini',
   enableCloudSync: true,
