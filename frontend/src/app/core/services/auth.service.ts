@@ -98,6 +98,13 @@ export class AuthService {
     return this.repo.register(name, email, password).pipe(
       tap(user => {
         this._currentUser.set(user);
+        try {
+          const settingsSvc = this.injector.get(SettingsService, null, { optional: true });
+          if (settingsSvc) {
+            settingsSvc.setCloudSync(syncLocalData);
+          }
+        } catch {}
+
         if (syncLocalData) {
           this.syncLocalRepositories();
         } else {

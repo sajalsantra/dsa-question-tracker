@@ -23,6 +23,7 @@ export class SettingsService {
         openAiApiKey: (s && s.openAiApiKey) ? s.openAiApiKey : DEFAULT_SETTINGS.openAiApiKey,
         geminiApiKey: (s && s.geminiApiKey) ? s.geminiApiKey : DEFAULT_SETTINGS.geminiApiKey,
         aiProvider: (s && s.aiProvider) ? s.aiProvider : DEFAULT_SETTINGS.aiProvider,
+        enableCloudSync: (s && typeof s.enableCloudSync === 'boolean') ? s.enableCloudSync : DEFAULT_SETTINGS.enableCloudSync,
         ui: { ...DEFAULT_SETTINGS.ui, ...((s && s.ui) || {}) }
       };
       this._settings.set(merged);
@@ -61,6 +62,11 @@ export class SettingsService {
 
   setAiProvider(aiProvider: 'gemini' | 'openai'): void {
     this._settings.update(s => ({ ...s, aiProvider }));
+    this.persist();
+  }
+
+  setCloudSync(enableCloudSync: boolean): void {
+    this._settings.update(s => ({ ...s, enableCloudSync }));
     this.persist();
   }
 

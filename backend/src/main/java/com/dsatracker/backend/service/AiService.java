@@ -131,7 +131,7 @@ public class AiService {
             String systemInstruction = buildSystemPrompt(request);
             String userMessage = buildUserPrompt(request);
 
-            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
+            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=" + apiKey;
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);

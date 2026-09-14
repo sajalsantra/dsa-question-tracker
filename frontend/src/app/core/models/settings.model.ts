@@ -14,6 +14,7 @@ export interface AppSettings {
   geminiApiKey?: string;
   openAiApiKey?: string;
   aiProvider?: 'gemini' | 'openai';
+  enableCloudSync?: boolean;
   ui: UiSettings;
 }
 
@@ -22,6 +23,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
   geminiApiKey: '',
   openAiApiKey: '',
   aiProvider: 'gemini',
+  enableCloudSync: true,
   ui: {
     dashboardGroupOpen: true,
     insightsOpen: true,
