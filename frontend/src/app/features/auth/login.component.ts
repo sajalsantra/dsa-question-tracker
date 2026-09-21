@@ -148,11 +148,17 @@ import { ToastService } from '../../core/services/toast.service';
               <input
                 type="password"
                 [(ngModel)]="password"
+                (input)="passwordTouched = true"
+                (blur)="passwordTouched = true"
                 name="password"
                 required
                 class="input"
+                [class.input-error]="passwordError"
                 placeholder="••••••••"
               />
+              @if (passwordError) {
+                <small class="field-error">{{ passwordError }}</small>
+              }
             </div>
 
             @if (isSignUp) {
@@ -325,6 +331,15 @@ import { ToastService } from '../../core/services/toast.service';
         font-size: 13px;
         box-sizing: border-box;
       }
+      .field-error {
+        display: block;
+        font-size: 11px;
+        color: #ef4444;
+        margin-top: 4px;
+      }
+      .input-error {
+        border-color: #ef4444 !important;
+      }
       .btn-block {
         width: 100%;
         padding: 11px;
@@ -378,6 +393,15 @@ export class LoginComponent {
   email = '';
   password = '';
   resetEmail = '';
+  passwordTouched = false;
+  submitted = false;
+
+  get passwordError(): string | null {
+    if (!this.isSignUp) return null;
+    if (!this.passwordTouched && !this.submitted && !this.password) return null;
+    const val = this.authService.validatePassword(this.password);
+    return val.valid ? null : (val.message || 'Invalid password');
+  }
 
   loginWithGoogle(): void {
     const returnUrl =
@@ -421,10 +445,16 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
+    this.submitted = true;
     const returnUrl =
       this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
 
     if (this.isSignUp) {
+      if (this.passwordError) {
+        this.toast.show(this.passwordError, 'error');
+        return;
+      }
+
       this.authService
         .register(this.name, this.email, this.password, this.syncGuestData)
         .subscribe({

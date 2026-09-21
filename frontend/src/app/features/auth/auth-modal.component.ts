@@ -121,11 +121,17 @@ import { ToastService } from '../../core/services/toast.service';
                 <input
                   type="password"
                   [(ngModel)]="password"
+                  (input)="passwordTouched = true"
+                  (blur)="passwordTouched = true"
                   name="password"
                   required
                   class="input"
+                  [class.input-error]="passwordError"
                   placeholder="••••••••"
                 />
+                @if (passwordError) {
+                  <small class="field-error">{{ passwordError }}</small>
+                }
               </div>
 
               @if (isSignUp) {
@@ -304,6 +310,15 @@ import { ToastService } from '../../core/services/toast.service';
       outline: none;
       border-color: var(--accent);
     }
+    .field-error {
+      display: block;
+      font-size: 11px;
+      color: #ef4444;
+      margin-top: 4px;
+    }
+    .input-error {
+      border-color: #ef4444 !important;
+    }
 
     .btn-block {
       width: 100%;
@@ -356,14 +371,26 @@ export class AuthModalComponent {
   password = '';
   resetEmail = '';
 
+  passwordTouched = false;
+  submitted = false;
+
   get isSignUp(): boolean {
     return this.authModalService.mode() === 'signup';
+  }
+
+  get passwordError(): string | null {
+    if (!this.isSignUp) return null;
+    if (!this.passwordTouched && !this.submitted && !this.password) return null;
+    const val = this.authService.validatePassword(this.password);
+    return val.valid ? null : (val.message || 'Invalid password');
   }
 
   toggleMode(): void {
     const nextMode = this.isSignUp ? 'signin' : 'signup';
     this.authModalService.setMode(nextMode);
     this.isForgotPassword = false;
+    this.passwordTouched = false;
+    this.submitted = false;
   }
 
   loginWithGoogle(): void {
@@ -401,7 +428,13 @@ export class AuthModalComponent {
   }
 
   onSubmit(): void {
+    this.submitted = true;
     if (this.isSignUp) {
+      if (this.passwordError) {
+        this.toast.show(this.passwordError, 'error');
+        return;
+      }
+
       this.authService.register(this.name, this.email, this.password, this.syncGuestData).subscribe({
         next: () => {
           this.toast.show('Account created successfully!');

@@ -134,4 +134,17 @@ export class AuthService {
   changePassword(currentPassword: string, newPassword: string): Observable<void> {
     return this.repo.changePassword(currentPassword, newPassword);
   }
+
+  validatePassword(password: string): { valid: boolean; message?: string } {
+    if (!password || password.length < 8) {
+      return { valid: false, message: 'Password must be at least 8 characters long.' };
+    }
+    if (!/[A-Z]/.test(password)) {
+      return { valid: false, message: 'Password must contain at least one capital letter (A-Z).' };
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      return { valid: false, message: 'Password must contain at least one special character (!@#$%^&* etc.).' };
+    }
+    return { valid: true };
+  }
 }
