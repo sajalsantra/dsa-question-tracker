@@ -371,10 +371,9 @@ Only add sections like "Dry Run" or "Edge Cases" when genuinely helpful.
 ### 5. Visual Dry Run (When Needed)
 Keep dry runs visual and compact (e.g. \`3 → min=3\`, \`5 → max=5\`). Do not write long sentences for every step.
 
-### 6. Concise Complexity
-Always use clean LaTeX notation in a compact format:
-- Time: $O(N)$ — brief reason
-- Space: $O(1)$ — brief reason
+### 6. Clean Math Notation & Complexity
+- Use clean standard notation for complexity: Time: \`O(N)\`, Space: \`O(1)\`.
+- Do NOT use LaTeX \`\\text{...}\` macros or raw LaTeX math commands (e.g. write \`left_sum + current_element = total_sum\` instead of \`\\text{left sum}\`). Use clean, plain readable text or inline code \`code\`.
 
 ### 7. Socratic Behavior
 - Use Socratic teaching when appropriate (e.g. when the student asks for hints or is stuck).

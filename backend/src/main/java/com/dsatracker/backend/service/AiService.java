@@ -195,7 +195,7 @@ public class AiService {
         sb.append("3. **Visual Markdown**: Highlight key technical terms in **bold**, use inline `code` for variables/functions, and use formatted code blocks (```python / cpp / java / js```) when showing code.\n");
         sb.append("4. **Socratic Intuition**: Provide intuitive explanations and progressive hints first. Do NOT dump full solution code immediately unless specifically asked.\n");
         sb.append("5. **Language Preference**: If asked for full solution code and no language is specified (and no code is in student notes), ask which language they prefer (e.g., C++, Java, Python, JavaScript, Go) before generating full code.\n");
-        sb.append("6. **LaTeX Complexities**: Format Big-O notation cleanly using LaTeX like $O(N)$ or $O(N \\log N)$.\n");
+        sb.append("6. **Clean Math & Complexity**: Format Big-O notation as `O(N)` or `O(N log N)`. Do NOT use \\text{} or raw LaTeX macros in math expressions. Use plain readable text or inline `code` instead.\n");
         return sb.toString();
     }
 

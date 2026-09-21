@@ -1166,9 +1166,17 @@ export class QuestionDetailModalComponent implements OnChanges {
   formatMarkdown(text: string): string {
     if (!text) return '';
 
+    // 0. Pre-clean raw LaTeX macros (\text{word} -> word, \le -> <=, \ge -> >=, etc.)
+    let processedText = text
+      .replace(/\\text\{([^}]+)\}/g, '$1')
+      .replace(/\\le\b/g, '<=')
+      .replace(/\\ge\b/g, '>=')
+      .replace(/\\times\b/g, '×')
+      .replace(/\\cdot\b/g, '·');
+
     // 1. Extract and preserve code blocks (to prevent internal replacement)
     const codeBlocks: string[] = [];
-    let processed = text.replace(/```(\w+)?\n([\s\S]*?)```/g, (_match, lang, code) => {
+    let processed = processedText.replace(/```(\w+)?\n([\s\S]*?)```/g, (_match, lang, code) => {
       const languageClass = lang ? `language-${lang}` : '';
       const htmlCode = code
         .replace(/&/g, '&amp;')
@@ -1188,8 +1196,11 @@ export class QuestionDetailModalComponent implements OnChanges {
     // 3. Inline code `code`
     processed = processed.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
 
-    // 4. LaTeX math rendering: $O(N)$ or $O(N \log N)$
-    processed = processed.replace(/\$([^\$]+)\$/g, '<span class="latex-math">$1</span>');
+    // 4. LaTeX math rendering: $O(N)$ or $left_sum + right_sum$
+    processed = processed.replace(/\$([^\$]+)\$/g, (_match, math) => {
+      const cleanMath = math.replace(/\\text\{([^}]+)\}/g, '$1');
+      return `<span class="latex-math">${cleanMath}</span>`;
+    });
 
     // 5. Horizontal rule: --- or ***
     processed = processed.replace(/^[\-*_]{3,}$/gim, '<hr class="md-hr">');

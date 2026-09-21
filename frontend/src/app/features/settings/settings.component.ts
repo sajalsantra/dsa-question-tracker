@@ -170,7 +170,21 @@ import { ToastService } from '../../core/services/toast.service';
               </div>
               <div class="form-group">
                 <label>New Password</label>
-                <input type="password" [(ngModel)]="newPassword" name="newPassword" class="input" placeholder="••••••••" />
+                <input
+                  type="password"
+                  [(ngModel)]="newPassword"
+                  (input)="newPasswordTouched = true"
+                  (blur)="newPasswordTouched = true"
+                  name="newPassword"
+                  class="input"
+                  [class.input-error]="newPasswordError"
+                  placeholder="••••••••"
+                />
+                @if (newPasswordError) {
+                  <small style="display: block; font-size: 11px; color: #ef4444; margin-top: 4px;">
+                    {{ newPasswordError }}
+                  </small>
+                }
               </div>
               <button type="submit" class="btn btn-primary">Update Password</button>
             </form>
@@ -241,8 +255,16 @@ export class SettingsComponent {
 
   currentPassword = '';
   newPassword = '';
+  newPasswordTouched = false;
+  pwdSubmitted = false;
   showGeminiKey = false;
   showOpenAiKey = false;
+
+  get newPasswordError(): string | null {
+    if (!this.newPasswordTouched && !this.pwdSubmitted && !this.newPassword) return null;
+    const val = this.authService.validatePassword(this.newPassword);
+    return val.valid ? null : (val.message || 'Invalid password');
+  }
 
   onGeminiKeyChange(val: string): void {
     this.settingsService.setAiApiKey(val);
@@ -263,8 +285,9 @@ export class SettingsComponent {
   }
 
   changePassword(): void {
-    if (!this.newPassword || this.newPassword.length < 6) {
-      this.toast.show('New password must be at least 6 characters', 'error');
+    this.pwdSubmitted = true;
+    if (this.newPasswordError) {
+      this.toast.show(this.newPasswordError, 'error');
       return;
     }
 
