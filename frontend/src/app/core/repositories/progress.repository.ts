@@ -3,8 +3,7 @@ import { QuestionProgress } from '../models/progress.model';
 
 /**
  * Repository interface for question progress persistence.
- * Local: backed by LocalStorage.
- * Future: backed by HTTP -> Spring Boot REST API.
+ * Implementations: Hybrid (Firebase Firestore + LocalStorage), Local (LocalStorage), or Firebase.
  */
 export abstract class ProgressRepository {
   abstract getAll(): Observable<Record<number, QuestionProgress>>;

@@ -1,11 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, catchError, map } from 'rxjs';
-import { ApiHealthService } from './api-health.service';
 import { SettingsService } from './settings.service';
 import { DEFAULT_SETTINGS } from '../models/settings.model';
-import { environment } from '../../../environments/environment';
-
 import { AuthService } from './auth.service';
 import { FirebaseService } from './firebase.service';
 import { doc, setDoc, deleteDoc, getDoc } from 'firebase/firestore';
@@ -36,7 +33,6 @@ export interface ChatMessage {
 @Injectable({ providedIn: 'root' })
 export class AiService {
   private readonly http = inject(HttpClient);
-  private readonly healthService = inject(ApiHealthService);
   private readonly settingsService = inject(SettingsService);
   private readonly authService = inject(AuthService);
   private readonly firebaseService = inject(FirebaseService);
@@ -47,22 +43,7 @@ export class AiService {
     }
     const qIdStr = String(questionId);
 
-    // 1. Spring Boot MySQL Backend API Sync
-    if (this.healthService.isSpringBootOnline()) {
-      const backendUrl = `${environment.apiUrl}/ai/history/${qIdStr}`;
-      const payload = messages.map((m) => ({
-        questionId: qIdStr,
-        sender: m.sender,
-        messageText: m.text,
-        timestamp: m.timestamp,
-      }));
-      this.http
-        .post(backendUrl, payload)
-        .pipe(catchError(() => of(null)))
-        .subscribe();
-    }
-
-    // 2. Cloud Firestore Sync
+    // Cloud Firestore Sync
     const user = this.authService.currentUser();
     if (user && user.id) {
       try {
@@ -91,25 +72,7 @@ export class AiService {
     }
     const qIdStr = String(questionId);
 
-    // 1. Primary: Spring Boot Backend API
-    if (this.healthService.isSpringBootOnline()) {
-      const backendUrl = `${environment.apiUrl}/ai/history/${qIdStr}`;
-      return this.http.get<any[]>(backendUrl).pipe(
-        map((list) => {
-          if (Array.isArray(list) && list.length > 0) {
-            return list.map((item) => ({
-              sender: item.sender as 'user' | 'ai',
-              text: item.messageText,
-              timestamp: item.timestamp,
-            }));
-          }
-          return [];
-        }),
-        catchError(() => of([])),
-      );
-    }
-
-    // 2. Fallback: Cloud Firestore
+    // Cloud Firestore
     const user = this.authService.currentUser();
     if (user && user.id) {
       const docRef = doc(
@@ -142,14 +105,6 @@ export class AiService {
       return;
     }
     const qIdStr = String(questionId);
-    if (this.healthService.isSpringBootOnline()) {
-      const backendUrl = `${environment.apiUrl}/ai/history/${qIdStr}`;
-      this.http
-        .delete(backendUrl)
-        .pipe(catchError(() => of(null)))
-        .subscribe();
-    }
-
     const user = this.authService.currentUser();
     if (user && user.id) {
       try {
@@ -171,27 +126,6 @@ export class AiService {
         : settings.geminiApiKey || DEFAULT_SETTINGS.geminiApiKey;
     const userApiKey = rawKey?.trim();
 
-    // Pathway 1: Spring Boot Backend
-    if (this.healthService.isSpringBootOnline()) {
-      const backendUrl = `${environment.apiUrl}/ai/chat`;
-      return this.http
-        .post<AiPromptResponse>(backendUrl, {
-          ...req,
-          apiKey: userApiKey,
-          provider: provider,
-        })
-        .pipe(
-          catchError((err) => {
-            console.warn(
-              'Spring Boot AI request failed, falling back to direct client call',
-              err,
-            );
-            return this.callDirectAiApi(req, provider, userApiKey);
-          }),
-        );
-    }
-
-    // Pathway 2: Direct Client Call (Firestore / Offline Mode)
     return this.callDirectAiApi(req, provider, userApiKey);
   }
 

@@ -1,6 +1,6 @@
 # 🚀 DSA Question Tracker
 
-A full-stack, feature-rich Data Structures & Algorithms (DSA) Question Tracking application built with **Angular 18** and **Spring Boot 3** with a **MySQL** backend and **Firebase** sync capabilities.
+A modern, responsive, and standalone Data Structures & Algorithms (DSA) Question Tracking application built with **Angular 18**, powered by **Firebase** (Cloud Firestore & Authentication) and **Local Storage** for instant local persistence and offline resilience.
 
 ---
 
@@ -14,12 +14,8 @@ DSA Question Tracker/
 │   ├── 📄 package.json        # Frontend dependencies & npm scripts
 │   └── 📄 tsconfig.json       # TypeScript configuration
 │
-├── 📂 backend/                # Spring Boot 3 REST API
-│   ├── 📂 src/                # Controllers, Services, Repositories, Entities & Security
-│   └── 📄 pom.xml             # Maven dependencies & build settings
-│
-├── 📂 docs/                   # Additional documentation & system design assets
-├── 📄 package.json            # Root workspace orchestrator scripts
+├── 📂 docs/                   # Architecture & system design documentation
+├── 📄 package.json            # Root workspace scripts
 └── 📄 README.md               # Project documentation
 ```
 
@@ -30,11 +26,12 @@ DSA Question Tracker/
 - 🧠 **500+ Curated DSA Questions**: Comprehensive coverage across major topics, pattern tags, and difficulty levels.
 - 🎯 **Company-Wise LeetCode Tracker**: Dedicated, isolated section to practice top interview questions tagged by major tech companies.
 - 📊 **Interactive Analytics Dashboard**: Visual breakdown of progress, status distribution, difficulty ratings, timeline trends, and topic metrics powered by Chart.js.
-- 🔄 **Hybrid Data Persistence**: 
-  - **Primary**: Spring Boot 3 REST API + MySQL database.
-  - **Cloud Sync**: Firebase Firestore for cloud backups & remote state sync.
-  - **Offline/Guest Support**: Browser `LocalStorage` fallback.
-- 🔐 **Authentication & Security**: JWT-based authentication with Spring Security and optional Firebase authentication.
+- 🔄 **Hybrid Data Persistence**:
+  - **Cloud Database**: Firebase Firestore for real-time state synchronization across devices.
+  - **Local Persistence & Offline Mode**: Browser `LocalStorage` for zero-latency UI updates and full offline capabilities.
+  - **Seamless Data Migration**: Option to sync local guest progress to your account upon signup.
+- 🔐 **Authentication**: Firebase Authentication supporting Email/Password, Google OAuth, and GitHub OAuth sign-in.
+- 🤖 **Beru AI Mentor**: Intelligent conversational AI assistance for hints, optimal approaches, complexity analysis, and code reviews directly via Google Gemini / OpenAI APIs.
 - ⏱️ **Smart Revision & Confidence Scoring**: Deterministic confidence score calculation based on solve attempts, time spent, difficulty stars, and automated revision scheduling.
 - 🔍 **Filtering & Pagination**: Instant search, multi-field filtering (topic, difficulty, status, company), and numbered pagination.
 
@@ -42,18 +39,12 @@ DSA Question Tracker/
 
 ## 🛠️ Tech Stack
 
-### Frontend
 - **Framework**: Angular 18 (Standalone Components, Signals, RxJS)
+- **Database & Auth**: Firebase (Cloud Firestore & Firebase Authentication)
+- **Local Persistence**: Browser `LocalStorage`
 - **Visualization**: Chart.js & ng2-charts
-- **Styling**: Vanilla CSS & Custom Design System (Glassmorphism, Dark/Light palettes)
-- **Cloud Backend**: Firebase Authentication & Cloud Firestore SDK
-
-### Backend
-- **Framework**: Spring Boot 3.3.2 (Java 17)
-- **Security**: Spring Security & JJWT (JSON Web Token)
-- **Data Access**: Spring Data JPA / Hibernate
-- **Database**: MySQL 8.x
-- **Build Tool**: Apache Maven
+- **Styling**: Vanilla CSS & Custom Design System (Glassmorphism, Dark/Light themes)
+- **AI Integration**: Direct Google Gemini & OpenAI API integration
 
 ---
 
@@ -61,33 +52,10 @@ DSA Question Tracker/
 
 ### Prerequisites
 - **Node.js**: v18+ and **npm** v9+
-- **Java JDK**: 17+
-- **Maven**: 3.8+ (or Maven Wrapper)
-- **MySQL Server**: Running on `localhost:3306`
 
 ---
 
-### 1️⃣ Setting up the Backend
-
-1. Navigate to the `backend` directory:
-   ```bash
-   cd backend
-   ```
-2. Configure your MySQL database settings in `src/main/resources/application.properties`:
-   ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/dsa_tracker_db?createDatabaseIfNotExist=true
-   spring.datasource.username=YOUR_MYSQL_USERNAME
-   spring.datasource.password=YOUR_MYSQL_PASSWORD
-   ```
-3. Run the Spring Boot application:
-   ```bash
-   mvn spring-boot:run
-   ```
-   The backend API will be available at `http://localhost:8080`.
-
----
-
-### 2️⃣ Setting up the Frontend
+### Getting Started
 
 1. Navigate to the `frontend` directory:
    ```bash
@@ -105,22 +73,19 @@ DSA Question Tracker/
 
 ---
 
-### 3️⃣ Root Workspace Commands
+### Root Workspace Commands
 
-You can also run orchestration scripts directly from the root project directory:
+You can also run commands directly from the root project directory:
 
 ```bash
-# Start Frontend
-npm run start:frontend
+# Start Frontend Dev Server
+npm start
 
-# Build Frontend
-npm run build:frontend
+# Build for Production
+npm run build
 
-# Start Backend
-npm run start:backend
-
-# Build/Compile Backend
-npm run build:backend
+# Run Unit Tests
+npm test
 ```
 
 ---
@@ -128,3 +93,4 @@ npm run build:backend
 ## 📜 License
 
 This project is open-source under the [MIT License](LICENSE).
+

@@ -917,7 +917,7 @@ export class QuestionDetailModalComponent implements OnChanges {
       }
     } catch {}
 
-    // 2. Cloud Sync (Spring Boot MySQL / Cloud Firestore)
+    // 2. Cloud Sync (Cloud Firestore)
     this.aiService.fetchChatFromCloud(questionId).subscribe(cloudMsgs => {
       if (cloudMsgs && cloudMsgs.length > 0) {
         this.chatMessages = cloudMsgs;
@@ -938,7 +938,7 @@ export class QuestionDetailModalComponent implements OnChanges {
       localStorage.setItem(localKey, JSON.stringify(this.chatMessages));
     } catch {}
 
-    // 2. Cloud Sync (MySQL DB & Firestore)
+    // 2. Cloud Sync (Cloud Firestore)
     this.aiService.saveChatToCloud(this.question.id, this.chatMessages);
   }
 

@@ -1,6 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/api',
   firebase: {
     apiKey: "AIzaSyBE5wzVTkdBDTGoGqyOfj450MJDHAwDH1U",
     authDomain: "dsa-tracker-app-ef41d.firebaseapp.com",
@@ -11,3 +10,4 @@ export const environment = {
     measurementId: "G-6G883D1B4T"
   }
 };
+

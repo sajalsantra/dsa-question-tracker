@@ -127,7 +127,7 @@ import { ToastService } from '../../core/services/toast.service';
                 @if (settingsService.settings().geminiApiKey?.trim()) {
                   🔒 <strong>Personal Key Active:</strong> Beru will send requests using your custom Gemini key.
                 } @else {
-                  💡 <strong>No Personal Key Set:</strong> Leave blank to use the backend server system key automatically.
+                  💡 <strong>No API Key Set:</strong> Enter your Google Gemini API key above to unlock Beru AI mentor responses.
                 }
               </p>
             </div>
