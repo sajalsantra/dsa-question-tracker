@@ -147,10 +147,10 @@ export class SpringBootAuthRepository extends AuthRepository {
   }
 
   loginWithGoogle(): Observable<User> {
-    return throwError(() => new Error('OAuth Google login requires Firebase or Spring Boot OAuth2. Please sign in with email/password.'));
+    return throwError(() => new Error('OAuth Google login is not configured on this Spring Boot server. Please sign in with email/password.'));
   }
 
   loginWithGithub(): Observable<User> {
-    return throwError(() => new Error('OAuth GitHub login requires Firebase or Spring Boot OAuth2. Please sign in with email/password.'));
+    return throwError(() => new Error('OAuth GitHub login is not configured on this Spring Boot server. Please sign in with email/password.'));
   }
 }
