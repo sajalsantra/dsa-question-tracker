@@ -1,7 +1,8 @@
-import { Injectable, signal, computed, inject } from '@angular/core';
+import { Injectable, signal, computed, inject, effect } from '@angular/core';
 import { QuestionProgress, QuestionStatus } from '../models/progress.model';
 import { ProgressRepository } from '../repositories/progress.repository';
 import { LocalProgressRepository } from '../repositories/local/local-progress.repository';
+import { StorageService } from './storage.service';
 
 /** Returns today's date as YYYY-MM-DD */
 function todayStr(): string {
@@ -26,9 +27,19 @@ export function defaultProgress(questionId: number): QuestionProgress {
 @Injectable({ providedIn: 'root' })
 export class ProgressService {
   private readonly repo = inject(ProgressRepository);
+  private readonly storage = inject(StorageService);
 
   private readonly _progress = signal<Record<number, QuestionProgress>>({});
   readonly progress = this._progress.asReadonly();
+
+  constructor() {
+    effect(() => {
+      const change = this.storage.guestStorageChanged();
+      if (change.key && change.key.includes('progress') && this.storage.isGuest()) {
+        this.load();
+      }
+    });
+  }
 
   // Computed statistics
   readonly solvedCount = computed(() =>

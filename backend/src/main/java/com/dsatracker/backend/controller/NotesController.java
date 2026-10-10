@@ -51,6 +51,27 @@ public class NotesController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/sync")
+    public ResponseEntity<Map<Integer, String>> syncNotes(@RequestBody Map<Integer, String> notesMap,
+                                                          Authentication authentication) {
+        String userId = (String) authentication.getPrincipal();
+        if (notesMap != null && !notesMap.isEmpty()) {
+            for (Map.Entry<Integer, String> entry : notesMap.entrySet()) {
+                Integer questionId = entry.getKey();
+                String noteText = entry.getValue();
+                NotesEntity entity = NotesEntity.builder()
+                        .id(userId + "_" + questionId)
+                        .userId(userId)
+                        .questionId(questionId)
+                        .noteText(noteText != null ? noteText : "")
+                        .updatedAt(java.time.Instant.now().toString())
+                        .build();
+                notesRepository.save(entity);
+            }
+        }
+        return getNotes(authentication);
+    }
+
     @DeleteMapping("/{questionId}")
     @Transactional
     public ResponseEntity<Void> deleteNote(@PathVariable Integer questionId,

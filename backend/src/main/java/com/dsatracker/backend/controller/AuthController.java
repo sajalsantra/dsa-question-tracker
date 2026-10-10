@@ -35,10 +35,15 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email is already registered");
         }
 
+        String rawName = request.getName();
+        String name = (rawName != null && !rawName.trim().isEmpty())
+                ? rawName.trim()
+                : (request.getEmail() != null && request.getEmail().contains("@") ? request.getEmail().split("@")[0] : "User");
+
         String userId = UUID.randomUUID().toString();
         UserEntity user = UserEntity.builder()
                 .id(userId)
-                .name(request.getName() != null ? request.getName() : request.getEmail().split("@")[0])
+                .name(name)
                 .email(request.getEmail())
                 .passwordHash(passwordEncoder.encode(request.getPassword()))
                 .build();
@@ -72,9 +77,13 @@ public class AuthController {
         String accessToken = tokenProvider.generateAccessToken(user.getId(), user.getEmail());
         RefreshTokenEntity refreshToken = refreshTokenService.createRefreshToken(user.getId());
 
+        String displayName = (user.getName() != null && !user.getName().trim().isEmpty())
+                ? user.getName().trim()
+                : (user.getEmail() != null && user.getEmail().contains("@") ? user.getEmail().split("@")[0] : "User");
+
         UserDto userDto = UserDto.builder()
                 .id(user.getId())
-                .name(user.getName())
+                .name(displayName)
                 .email(user.getEmail())
                 .build();
 
@@ -140,6 +149,37 @@ public class AuthController {
 
         if (user == null) {
             return ResponseEntity.notFound().build();
+        }
+
+        String displayName = (user.getName() != null && !user.getName().trim().isEmpty())
+                ? user.getName().trim()
+                : (user.getEmail() != null && user.getEmail().contains("@") ? user.getEmail().split("@")[0] : "User");
+
+        UserDto userDto = UserDto.builder()
+                .id(user.getId())
+                .name(displayName)
+                .email(user.getEmail())
+                .build();
+
+        return ResponseEntity.ok(userDto);
+    }
+
+    @PutMapping("/profile")
+    public ResponseEntity<?> updateProfile(@RequestBody java.util.Map<String, String> body, Authentication authentication) {
+        if (authentication == null || authentication.getPrincipal() == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        String userId = (String) authentication.getPrincipal();
+        UserEntity user = userRepository.findById(userId).orElse(null);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        String newName = body.get("name");
+        if (newName != null && !newName.trim().isEmpty()) {
+            user.setName(newName.trim());
+            userRepository.save(user);
         }
 
         UserDto userDto = UserDto.builder()

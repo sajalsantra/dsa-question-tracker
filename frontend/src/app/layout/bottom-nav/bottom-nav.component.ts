@@ -21,7 +21,8 @@ import { AuthModalService } from '../../core/services/auth-modal.service';
           {{ settingsService.settings().theme === 'dark' ? '🌙' : '☀️' }}
         </button>
         @if (authService.isAuthenticated()) {
-          <button class="auth-btn" (click)="authService.logout()">Logout</button>
+          <span style="font-size: 11px; font-weight: 600; color: var(--text);">👤 {{ authService.displayName() }}</span>
+          <button class="auth-btn" (click)="onLogout()">Logout</button>
         } @else {
           <button type="button" class="auth-btn" (click)="authModalService.open('signin')">🔑 Login</button>
         }
@@ -121,5 +122,9 @@ export class BottomNavComponent {
   readonly settingsService = inject(SettingsService);
   readonly authService = inject(AuthService);
   readonly authModalService = inject(AuthModalService);
+
+  onLogout(): void {
+    this.authService.logout().subscribe();
+  }
 }
 

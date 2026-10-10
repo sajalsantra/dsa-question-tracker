@@ -88,8 +88,8 @@ import { AuthModalService } from '../../core/services/auth-modal.service';
       <div class="sidebar-footer">
         @if (authService.isAuthenticated()) {
           <div class="user-chip">
-            <span class="user-name">👤 {{ authService.currentUser()?.name }}</span>
-            <button class="logout-btn" (click)="authService.logout()">Logout</button>
+            <span class="user-name" [title]="authService.currentUser()?.email || ''">👤 {{ authService.displayName() }}</span>
+            <button class="logout-btn" (click)="onLogout()">Logout</button>
           </div>
         } @else {
           <button type="button" class="auth-btn" (click)="authModalService.open('signin')">🔑 Sign In / Sign Up</button>
@@ -284,6 +284,10 @@ export class SidebarComponent {
     const total = this.questionService.questions().length;
     if (!total) return 0;
     return Math.round((this.progressService.solvedCount() / total) * 100);
+  }
+
+  onLogout(): void {
+    this.authService.logout().subscribe();
   }
 }
 

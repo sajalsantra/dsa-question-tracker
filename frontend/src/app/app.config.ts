@@ -1,6 +1,6 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { routes } from './app.routes';
@@ -16,12 +16,13 @@ import { HybridProgressRepository } from './core/repositories/hybrid/hybrid-prog
 import { HybridNotesRepository } from './core/repositories/hybrid/hybrid-notes.repository';
 import { HybridActivityRepository } from './core/repositories/hybrid/hybrid-activity.repository';
 import { HybridSettingsRepository } from './core/repositories/hybrid/hybrid-settings.repository';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])),
     provideAnimations(),
     provideCharts(withDefaultRegisterables()),
     { provide: AuthRepository, useClass: HybridAuthRepository },

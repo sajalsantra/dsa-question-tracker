@@ -140,11 +140,20 @@ import { ToastService } from '../../core/services/toast.service';
           @if (authService.isAuthenticated()) {
             <div class="user-info">
               <div>
-                <div class="u-name">{{ authService.currentUser()?.name }}</div>
+                <div class="u-name">{{ authService.displayName() }}</div>
                 <div class="u-email">{{ authService.currentUser()?.email }}</div>
               </div>
-              <button class="btn-logout" (click)="authService.logout()">Sign Out</button>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <button type="button" class="btn btn-secondary btn-sm" (click)="startEditName()">{{ editingName ? 'Cancel' : 'Edit Name' }}</button>
+                <button class="btn-logout" (click)="onLogout()">Sign Out</button>
+              </div>
             </div>
+            @if (editingName) {
+              <div style="margin-top: 12px; display: flex; gap: 8px;">
+                <input class="input" [(ngModel)]="newName" placeholder="Enter your full name" style="flex: 1;" />
+                <button type="button" class="btn btn-primary btn-sm" (click)="saveNewName()">Save</button>
+              </div>
+            }
           } @else {
             <p class="auth-hint">You are currently using local offline mode. Sign in to sync state across devices.</p>
           }
@@ -259,6 +268,36 @@ export class SettingsComponent {
   pwdSubmitted = false;
   showGeminiKey = false;
   showOpenAiKey = false;
+
+  editingName = false;
+  newName = '';
+
+  startEditName(): void {
+    this.newName = this.authService.displayName();
+    this.editingName = !this.editingName;
+  }
+
+  saveNewName(): void {
+    const trimmed = this.newName.trim();
+    if (!trimmed) {
+      this.toast.show('Please enter a valid name', 'error');
+      return;
+    }
+    this.authService.updateProfileName(trimmed).subscribe({
+      next: () => {
+        this.toast.show('Profile name updated successfully!');
+        this.editingName = false;
+      },
+      error: (err) => this.toast.show(err.message || 'Failed to update name', 'error')
+    });
+  }
+
+  onLogout(): void {
+    this.authService.logout().subscribe({
+      next: () => this.toast.show('Signed out successfully'),
+      error: (err) => this.toast.show(err.message || 'Error signing out', 'error')
+    });
+  }
 
   get newPasswordError(): string | null {
     if (!this.newPasswordTouched && !this.pwdSubmitted && !this.newPassword) return null;

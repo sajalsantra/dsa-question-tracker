@@ -7,8 +7,6 @@ import { DEFAULT_SETTINGS } from '../models/settings.model';
 import { environment } from '../../../environments/environment';
 
 import { AuthService } from './auth.service';
-import { FirebaseService } from './firebase.service';
-import { doc, setDoc, deleteDoc, getDoc } from 'firebase/firestore';
 
 export interface AiPromptRequest {
   questionTitle: string;
@@ -39,7 +37,6 @@ export class AiService {
   private readonly healthService = inject(ApiHealthService);
   private readonly settingsService = inject(SettingsService);
   private readonly authService = inject(AuthService);
-  private readonly firebaseService = inject(FirebaseService);
 
   saveChatToCloud(questionId: string | number, messages: ChatMessage[]): void {
     if (this.settingsService.settings().enableCloudSync === false) {
@@ -47,7 +44,7 @@ export class AiService {
     }
     const qIdStr = String(questionId);
 
-    // 1. Spring Boot MySQL Backend API Sync
+    // Spring Boot MySQL Backend API Sync
     if (this.healthService.isSpringBootOnline()) {
       const backendUrl = `${environment.apiUrl}/ai/history/${qIdStr}`;
       const payload = messages.map((m) => ({
@@ -61,28 +58,6 @@ export class AiService {
         .pipe(catchError(() => of(null)))
         .subscribe();
     }
-
-    // 2. Cloud Firestore Sync
-    const user = this.authService.currentUser();
-    if (user && user.id) {
-      try {
-        const docRef = doc(
-          this.firebaseService.db,
-          `users/${user.id}/ai_chat_history/${qIdStr}`,
-        );
-        setDoc(
-          docRef,
-          {
-            questionId: qIdStr,
-            messages: messages,
-            updatedAt: new Date().toISOString(),
-          },
-          { merge: true },
-        ).catch((err) => console.warn('Firestore AI Chat Sync Error', err));
-      } catch (err) {
-        console.warn('Firestore AI Chat Error', err);
-      }
-    }
   }
 
   fetchChatFromCloud(questionId: string | number): Observable<ChatMessage[]> {
@@ -91,7 +66,7 @@ export class AiService {
     }
     const qIdStr = String(questionId);
 
-    // 1. Primary: Spring Boot Backend API
+    // Spring Boot Backend API
     if (this.healthService.isSpringBootOnline()) {
       const backendUrl = `${environment.apiUrl}/ai/history/${qIdStr}`;
       return this.http.get<any[]>(backendUrl).pipe(
@@ -109,31 +84,6 @@ export class AiService {
       );
     }
 
-    // 2. Fallback: Cloud Firestore
-    const user = this.authService.currentUser();
-    if (user && user.id) {
-      const docRef = doc(
-        this.firebaseService.db,
-        `users/${user.id}/ai_chat_history/${qIdStr}`,
-      );
-      return new Observable<ChatMessage[]>((observer) => {
-        getDoc(docRef)
-          .then((snap) => {
-            if (snap.exists()) {
-              const msgs = snap.data()['messages'] || [];
-              observer.next(msgs);
-            } else {
-              observer.next([]);
-            }
-            observer.complete();
-          })
-          .catch(() => {
-            observer.next([]);
-            observer.complete();
-          });
-      });
-    }
-
     return of([]);
   }
 
@@ -148,17 +98,6 @@ export class AiService {
         .delete(backendUrl)
         .pipe(catchError(() => of(null)))
         .subscribe();
-    }
-
-    const user = this.authService.currentUser();
-    if (user && user.id) {
-      try {
-        const docRef = doc(
-          this.firebaseService.db,
-          `users/${user.id}/ai_chat_history/${qIdStr}`,
-        );
-        deleteDoc(docRef).catch(() => {});
-      } catch {}
     }
   }
 
@@ -191,7 +130,7 @@ export class AiService {
         );
     }
 
-    // Pathway 2: Direct Client Call (Firestore / Offline Mode)
+    // Pathway 2: Direct Client Call (Offline / Fallback Mode)
     return this.callDirectAiApi(req, provider, userApiKey);
   }
 

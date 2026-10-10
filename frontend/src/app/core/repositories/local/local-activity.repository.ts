@@ -1,10 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { DailyGoal } from '../../models/activity.model';
 import { ActivityRepository } from '../activity.repository';
-
-const ACTIVITY_KEY = 'dsaActivity';
-const GOAL_KEY = 'dsaDailyGoal';
+import { StorageService } from '../../services/storage.service';
 
 const DEFAULT_GOAL: DailyGoal = {
   target: 5,
@@ -14,6 +12,7 @@ const DEFAULT_GOAL: DailyGoal = {
 
 @Injectable({ providedIn: 'root' })
 export class LocalActivityRepository extends ActivityRepository {
+  private readonly storage = inject(StorageService);
 
   getActivity(): Observable<Record<string, number>> {
     return of(this.loadActivity());
@@ -22,12 +21,12 @@ export class LocalActivityRepository extends ActivityRepository {
   saveActivity(date: string, count: number): Observable<void> {
     const all = this.loadActivity();
     all[date] = count;
-    this.persistActivity(all);
+    this.storage.setData('activity', all);
     return of(void 0);
   }
 
   resetActivity(): Observable<void> {
-    localStorage.removeItem(ACTIVITY_KEY);
+    this.storage.removeData('activity');
     return of(void 0);
   }
 
@@ -36,46 +35,23 @@ export class LocalActivityRepository extends ActivityRepository {
   }
 
   saveDailyGoal(goal: DailyGoal): Observable<void> {
-    try {
-      localStorage.setItem(GOAL_KEY, JSON.stringify(goal));
-    } catch (e) {
-      console.error('Failed to persist daily goal:', e);
-    }
+    this.storage.setData('goal', goal);
     return of(void 0);
   }
 
   private loadActivity(): Record<string, number> {
-    try {
-      const raw = localStorage.getItem(ACTIVITY_KEY);
-      return raw ? JSON.parse(raw) : {};
-    } catch {
-      return {};
-    }
-  }
-
-  private persistActivity(data: Record<string, number>): void {
-    try {
-      localStorage.setItem(ACTIVITY_KEY, JSON.stringify(data));
-    } catch (e) {
-      console.error('Failed to persist activity:', e);
-    }
+    return this.storage.getData<Record<string, number>>('activity') || {};
   }
 
   private loadGoal(): DailyGoal {
-    try {
-      const raw = localStorage.getItem(GOAL_KEY);
-      if (!raw) return { ...DEFAULT_GOAL };
-      const goal: DailyGoal = JSON.parse(raw);
-      // Reset count if it's a new day
-      const today = new Date().toISOString().slice(0, 10);
-      if (goal.date !== today) {
-        goal.date = today;
-        goal.count = 0;
-        this.saveDailyGoal(goal);
-      }
-      return goal;
-    } catch {
-      return { ...DEFAULT_GOAL };
+    const goal = this.storage.getData<DailyGoal>('goal');
+    if (!goal) return { ...DEFAULT_GOAL };
+    const today = new Date().toISOString().slice(0, 10);
+    if (goal.date !== today) {
+      goal.date = today;
+      goal.count = 0;
+      this.saveDailyGoal(goal);
     }
+    return goal;
   }
 }

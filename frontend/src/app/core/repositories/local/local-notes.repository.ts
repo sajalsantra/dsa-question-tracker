@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { NotesRepository } from '../notes.repository';
-
-const KEY = 'dsaNotes';
+import { StorageService } from '../../services/storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class LocalNotesRepository extends NotesRepository {
+  private readonly storage = inject(StorageService);
 
   getAll(): Observable<Record<number, string>> {
     return of(this.load());
@@ -14,36 +14,23 @@ export class LocalNotesRepository extends NotesRepository {
   save(questionId: number, notes: string): Observable<void> {
     const all = this.load();
     all[questionId] = notes;
-    this.persist(all);
+    this.storage.setData('notes', all);
     return of(void 0);
   }
 
   delete(questionId: number): Observable<void> {
     const all = this.load();
     delete all[questionId];
-    this.persist(all);
+    this.storage.setData('notes', all);
     return of(void 0);
   }
 
   reset(): Observable<void> {
-    localStorage.removeItem(KEY);
+    this.storage.removeData('notes');
     return of(void 0);
   }
 
   private load(): Record<number, string> {
-    try {
-      const raw = localStorage.getItem(KEY);
-      return raw ? JSON.parse(raw) : {};
-    } catch {
-      return {};
-    }
-  }
-
-  private persist(data: Record<number, string>): void {
-    try {
-      localStorage.setItem(KEY, JSON.stringify(data));
-    } catch (e) {
-      console.error('Failed to persist notes:', e);
-    }
+    return this.storage.getData<Record<number, string>>('notes') || {};
   }
 }

@@ -12,11 +12,20 @@ import { SettingsService } from '../../core/services/settings.service';
 import { AuthService } from '../../core/services/auth.service';
 
 import { AuthModalComponent } from '../../features/auth/auth-modal.component';
+import { GuestAuthPopupComponent } from '../../shared/components/guest-auth-popup/guest-auth-popup.component';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, SidebarComponent, BottomNavComponent, ToastComponent, AuthModalComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    SidebarComponent,
+    BottomNavComponent,
+    ToastComponent,
+    AuthModalComponent,
+    GuestAuthPopupComponent
+  ],
   template: `
     <app-sidebar></app-sidebar>
     <app-bottom-nav></app-bottom-nav>
@@ -27,6 +36,7 @@ import { AuthModalComponent } from '../../features/auth/auth-modal.component';
 
     <app-toast></app-toast>
     <app-auth-modal></app-auth-modal>
+    <app-guest-auth-popup></app-guest-auth-popup>
   `,
   styles: [`
     .main-content {

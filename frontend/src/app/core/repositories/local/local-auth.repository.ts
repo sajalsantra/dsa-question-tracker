@@ -55,6 +55,16 @@ export class LocalAuthRepository extends AuthRepository {
     return of(void 0);
   }
 
+  override updateProfile(name: string): Observable<User> {
+    const current = this.loadSession();
+    if (!current) {
+      return throwError(() => new Error('No user logged in'));
+    }
+    const updated: User = { ...current, name };
+    this.saveSession(updated);
+    return of(updated);
+  }
+
   sendPasswordResetEmail(email: string): Observable<void> {
     if (!email) {
       return throwError(() => new Error('Please enter a valid email address.'));

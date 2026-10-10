@@ -53,6 +53,27 @@ public class ActivityController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/sync")
+    public ResponseEntity<Map<String, Integer>> syncActivity(@RequestBody Map<String, Integer> activityMap,
+                                                             Authentication authentication) {
+        String userId = (String) authentication.getPrincipal();
+        if (activityMap != null && !activityMap.isEmpty()) {
+            for (Map.Entry<String, Integer> entry : activityMap.entrySet()) {
+                String date = entry.getKey();
+                Integer count = entry.getValue();
+                String id = userId + "_" + date;
+                ActivityEntity entity = ActivityEntity.builder()
+                        .id(id)
+                        .userId(userId)
+                        .activityDate(date)
+                        .count(count != null ? count : 0)
+                        .build();
+                activityRepository.save(entity);
+            }
+        }
+        return getActivity(authentication);
+    }
+
     @DeleteMapping("/reset")
     @Transactional
     public ResponseEntity<Void> resetActivity(Authentication authentication) {

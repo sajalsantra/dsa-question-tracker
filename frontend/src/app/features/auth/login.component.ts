@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
@@ -380,7 +380,7 @@ import { ToastService } from '../../core/services/toast.service';
     `,
   ],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
@@ -395,6 +395,23 @@ export class LoginComponent {
   resetEmail = '';
   passwordTouched = false;
   submitted = false;
+
+  ngOnInit(): void {
+    if (this.authService.isAuthenticated()) {
+      const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
+      this.router.navigateByUrl(returnUrl);
+      return;
+    }
+
+    const isRegisterRoute =
+      this.route.snapshot.data['isSignUp'] ||
+      this.router.url.includes('register') ||
+      this.route.snapshot.queryParams['mode'] === 'signup';
+
+    if (isRegisterRoute) {
+      this.isSignUp = true;
+    }
+  }
 
   get passwordError(): string | null {
     if (!this.isSignUp) return null;

@@ -4,22 +4,28 @@ import { tap, catchError, map, switchMap, startWith } from 'rxjs/operators';
 import { ProgressRepository } from '../progress.repository';
 import { QuestionProgress } from '../../models/progress.model';
 import { LocalProgressRepository } from '../local/local-progress.repository';
-import { FirebaseProgressRepository } from '../firebase/firebase-progress.repository';
-import { FirebaseService } from '../../services/firebase.service';
+import { SpringBootProgressRepository } from '../springboot/springboot-progress.repository';
+import { StorageService } from '../../services/storage.service';
+import { ApiHealthService } from '../../services/api-health.service';
 
 @Injectable({ providedIn: 'root' })
 export class HybridProgressRepository implements ProgressRepository {
   private readonly localRepo = inject(LocalProgressRepository);
-  private readonly fbRepo = inject(FirebaseProgressRepository);
-  private readonly fb = inject(FirebaseService);
+  private readonly springBootRepo = inject(SpringBootProgressRepository);
+  private readonly storage = inject(StorageService);
+  private readonly healthService = inject(ApiHealthService);
 
   getAll(): Observable<Record<number, QuestionProgress>> {
     const local$ = this.localRepo.getAll();
 
-    if (this.fb.auth.currentUser) {
+    // If logged in and backend is reachable, fetch authoritative progress from MySQL
+    if (!this.storage.isGuest() && this.storage.getAccessToken()) {
       return local$.pipe(
-        switchMap(localData =>
-          this.fbRepo.getAll().pipe(
+        switchMap(localData => {
+          if (!this.healthService.isSpringBootOnline()) {
+            return of(localData);
+          }
+          return this.springBootRepo.getAll().pipe(
             map(remoteData => {
               if (remoteData && Object.keys(remoteData).length > 0) {
                 for (const [idStr, progress] of Object.entries(remoteData)) {
@@ -31,8 +37,8 @@ export class HybridProgressRepository implements ProgressRepository {
             }),
             catchError(() => of(localData)),
             startWith(localData)
-          )
-        )
+          );
+        })
       );
     }
 
@@ -40,18 +46,18 @@ export class HybridProgressRepository implements ProgressRepository {
   }
 
   syncLocalToRemote(): Observable<void> {
-    if (!this.fb.auth.currentUser) return of(undefined);
+    if (this.storage.isGuest() || !this.storage.getAccessToken()) return of(undefined);
 
     return this.localRepo.getAll().pipe(
-      tap(localData => {
+      switchMap(localData => {
         if (localData && Object.keys(localData).length > 0) {
-          for (const [idStr, progress] of Object.entries(localData)) {
-            this.fbRepo.save(Number(idStr), progress).subscribe();
-          }
+          return this.springBootRepo.sync(localData).pipe(
+            map(() => undefined),
+            catchError(() => of(undefined))
+          );
         }
-      }),
-      map(() => undefined),
-      catchError(() => of(undefined))
+        return of(undefined);
+      })
     );
   }
 
@@ -64,25 +70,47 @@ export class HybridProgressRepository implements ProgressRepository {
     // 1. Save locally instantly (0ms response)
     this.localRepo.save(questionId, updatedProgress).subscribe();
 
-    // 2. Sync to Firebase Firestore if logged in
-    if (this.fb.auth.currentUser) {
-      return this.fbRepo.save(questionId, updatedProgress);
+    // 2. Sync to Spring Boot MySQL if authenticated
+    if (!this.storage.isGuest() && this.storage.getAccessToken()) {
+      if (this.healthService.isSpringBootOnline()) {
+        return this.springBootRepo.save(questionId, updatedProgress).pipe(
+          catchError(() => {
+            this.storage.queueOfflineMutation({
+              id: `${questionId}_${Date.now()}`,
+              type: 'PROGRESS',
+              action: 'SAVE',
+              payload: { questionId, progress: updatedProgress },
+              timestamp: new Date().toISOString()
+            });
+            return of(undefined);
+          })
+        );
+      } else {
+        // Offline: enqueue mutation for background sync
+        this.storage.queueOfflineMutation({
+          id: `${questionId}_${Date.now()}`,
+          type: 'PROGRESS',
+          action: 'SAVE',
+          payload: { questionId, progress: updatedProgress },
+          timestamp: new Date().toISOString()
+        });
+      }
     }
     return of(undefined);
   }
 
   delete(questionId: number): Observable<void> {
     this.localRepo.delete(questionId).subscribe();
-    if (this.fb.auth.currentUser) {
-      return this.fbRepo.delete(questionId);
+    if (!this.storage.isGuest() && this.storage.getAccessToken()) {
+      return this.springBootRepo.delete(questionId);
     }
     return of(undefined);
   }
 
   reset(): Observable<void> {
     this.localRepo.reset().subscribe();
-    if (this.fb.auth.currentUser) {
-      return this.fbRepo.reset();
+    if (!this.storage.isGuest() && this.storage.getAccessToken()) {
+      return this.springBootRepo.reset();
     }
     return of(undefined);
   }

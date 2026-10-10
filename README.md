@@ -1,6 +1,6 @@
 # 🚀 DSA Question Tracker
 
-A full-stack, feature-rich Data Structures & Algorithms (DSA) Question Tracking application built with **Angular 18** and **Spring Boot 3** with a **MySQL** backend and **Firebase** sync capabilities.
+A full-stack, feature-rich Data Structures & Algorithms (DSA) Question Tracking application built with **Angular 18** and **Spring Boot 3** backed by a **MySQL** database.
 
 ---
 
@@ -19,6 +19,7 @@ DSA Question Tracker/
 │   └── 📄 pom.xml             # Maven dependencies & build settings
 │
 ├── 📂 docs/                   # Additional documentation & system design assets
+│   └── 📄 DATA_PERSISTENCE_AUDIT.md # Comprehensive browser session & MySQL storage audit
 ├── 📄 package.json            # Root workspace orchestrator scripts
 └── 📄 README.md               # Project documentation
 ```
@@ -30,11 +31,10 @@ DSA Question Tracker/
 - 🧠 **500+ Curated DSA Questions**: Comprehensive coverage across major topics, pattern tags, and difficulty levels.
 - 🎯 **Company-Wise LeetCode Tracker**: Dedicated, isolated section to practice top interview questions tagged by major tech companies.
 - 📊 **Interactive Analytics Dashboard**: Visual breakdown of progress, status distribution, difficulty ratings, timeline trends, and topic metrics powered by Chart.js.
-- 🔄 **Hybrid Data Persistence**: 
-  - **Primary**: Spring Boot 3 REST API + MySQL database.
-  - **Cloud Sync**: Firebase Firestore for cloud backups & remote state sync.
-  - **Offline/Guest Support**: Browser `LocalStorage` fallback.
-- 🔐 **Authentication & Security**: JWT-based authentication with Spring Security and optional Firebase authentication.
+- 🔄 **Unified Data Persistence**: 
+  - **Database**: Authoritative MySQL database via Spring Boot 3 REST API.
+  - **Client-Side Resilience**: Multi-tab synchronized `LocalStorage` with offline mutation queuing.
+- 🔐 **Authentication & Security**: Secure JWT Access + Refresh token architecture with Spring Security.
 - ⏱️ **Smart Revision & Confidence Scoring**: Deterministic confidence score calculation based on solve attempts, time spent, difficulty stars, and automated revision scheduling.
 - 🔍 **Filtering & Pagination**: Instant search, multi-field filtering (topic, difficulty, status, company), and numbered pagination.
 
@@ -46,7 +46,6 @@ DSA Question Tracker/
 - **Framework**: Angular 18 (Standalone Components, Signals, RxJS)
 - **Visualization**: Chart.js & ng2-charts
 - **Styling**: Vanilla CSS & Custom Design System (Glassmorphism, Dark/Light palettes)
-- **Cloud Backend**: Firebase Authentication & Cloud Firestore SDK
 
 ### Backend
 - **Framework**: Spring Boot 3.3.2 (Java 17)

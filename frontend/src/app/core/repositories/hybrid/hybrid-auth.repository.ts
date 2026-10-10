@@ -1,60 +1,48 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { AuthRepository } from '../auth.repository';
 import { User } from '../../models/user.model';
-import { FirebaseAuthRepository } from '../firebase/firebase-auth.repository';
+import { SpringBootAuthRepository } from '../springboot/springboot-auth.repository';
 import { LocalAuthRepository } from '../local/local-auth.repository';
 
 @Injectable({ providedIn: 'root' })
 export class HybridAuthRepository implements AuthRepository {
-  private readonly fbAuth = inject(FirebaseAuthRepository);
+  private readonly sbAuth = inject(SpringBootAuthRepository);
   private readonly localAuth = inject(LocalAuthRepository);
 
   getCurrentUser(): Observable<User | null> {
-    return this.fbAuth.getCurrentUser().pipe(
-      tap(user => {
-        if (user) {
-          localStorage.setItem('dsa_tracker_user', JSON.stringify(user));
-        }
-      })
-    );
+    return this.sbAuth.getCurrentUser();
   }
 
   login(email: string, password: string): Observable<User> {
-    return this.fbAuth.login(email, password).pipe(
-      tap(user => localStorage.setItem('dsa_tracker_user', JSON.stringify(user)))
-    );
+    return this.sbAuth.login(email, password);
   }
 
   loginWithGoogle(): Observable<User> {
-    return this.fbAuth.loginWithGoogle().pipe(
-      tap(user => localStorage.setItem('dsa_tracker_user', JSON.stringify(user)))
-    );
+    return this.sbAuth.loginWithGoogle();
   }
 
   loginWithGithub(): Observable<User> {
-    return this.fbAuth.loginWithGithub().pipe(
-      tap(user => localStorage.setItem('dsa_tracker_user', JSON.stringify(user)))
-    );
+    return this.sbAuth.loginWithGithub();
   }
 
   register(name: string, email: string, password: string): Observable<User> {
-    return this.fbAuth.register(name, email, password).pipe(
-      tap(user => localStorage.setItem('dsa_tracker_user', JSON.stringify(user)))
-    );
+    return this.sbAuth.register(name, email, password);
   }
 
   logout(): Observable<void> {
-    localStorage.removeItem('dsa_tracker_user');
-    return this.fbAuth.logout();
+    return this.sbAuth.logout();
   }
 
   sendPasswordResetEmail(email: string): Observable<void> {
-    return this.fbAuth.sendPasswordResetEmail(email);
+    return this.sbAuth.sendPasswordResetEmail(email);
   }
 
   changePassword(currentPassword: string, newPassword: string): Observable<void> {
-    return this.fbAuth.changePassword(currentPassword, newPassword);
+    return this.sbAuth.changePassword(currentPassword, newPassword);
+  }
+
+  updateProfile(name: string): Observable<User> {
+    return this.sbAuth.updateProfile(name);
   }
 }

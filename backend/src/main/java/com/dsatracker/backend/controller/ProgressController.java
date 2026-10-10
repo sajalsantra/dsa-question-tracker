@@ -46,6 +46,25 @@ public class ProgressController {
         return ResponseEntity.ok(saved);
     }
 
+    @PostMapping("/sync")
+    public ResponseEntity<Map<Integer, ProgressEntity>> syncProgress(@RequestBody Map<Integer, ProgressEntity> progressMap,
+                                                                      Authentication authentication) {
+        String userId = (String) authentication.getPrincipal();
+        if (progressMap != null && !progressMap.isEmpty()) {
+            for (Map.Entry<Integer, ProgressEntity> entry : progressMap.entrySet()) {
+                Integer questionId = entry.getKey();
+                ProgressEntity progress = entry.getValue();
+                if (progress != null) {
+                    progress.setId(userId + "_" + questionId);
+                    progress.setUserId(userId);
+                    progress.setQuestionId(questionId);
+                    progressRepository.save(progress);
+                }
+            }
+        }
+        return getProgress(authentication);
+    }
+
     @DeleteMapping("/{questionId}")
     @Transactional
     public ResponseEntity<Void> deleteProgress(@PathVariable Integer questionId,

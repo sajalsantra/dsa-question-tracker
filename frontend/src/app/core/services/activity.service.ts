@@ -1,7 +1,8 @@
-import { Injectable, signal, inject } from '@angular/core';
+import { Injectable, signal, inject, effect } from '@angular/core';
 import { DailyGoal } from '../models/activity.model';
 import { ActivityRepository } from '../repositories/activity.repository';
 import { LocalActivityRepository } from '../repositories/local/local-activity.repository';
+import { StorageService } from './storage.service';
 
 function todayStr(): string {
   return new Date().toISOString().slice(0, 10);
@@ -10,6 +11,7 @@ function todayStr(): string {
 @Injectable({ providedIn: 'root' })
 export class ActivityService {
   private readonly repo = inject(ActivityRepository);
+  private readonly storage = inject(StorageService);
 
   private readonly _activity = signal<Record<string, number>>({});
   readonly activity = this._activity.asReadonly();
@@ -20,6 +22,19 @@ export class ActivityService {
     count: 0
   });
   readonly dailyGoal = this._dailyGoal.asReadonly();
+
+  constructor() {
+    effect(() => {
+      const change = this.storage.guestStorageChanged();
+      if (
+        change.key &&
+        (change.key.includes('activity') || change.key.includes('goal')) &&
+        this.storage.isGuest()
+      ) {
+        this.load();
+      }
+    });
+  }
 
   load(): void {
     this.repo.getActivity().subscribe(a => this._activity.set(a));
